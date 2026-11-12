@@ -5,7 +5,7 @@
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* ELEMEN TIDAK BISA DIKLIK */
+/* KUNCI ELEMEN YANG TIDAK BOLEH DIKLIK */
 .unclickable {
   pointer-events: none !important;
   user-select: none !important;
@@ -42,7 +42,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 1. NAVBAR ATAS (PERSIS SUSUNAN SCREENSHOT)                */
+/* 1. NAVBAR ATAS (PERSIS 100% URUTAN SCREENSHOT)            */
 /* ========================================================= */
 .rbx-navbar {
   height: 48px;
@@ -56,7 +56,7 @@ html, body {
   z-index: 1000;
 }
 
-/* Sisi Kiri: Logo + Menu Beranda, Grafik, Pasar, Buat */
+/* 1. KIRI: ROBLOX + Beranda, Grafik, Pasar, Buat */
 .nav-left {
   display: flex;
   align-items: center;
@@ -92,7 +92,32 @@ html, body {
   font-weight: 700;
 }
 
-/* Sisi Kanan: Foto Jirun -> Lonceng -> ⬡ 10.000 -> ⚙ -> 🔍 Pencarian */
+/* 2. TENGAH: PENCARIAN (SETELAH BUAT) */
+.nav-center {
+  flex: 0 1 340px;
+}
+
+.search-input-pill {
+  background-color: #e3e5e8;
+  border-radius: 8px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.search-input-pill input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: #191b1d;
+  cursor: text;
+}
+
+/* 3. KANAN: Foto Jirun -> Lonceng -> ⬡ 10.000 -> ⚙ (Paling Kanan) */
 .nav-right {
   display: flex;
   align-items: center;
@@ -107,7 +132,7 @@ html, body {
   font-size: 14px;
 }
 
-/* Avatar Kosong / Placeholder Sampai Diupload */
+/* Placeholder Avatar Kosong */
 .avatar-headshot-blank {
   width: 28px;
   height: 28px;
@@ -158,27 +183,6 @@ html, body {
   font-weight: 900;
 }
 
-/* Kolom Pencarian di Paling Kanan */
-.search-input-pill {
-  background-color: #e3e5e8;
-  border-radius: 8px;
-  padding: 5px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 220px;
-}
-
-.search-input-pill input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 13px;
-  color: #191b1d;
-  cursor: text;
-}
-
 /* ========================================================= */
 /* 2. LAYOUT VIEWPORT                                        */
 /* ========================================================= */
@@ -188,7 +192,7 @@ html, body {
   overflow: hidden;
 }
 
-/* SIDEBAR KIRI (TIDAK BISA SCROLL & SEMUA LINK MATI) */
+/* SIDEBAR KIRI (TIDAK BISA SCROLL) */
 .rbx-sidebar {
   width: 220px;
   flex-shrink: 0;
