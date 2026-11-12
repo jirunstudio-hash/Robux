@@ -6,119 +6,311 @@
 }
 
 body {
-  background-color: #f1f5f9;
+  background-color: #f7f9fa;
+  color: #191b1d;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* Header Simulator */
-.top-nav-bar {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 10;
-}
-
-.nav-btn {
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.nav-btn-outline {
-  background: white;
-  border: 1px solid #cbd5e1;
-  color: #334155;
-}
-
-.balance-pill {
-  background: white;
-  padding: 6px 12px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
-
-.btn-send-nav {
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  padding: 4px 8px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* Modal Popup Window */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  z-index: 100;
-}
-
-.modal-window {
+/* 1. HEADER (FOTO 1) */
+.rbx-header {
   background: #ffffff;
-  width: 100%;
-  max-width: 430px;
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.modal-top {
+  height: 60px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  padding: 0 24px;
+  border-bottom: 1px solid #e3e5e8;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
-.modal-title-wrap {
+.header-left {
   display: flex;
   align-items: center;
+  gap: 24px;
+}
+
+.rbx-logo {
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+}
+
+.rbx-nav-links a {
+  text-decoration: none;
+  color: #393b3d;
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 18px;
+}
+
+.header-search {
+  flex: 0 1 380px;
+  background: #ebedf0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
   gap: 8px;
 }
 
-.modal-title-wrap h3 {
-  font-size: 17px;
-  font-weight: 700;
+.header-search input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 8px 0;
+  outline: none;
+  font-size: 13px;
 }
 
-.sub-header-text {
-  font-size: 11px;
-  color: #64748b;
-}
-
-.modal-top-right {
+.header-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
-.modal-balance {
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.avatar-nav-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.verified-icon {
+  color: #0084ff;
+  font-size: 13px;
+}
+
+.balance-box {
+  background: #f2f4f5;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.btn-kirim {
+  background: #e3e5e8;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.icon-btn {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 2. LAYOUT: SIDEBAR & MAIN CONTENT */
+.rbx-layout {
+  display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.rbx-sidebar {
+  width: 210px;
+  padding: 20px 14px;
+  flex-shrink: 0;
+}
+
+.side-user-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.avatar-side-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.side-user-name {
+  font-size: 14px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.side-menu {
+  list-style: none;
+}
+
+.side-menu li {
+  margin-bottom: 6px;
+}
+
+.side-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #393b3d;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.side-menu li.active a, .side-menu li a:hover {
+  background: #e8eaed;
+}
+
+.badge {
+  margin-left: auto;
+  background: #000;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 7px;
+  font-size: 11px;
+}
+
+/* Main Promo Content */
+.rbx-main-content {
+  flex: 1;
+  padding: 30px 40px;
+}
+
+.banner-headline h1 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.sub-headline {
+  font-size: 15px;
+  color: #555;
+  margin-top: 18px;
+  font-weight: 600;
+}
+
+.promo-card {
+  background: #111;
+  color: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 14px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.promo-badge {
+  background: #22c55e;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.robux-packages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.package-row {
+  background: #fff;
+  border: 1px solid #e3e5e8;
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pkg-amount {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.old-price {
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.bonus-tag {
+  font-size: 11px;
+  background: #f1f5f9;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.pkg-buy-btn {
+  background: #ebedf0;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 3. MODAL KIRIM ROBUX (FOTO 2, 3, 4, 5) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.header-modal-balance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 700;
   font-size: 14px;
 }
 
-.btn-close-modal {
+.btn-close {
   background: none;
   border: none;
   font-size: 22px;
@@ -126,153 +318,136 @@ body {
   cursor: pointer;
 }
 
-/* Step 1: Friend List */
-.search-input-box {
+/* Step 1: Friends */
+.search-friends-box {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  padding: 8px 12px;
+  border-radius: 12px;
+  padding: 8px 14px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.search-input-box input {
+.search-friends-box input {
   border: none;
   background: transparent;
   outline: none;
   width: 100%;
-  font-size: 13.5px;
 }
 
-.list-heading {
-  font-size: 14px;
-  font-weight: 700;
+.friends-heading {
+  font-size: 13.5px;
   margin: 16px 0 10px;
   color: #1e293b;
 }
 
-.friends-list {
+.friends-scroll-list {
   max-height: 250px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.friend-item {
+.friend-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
   cursor: pointer;
   transition: 0.15s;
 }
 
-.friend-item:hover {
-  background-color: #f1f5f9;
+.friend-row:hover {
+  background: #f1f5f9;
 }
 
-.friend-item img {
-  width: 44px;
-  height: 44px;
+.friend-row img {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: #e2e8f0;
 }
 
-.friend-name {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* Step 2: Amount Hero */
-.target-profile-center {
+/* Step 2: Amount */
+.center-recipient {
   text-align: center;
   margin-bottom: 12px;
 }
 
-.round-avatar-lg {
+.avatar-large {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #e2e8f0;
 }
 
-.amount-input-hero {
+.hero-amount-display {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin: 20px 0;
+  margin: 18px 0;
 }
 
-.robux-hex-huge {
-  font-size: 34px;
+.robux-sym-huge {
+  font-size: 32px;
   font-weight: 800;
 }
 
-.amount-number {
+.num-huge {
   font-size: 42px;
   font-weight: 800;
 }
 
-.preset-grid {
+.presets-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
-.preset-pill {
+.preset-btn {
   background: #f1f5f9;
   border: none;
   padding: 10px 0;
   border-radius: 10px;
   font-weight: 700;
-  font-size: 13px;
   cursor: pointer;
 }
 
-.preset-pill.active {
+.preset-btn.active {
   background: #e2e8f0;
-  box-shadow: inset 0 0 0 1.5px #94a3b8;
+  box-shadow: inset 0 0 0 1.5px #64748b;
 }
 
-/* Step 3: Confirmation Box */
-.confirm-profile-card {
+/* Step 3: Confirm Card */
+.confirm-card {
   background: #f8fafc;
   border-radius: 16px;
   padding: 18px;
   text-align: center;
-  border: 1px solid #f1f5f9;
 }
 
-.round-avatar-md {
+.avatar-mid {
   width: 64px;
   height: 64px;
   border-radius: 50%;
 }
 
-.confirm-name-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
+.confirm-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 6px;
 }
 
-.blue-badge {
-  color: #0084ff;
-  font-size: 14px;
-}
-
-.user-handle {
-  font-size: 13px;
+.username-tag {
+  font-size: 12.5px;
   color: #64748b;
 }
 
-.meta-tags {
+.meta-line {
   display: flex;
   justify-content: center;
   gap: 6px;
@@ -287,10 +462,10 @@ body {
   margin-top: 4px;
 }
 
-.amount-card-preview {
+.amount-big-pill {
   margin: 16px 0;
   background: #f8fafc;
-  padding: 16px;
+  padding: 14px;
   border-radius: 14px;
   display: flex;
   justify-content: center;
@@ -298,70 +473,59 @@ body {
   gap: 8px;
 }
 
-.robux-hex-big {
-  font-size: 26px;
+.robux-sym-big {
+  font-size: 24px;
   font-weight: 800;
 }
 
-.amount-preview-val {
-  font-size: 30px;
+.amount-big-text {
+  font-size: 28px;
   font-weight: 800;
 }
 
-.split-btn-row {
+.action-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-/* Step 4: Success Circle */
-.success-screen {
+/* Step 4: Success */
+.success-wrap {
   text-align: center;
   padding: 30px 10px 10px;
 }
 
-.success-ring {
+.circle-check {
   width: 72px;
   height: 72px;
-  border: 4px solid #0f172a;
+  border: 4px solid #111;
   border-radius: 50%;
+  margin: 0 auto 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px;
-}
-
-.check-symbol {
   font-size: 32px;
   font-weight: 800;
 }
 
-.success-screen h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 28px;
-}
-
-/* Button & Utilitas */
-.btn-primary {
+/* General Buttons */
+.btn-blue {
   background: #3b5bed;
   color: white;
   border: none;
   padding: 12px;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 14px;
   cursor: pointer;
 }
 
-.btn-secondary {
+.btn-gray {
   background: #e2e8f0;
   color: #1e293b;
   border: none;
   padding: 12px;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 14px;
   cursor: pointer;
 }
 
@@ -369,100 +533,11 @@ body {
   width: 100%;
 }
 
-.micro-text {
-  font-size: 12px;
-  color: #64748b;
-  text-align: center;
-  margin-top: 14px;
-}
-
-.disclaimer-text {
+.note-center, .disclaimer-note {
   font-size: 11px;
   color: #64748b;
   text-align: center;
   margin-top: 12px;
-  line-height: 1.4;
-}
-
-/* Settings Form (Foto 6) */
-.form-label {
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 12px;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.form-input {
-  width: 100%;
-  padding: 9px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 13px;
-  outline: none;
-}
-
-.fetch-row {
-  display: flex;
-  gap: 8px;
-}
-
-.btn-fetch-blue {
-  background: #0070f3;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0 14px;
-  font-weight: 600;
-  font-size: 12.5px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.toggle-btn-group {
-  display: flex;
-  gap: 8px;
-}
-
-.badge-toggle-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  background: white;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.badge-toggle-btn.active {
-  border-color: #0070f3;
-  color: #0070f3;
-  background: #eff6ff;
-}
-
-.switch-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid #f1f5f9;
-}
-
-.micro-text-left {
-  font-size: 11px;
-  color: #64748b;
-}
-
-.robux-input-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.mt-16 {
-  margin-top: 16px;
 }
 
 .hidden {
