@@ -10,17 +10,18 @@
 <body>
 
   <!-- ============================================================== -->
-  <!-- 1. NAVBAR ATAS (PERSIS 100% URUTAN FOTO SCREENSHOT)            -->
+  <!-- 1. NAVBAR ATAS (PERSIS 100% URUTAN SCREENSHOT)                 -->
   <!-- ============================================================== -->
   <header class="rbx-navbar">
     
-    <!-- Bagian Kiri: Logo + Menu Beranda, Grafik, Pasar, Buat -->
+    <!-- Kiri: Logo Wordmark ROBLOX Asli + Menu -->
     <div class="nav-left">
       <div class="rbx-brand unclickable">
-        <svg viewBox="0 0 24 24" class="rbx-logo-icon">
-          <path d="M5.3 0L0 18.7 18.7 24 24 5.3 0zm10.1 13.5l-4.3-1.2 1.2-4.3 4.3 1.2-1.2 4.3z"/>
-        </svg>
-        <span class="rbx-brand-name">ROBLOX</span>
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Roblox_Logo_2022.svg" 
+          alt="ROBLOX" 
+          class="rbx-logo-wordmark" 
+        />
       </div>
 
       <nav class="nav-menu unclickable">
@@ -31,7 +32,7 @@
       </nav>
     </div>
 
-    <!-- Bagian Tengah: KOLOM PENCARIAN (BISA DIKLIK & DIKETIK) -->
+    <!-- Tengah: KOLOM PENCARIAN (BISA DIKLIK & DIKETIK) -->
     <div class="nav-center">
       <div class="search-input-pill clickable-item">
         <span class="search-icon">🔍</span>
@@ -39,10 +40,10 @@
       </div>
     </div>
 
-    <!-- Bagian Kanan: Foto Jirun -> Lonceng -> Robux 10.000 -> ⚙ Paling Kanan -->
+    <!-- Kanan: Foto Jirun -> Lonceng -> Robux 10.000 -> ⚙ Paling Kanan -->
     <div class="nav-right">
       
-      <!-- 1. Foto Profil Jirun (Kosong / Placeholder sampai diupload via ⚙) -->
+      <!-- Foto Profil Jirun (Kosong / Placeholder sampai diupload via ⚙) -->
       <div class="user-profile-header unclickable">
         <div class="avatar-headshot-blank" id="navUserAvatarWrapper">
           <img id="navUserAvatar" src="" alt="" class="avatar-img-element hidden">
@@ -53,7 +54,7 @@
         <span class="user-name">Jirun</span>
       </div>
 
-      <!-- 2. Lonceng Notifikasi (Mati) -->
+      <!-- Lonceng Notifikasi (Mati) -->
       <div class="header-icon-btn unclickable">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -61,13 +62,13 @@
         </svg>
       </div>
 
-      <!-- 3. Icon Robux & Saldo (Hanya Display - Tidak Bisa Diklik) -->
+      <!-- Icon Robux & Saldo (Hanya Display) -->
       <div class="balance-header-display unclickable">
         <span class="robux-hex">⬡</span>
         <span class="dyn-balance">10.000</span>
       </div>
 
-      <!-- 4. IKON PENGATURAN ⚙ DI PALING KANAN (BISA DIKLIK) -->
+      <!-- IKON PENGATURAN ⚙ DI PALING KANAN (BISA DIKLIK) -->
       <div class="header-icon-btn clickable-item" id="btnOpenSettings" title="Pengaturan Foto & Saldo">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="3"></circle>
@@ -170,7 +171,7 @@
         <p class="section-subtitle">Bonus item yang kami pilihkan untuk Anda</p>
       </div>
 
-      <!-- Banner Promo (Polos gelap sampai diupload via ⚙) -->
+      <!-- Banner Promo -->
       <div class="promo-banner-card unclickable" id="promoBannerCard">
         <div class="banner-overlay">
           <div class="banner-badge-uang">x2 Uang</div>
@@ -181,7 +182,7 @@
         </div>
       </div>
 
-      <!-- Tabel Paket Robux (Semua Tombol Beli Mati) -->
+      <!-- Tabel Paket Robux -->
       <div class="robux-packages-table unclickable">
         <div class="package-item">
           <div class="pkg-left">
@@ -238,7 +239,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- 3. MODAL PENGATURAN (IKON ⚙: UPLOAD FOTO DARI GALERI)           -->
+  <!-- 3. MODAL PENGATURAN (IKON ⚙)                                   -->
   <!-- ============================================================== -->
   <div id="settingsModalOverlay" class="modal-backdrop hidden">
     <div class="modal-card mini-card">
@@ -251,17 +252,14 @@
       </div>
 
       <div class="settings-content">
-        <!-- Upload Foto Profil Jirun -->
         <label class="field-label">Foto Profil Akun (Jirun):</label>
         <button id="btnTriggerAvatarUpload" class="btn-upload-file">📁 Upload Foto Profil dari Galeri</button>
         <input type="file" id="avatarFileInput" accept="image/*" style="display: none;" />
 
-        <!-- Upload Foto Banner Curl Brainrot -->
         <label class="field-label mt-12">Foto Banner Promo (Curl Brainrot):</label>
         <button id="btnTriggerBannerUpload" class="btn-upload-file">📁 Upload Foto Banner dari Galeri</button>
         <input type="file" id="bannerFileInput" accept="image/*" style="display: none;" />
 
-        <!-- Ubah Saldo -->
         <label class="field-label mt-12">Ubah Saldo Robux:</label>
         <div class="balance-input-row">
           <span class="robux-hex-inline">⬡</span>
@@ -326,7 +324,7 @@
         </div>
       </div>
 
-      <!-- STEP 2: NOMINAL ROBUX (AWAL 0, NO UNDERLINE, NO MOUSE SCROLL) -->
+      <!-- STEP 2: NOMINAL ROBUX -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="target-profile-center">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
