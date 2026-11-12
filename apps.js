@@ -1,6 +1,6 @@
 // State Sistem
 let appState = {
-  balance: 115475, // Saldo default Foto 1
+  balance: 115475,
   currentSelectedAmount: 25,
   targetUser: {
     displayName: "Jirun",
@@ -10,19 +10,19 @@ let appState = {
   }
 };
 
-// 1. ELEMEN HEADER YANG BISA DIKLIK
-const hotspotKirimRobux = document.getElementById("hotspotKirimRobux");
-const hotspotOpenSettings = document.getElementById("hotspotOpenSettings");
+// Elemen Header Interaktif
+const btnOpenSendRobux = document.getElementById("btnOpenSendRobux");
+const btnOpenSettings = document.getElementById("btnOpenSettings");
 const navDynamicBalance = document.getElementById("navDynamicBalance");
-const mainHeaderSearch = document.getElementById("mainHeaderSearch");
 
-// 2. MODAL PENGATURAN (UBAH SALDO)
+// Modal Pengaturan (⚙)
 const settingsModalOverlay = document.getElementById("settingsModalOverlay");
 const btnCloseSettings = document.getElementById("btnCloseSettings");
 const settingBalanceInput = document.getElementById("settingBalanceInput");
 const btnSaveBalance = document.getElementById("btnSaveBalance");
+const btnAddPills = document.querySelectorAll(".btn-add-pill");
 
-// 3. MODAL KIRIM ROBUX
+// Modal Kirim Robux
 const modalOverlay = document.getElementById("modalOverlay");
 const btnCloseModal = document.getElementById("btnCloseModal");
 const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
@@ -63,7 +63,7 @@ const btnEditBack = document.getElementById("btnEditBack");
 const successSentAmount = document.getElementById("successSentAmount");
 const btnOkDone = document.getElementById("btnOkDone");
 
-// Sinkronisasi Tampilan Saldo
+// Sinkronisasi Angka Saldo di Seluruh Tampilan
 function updateAllBalanceUI() {
   const formatted = appState.balance.toLocaleString("id-ID");
   navDynamicBalance.textContent = formatted;
@@ -84,9 +84,10 @@ function resetModalState() {
 }
 
 // ==============================================================
-// 1. PENGATURAN SALDO ROBUX (IKON ⚙)
+// 1. MODAL PENGATURAN: UBAH / TAMBAH SALDO (IKON ⚙)
 // ==============================================================
-hotspotOpenSettings.addEventListener("click", () => {
+btnOpenSettings.addEventListener("click", () => {
+  settingBalanceInput.value = appState.balance;
   settingsModalOverlay.classList.remove("hidden");
 });
 
@@ -94,6 +95,16 @@ btnCloseSettings.addEventListener("click", () => {
   settingsModalOverlay.classList.add("hidden");
 });
 
+// Tombol Cepat Tambah (+1.000, +10.000, dst)
+btnAddPills.forEach(pill => {
+  pill.addEventListener("click", () => {
+    const addVal = parseInt(pill.getAttribute("data-add"));
+    let currentInput = parseInt(settingBalanceInput.value) || 0;
+    settingBalanceInput.value = currentInput + addVal;
+  });
+});
+
+// Simpan Saldo Baru
 btnSaveBalance.addEventListener("click", () => {
   const newBal = parseInt(settingBalanceInput.value) || 0;
   appState.balance = newBal;
@@ -102,9 +113,9 @@ btnSaveBalance.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 2. BUKA MODAL KIRIM ROBUX (KLIK SALDO / KIRIM)
+// 2. MODAL KIRIM ROBUX (KLIK SALDO)
 // ==============================================================
-hotspotKirimRobux.addEventListener("click", () => {
+btnOpenSendRobux.addEventListener("click", () => {
   resetModalState();
   modalOverlay.classList.remove("hidden");
 });
@@ -114,7 +125,7 @@ btnCloseModal.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 3. DETEKSI AKUN REAL-TIME (FOTO 1 -> FOTO 2)
+// 3. PENCARIAN & DETEKSI TARGET REAL-TIME
 // ==============================================================
 let searchTimer = null;
 
@@ -152,7 +163,7 @@ targetSearchInput.addEventListener("input", (e) => {
         foundUserContainer.classList.add("hidden");
       }
     } catch (err) {
-      // Fallback data jika backend sedang offline
+      // Fallback preview
       appState.targetUser = {
         displayName: "Jirun",
         username: query,
@@ -168,7 +179,7 @@ targetSearchInput.addEventListener("input", (e) => {
   }, 300);
 });
 
-// Klik Hasil Pencarian Target (Pindah ke Foto 3)
+// Klik Target Terdeteksi
 targetUserCard.addEventListener("click", () => {
   step2Name.textContent = appState.targetUser.displayName;
   step2Avatar.src = appState.targetUser.avatarUrl;
@@ -177,7 +188,7 @@ targetUserCard.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 4. PILIH NOMINAL / INPUT MANUAL (FOTO 3)
+// 4. INPUT ROBUX (MANUAL / PRESET)
 // ==============================================================
 manualAmountInput.addEventListener("input", (e) => {
   const val = parseInt(e.target.value) || 0;
@@ -222,7 +233,7 @@ btnEditBack.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 5. PROSES KIRIM + SPINNER (FOTO 4 -> FOTO 5 -> FOTO 6)
+// 5. PROSES KIRIM + SPINNER PUTAR
 // ==============================================================
 btnSubmitSend.addEventListener("click", () => {
   btnSendText.classList.add("hidden");
@@ -230,7 +241,6 @@ btnSubmitSend.addEventListener("click", () => {
   btnSubmitSend.disabled = true;
 
   setTimeout(() => {
-    // Kurangi saldo
     appState.balance -= appState.currentSelectedAmount;
     updateAllBalanceUI();
 
@@ -244,12 +254,10 @@ btnSubmitSend.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 6. KLIK "OK" -> KEMBALI KE TAMPILAN AWAL WEBSITE UTAMA
+// 6. TEKAN "OK" -> KEMBALI KE TAMPILAN AWAL
 // ==============================================================
 btnOkDone.addEventListener("click", () => {
-  // Modal ditutup langsung
   modalOverlay.classList.add("hidden");
-  // Reset alur modal sehingga saat dibuka berikutnya siap untuk target baru
   resetModalState();
 });
 
