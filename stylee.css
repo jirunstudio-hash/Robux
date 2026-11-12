@@ -6,180 +6,73 @@
 }
 
 body {
-  background-color: #f2f4f5;
-  color: #191b1d;
-  min-height: 100vh;
+  background-color: #000000;
   display: flex;
-  flex-direction: column;
-}
-
-/* ============================================================== */
-/* 1. NAVBAR UTAMA ROBLOX (PERSIS SCREENSHOT)                     */
-/* ============================================================== */
-.roblox-navbar {
-  height: 52px;
-  background-color: #f2f4f5;
-  border-bottom: 1px solid #e3e5e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.logo-box {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.logo-text {
-  font-size: 19px;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  color: #191b1d;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-item {
-  text-decoration: none;
-  color: #191b1d;
-  font-size: 14.5px;
-  font-weight: 700;
-}
-
-.nav-item:hover {
-  opacity: 0.7;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-/* Kolom Search Panjang Abu-abu */
-.search-bar-wrap {
-  width: 260px;
-  background-color: #e3e5e8;
-  border-radius: 8px;
-  padding: 5px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-bar-wrap input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 13px;
-  color: #191b1d;
-}
-
-/* Profile Pengguna */
-.user-profile-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.user-profile-header img {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: #cbd5e1;
-}
-
-/* Saldo Robux (Dapat Diklik) */
-.balance-clickable {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: 0.15s;
-}
-
-.balance-clickable:hover {
-  background-color: #e3e5e8;
-}
-
-.robux-icon-hexagon {
-  font-size: 16px;
-  font-weight: 900;
-}
-
-/* Tombol Ikon (Lonceng & Pengaturan) */
-.icon-nav-btn {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 6px;
+  align-items: flex-start;
+  min-height: 100vh;
 }
 
-.icon-nav-btn:hover {
-  background-color: #e3e5e8;
-}
-
-/* ============================================================== */
-/* 2. AREA TAMPILAN BAWAH (FOTO DARI GALERI)                      */
-/* ============================================================== */
-.body-image-container {
-  flex: 1;
+/* ========================================================= */
+/* 1. WRAPPER GAMBAR UTAMA DENGAN AREA KLIK                  */
+/* ========================================================= */
+.roblox-web-wrapper {
   width: 100%;
+  max-width: 1366px;
+  background-color: #f7f9fa;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.body-image-container img {
+.top-header-frame {
+  position: relative;
   width: 100%;
-  max-width: 100%;
+}
+
+.bottom-body-frame {
+  position: relative;
+  width: 100%;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
 }
 
-.empty-prompt {
-  margin-top: 100px;
-  text-align: center;
-  color: #64748b;
-}
-
-.btn-upload-helper {
-  margin-top: 14px;
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: 700;
+/* Area Klik Transparan di Header (Pojok Kanan tempat Saldo / Kirim berada) */
+.hotspot-trigger {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 17%;
+  height: 80%;
   cursor: pointer;
+  z-index: 10;
+  border-radius: 8px;
 }
 
-/* ============================================================== */
-/* 3. MODAL POPUP (KIRIM ROBUX)                                   */
-/* ============================================================== */
+/* Area Klik Transparan di Sidebar Kiri (Teks Roblox Plus / Kirim) */
+.hotspot-trigger-sidebar {
+  position: absolute;
+  top: 8%;
+  left: 1%;
+  width: 13%;
+  height: 8%;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 8px;
+}
+
+/* Efek sentuh / hover halus */
+.hotspot-trigger:hover, .hotspot-trigger-sidebar:hover {
+  background-color: rgba(0, 112, 243, 0.08);
+}
+
+/* ========================================================= */
+/* 2. MODAL POPUP (PERSIS FOTO 1 S/D 6)                      */
+/* ========================================================= */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -187,123 +80,146 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 200;
+  z-index: 999;
   padding: 16px;
 }
 
-.modal-card-box {
+.modal-card {
   background: #ffffff;
   width: 100%;
   max-width: 420px;
   border-radius: 20px;
   padding: 22px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-.modal-top-bar {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
-.modal-title-left {
+.header-left {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.header-left h4 {
   font-size: 17px;
   font-weight: 700;
+  color: #111827;
 }
 
-.modal-top-right {
+.header-right {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 800;
-  font-size: 14px;
+  gap: 10px;
 }
 
-.btn-close-x {
+.modal-balance-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.robux-symbol {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.btn-close {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 22px;
   color: #64748b;
   cursor: pointer;
   line-height: 1;
 }
 
-/* Step 1: Target */
-.search-target-box {
+/* FOTO 1 & 2: Input Pencarian & Tampilan Teman */
+.search-input-wrapper {
+  background: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 25px;
+  padding: 8px 16px;
   display: flex;
-  background: #f1f5f9;
-  border-radius: 12px;
-  padding: 6px 12px;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  transition: 0.2s;
 }
 
-.search-target-box input {
+.search-input-wrapper:focus-within {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.15);
+}
+
+.search-input-wrapper input {
   width: 100%;
   border: none;
   background: transparent;
   outline: none;
-  font-size: 13px;
+  font-size: 14px;
+  color: #111827;
 }
 
-.btn-action-blue {
-  background: #0070f3;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.status-msg {
-  font-size: 12px;
-  color: #0070f3;
-  margin-top: 6px;
+.placeholder-empty {
   text-align: center;
-}
-
-.sub-label {
+  color: #64748b;
   font-size: 13.5px;
+  font-weight: 500;
+  padding: 60px 10px;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
   margin: 16px 0 10px;
-  color: #374151;
+  color: #111827;
 }
 
-.quick-friends {
-  max-height: 220px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.friend-pill-row {
+.user-item-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: 0.15s;
 }
 
-.friend-pill-row:hover {
-  background: #f1f5f9;
+.user-item-row:hover {
+  background-color: #f1f5f9;
 }
 
-.friend-pill-row img {
-  width: 40px;
-  height: 40px;
+.user-item-row img {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: #cbd5e1;
+  background-color: #e2e8f0;
 }
 
-/* Step 2: Input Robux Manual & Preset */
-.center-target-info {
+.user-info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-bold {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.tag-gray {
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+/* FOTO 3: Nominal & Preset */
+.center-profile {
   text-align: center;
   margin-bottom: 12px;
 }
@@ -312,23 +228,30 @@ body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
+  background: #e2e8f0;
 }
 
-.manual-amount-row {
+.center-profile h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.amount-hero {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin: 16px 0 20px;
+  gap: 8px;
+  margin: 18px 0;
 }
 
-.robux-icon-huge {
-  font-size: 36px;
+.robux-symbol-huge {
+  font-size: 34px;
   font-weight: 900;
 }
 
-.robux-input-number {
-  width: 150px;
+.amount-manual-field {
+  width: 140px;
   font-size: 40px;
   font-weight: 800;
   border: none;
@@ -338,34 +261,50 @@ body {
   background: transparent;
 }
 
-.robux-input-number:focus {
-  border-color: #3b5bed;
+.amount-manual-field:focus {
+  border-color: #7b97fc;
 }
 
-.preset-buttons-grid {
+.presets-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   margin-bottom: 22px;
 }
 
-.preset-btn {
+.preset-pill {
   background: #f1f5f9;
   border: none;
   padding: 10px 0;
   border-radius: 10px;
   font-weight: 700;
-  cursor: pointer;
   font-size: 13.5px;
+  cursor: pointer;
 }
 
-.preset-btn.active {
+.preset-pill.active {
   background: #e2e8f0;
   box-shadow: inset 0 0 0 1.5px #64748b;
 }
 
-/* Step 3: Konfirmasi */
-.confirm-info-card {
+.btn-primary-purple {
+  background-color: #8da4f7;
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary-purple:hover {
+  opacity: 0.9;
+}
+
+/* FOTO 4 & 5: Konfirmasi Card & Loading */
+.confirm-card-box {
   background: #f8fafc;
   border-radius: 16px;
   padding: 18px;
@@ -378,16 +317,22 @@ body {
   border-radius: 50%;
 }
 
-.tag-handle {
+.confirm-card-box h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.handle-gray {
   font-size: 12.5px;
   color: #64748b;
 }
 
-.meta-row {
+.metadata-row {
   display: flex;
   justify-content: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #64748b;
   margin-top: 10px;
 }
@@ -398,7 +343,7 @@ body {
   margin-top: 4px;
 }
 
-.amount-badge-card {
+.amount-card-box {
   margin: 16px 0;
   background: #f8fafc;
   padding: 14px;
@@ -409,57 +354,92 @@ body {
   gap: 8px;
 }
 
-.amount-number-bold {
+.robux-symbol-mid {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.amount-bold {
   font-size: 28px;
   font-weight: 800;
 }
 
-.btn-action-dual {
+.buttons-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-/* Step 4: Sukses */
-.success-box-inner {
-  text-align: center;
-  padding: 30px 10px 10px;
-}
-
-.check-circle-icon {
-  width: 72px;
-  height: 72px;
-  border: 4px solid #111;
-  border-radius: 50%;
-  margin: 0 auto 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  font-weight: 800;
-}
-
-/* Tombol Global */
-.btn-primary {
-  background: #3b5bed;
+.btn-blue-primary {
+  background-color: #3056d3;
   color: white;
   border: none;
   padding: 12px;
   border-radius: 12px;
   font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
 }
 
-.btn-secondary {
-  background: #e2e8f0;
+.btn-gray-secondary {
+  background-color: #e5e7eb;
   color: #1e293b;
   border: none;
   padding: 12px;
   border-radius: 12px;
   font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
 }
 
+/* Spinner Loading (Foto 5) */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* FOTO 6: Centang Sukses */
+.success-screen {
+  text-align: center;
+  padding: 30px 10px 10px;
+}
+
+.circle-check-border {
+  width: 72px;
+  height: 72px;
+  border: 4px solid #111827;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-symbol {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.success-headline {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #111827;
+}
+
+/* Utilitas Global */
 .full-width {
   width: 100%;
 }
