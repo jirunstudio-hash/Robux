@@ -5,63 +5,251 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roblox</title>
   <link rel="stylesheet" href="stylee.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- ============================================================== -->
-  <!-- 1. TAMPILAN ATAS: HEADER FIXED (TIDAK BISA DI-SCROLL)          -->
+  <!-- 1. HEADER ATAS (FOTO 1 - FIXED TIDAK BISA DI-SCROLL)           -->
   <!-- ============================================================== -->
-  <header class="header-fixed-top">
-    <div class="header-frame">
-      <img id="topHeaderImg" src="https://f.top4top.io/p_3968631e01.png" alt="Roblox Header" class="img-header" draggable="false">
-
-      <!-- Kolom Pencarian Header -->
-      <div class="header-hotspot hotspot-search">
-        <input type="text" id="mainHeaderSearch" placeholder="Pencarian" autocomplete="off" />
+  <header class="rbx-navbar">
+    <div class="nav-left">
+      <!-- Logo Roblox Asli -->
+      <div class="rbx-brand">
+        <svg viewBox="0 0 24 24" class="rbx-logo-icon">
+          <path d="M5.3 0L0 18.7 18.7 24 24 5.3 5.3 0zm10.1 13.5l-4.3-1.2 1.2-4.3 4.3 1.2-1.2 4.3z"/>
+        </svg>
+        <span class="rbx-brand-name">ROBLOX</span>
       </div>
 
-      <!-- Penimpa Saldo Dinamis (Klik untuk Kirim Robux) -->
-      <div class="header-hotspot hotspot-balance" id="btnOpenSendRobux" title="Klik untuk Kirim Robux">
-        <span class="robux-hex-sym">⬡</span>
-        <span id="navDynamicBalance">115.475</span>
+      <nav class="nav-menu">
+        <a href="#" class="nav-link">Beranda</a>
+        <a href="#" class="nav-link">Grafik</a>
+        <a href="#" class="nav-link">Pasar</a>
+        <a href="#" class="nav-link">Buat</a>
+      </nav>
+    </div>
+
+    <!-- Kolom Search Panjang -->
+    <div class="nav-center">
+      <div class="search-input-pill">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Pencarian" />
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <!-- Akun Pengguna -->
+      <div class="user-profile-header">
+        <img class="avatar-headshot" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="">
+        <span class="user-name">Jirun</span>
+      </div>
+
+      <!-- Notifikasi Lonceng -->
+      <div class="header-icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      </div>
+
+      <!-- Saldo Robux Header (Klik untuk Buka Modal Kirim) -->
+      <div class="balance-header-btn" id="openSendFromHeader" title="Klik untuk Kirim Robux">
+        <span class="robux-hex">⬡</span>
+        <span class="dyn-balance">115.475</span>
       </div>
 
       <!-- Ikon Pengaturan ⚙ (Klik untuk Ubah / Tambah Robux) -->
-      <div class="header-hotspot hotspot-gear" id="btnOpenSettings" title="Klik untuk Ubah/Tambah Robux"></div>
+      <div class="header-icon-btn" id="btnOpenSettings" title="Klik untuk Ubah/Tambah Saldo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </div>
     </div>
   </header>
 
   <!-- ============================================================== -->
-  <!-- 2. TAMPILAN BAWAH: BODY SCROLLABLE (BISA DI-SCROLL)            -->
+  <!-- 2. CONTAINER UTAMA (SIDEBAR KIRI & KONTEN KANAN)               -->
   <!-- ============================================================== -->
-  <main class="body-scrollable">
-    <div class="body-frame">
-      <img id="bottomBodyImg" src="https://g.top4top.io/p_3968k597w2.png" alt="Roblox Content" class="img-body" draggable="false">
-    </div>
-  </main>
+  <div class="rbx-viewport">
+    
+    <!-- SIDEBAR KIRI (FOTO 2 - TIDAK BISA DI-SCROLL) -->
+    <aside class="rbx-sidebar">
+      <div class="sidebar-user">
+        <img class="avatar-headshot" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="">
+        <span class="user-name">Jirun</span>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>Profil</span>
+        </a>
+        <a href="#" class="sidebar-item active">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2"></polygon><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>Roblox Plus</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Pesan</span>
+          <span class="item-badge">20</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Teman-teman</span>
+          <span class="item-badge">23</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="9" y1="21" x2="12" y2="16"></line><line x1="15" y1="21" x2="12" y2="16"></line></svg>
+          <span>Avatar</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          <span>Inventaris</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"></path></svg>
+          <span>Perdagangan</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+          <span>Komunitas</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          <span>Blog</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span>Toko Resmi</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+          <span>Beli Kartu Hadiah</span>
+        </a>
+      </nav>
+
+      <!-- Box Berlangganan Roblox Plus Bawah -->
+      <div class="sidebar-subscribe-card">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111827" stroke-width="2"><polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2"></polygon><circle cx="12" cy="12" r="3"></circle></svg>
+        <p>Lebih banyak keseruan dengan lebih sedikit Robux. Berlangganan Roblox Plus.</p>
+        <a href="#" class="sub-link">Berlangganan</a>
+      </div>
+    </aside>
+
+    <!-- ============================================================== -->
+    <!-- 3. KONTEN KANAN BAWAH (FOTO 3 - HANYA INI YANG BISA DI-SCROLL) -->
+    <!-- ============================================================== -->
+    <main class="rbx-main-content">
+      
+      <!-- Bar Saldo & Tombol Kirim Kanan Atas -->
+      <div class="content-top-action">
+        <div class="robux-kirim-badge-wrap" id="btnOpenSendContent">
+          <div class="badge-robux-amount">
+            <span class="robux-hex">⬡</span>
+            <span class="dyn-balance">115.475</span>
+          </div>
+          <button class="btn-kirim-action">↑ Kirim</button>
+        </div>
+      </div>
+
+      <!-- Judul Headline -->
+      <div class="headline-section">
+        <h1 class="main-title">Nikmati hingga 25%<br>lebih banyak Robux</h1>
+        <p class="section-subtitle">Bonus item yang kami pilihkan untuk Anda</p>
+      </div>
+
+      <!-- Banner Halloween / Curl Brainrot -->
+      <div class="promo-banner-card">
+        <div class="banner-overlay">
+          <div class="banner-badge-uang">x2 Uang</div>
+          <div class="banner-item-meta">
+            <h3 class="banner-item-name">[ 💀 ] Curl Brainrot</h3>
+            <span class="banner-subtext">2x Uang</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabel Daftar Paket Robux (Persis Foto 3) -->
+      <div class="robux-packages-table">
+        
+        <div class="package-item">
+          <div class="pkg-left">
+            <span class="pkg-hex">⬡</span>
+            <span class="pkg-num">24.000</span>
+            <s class="pkg-old">⬡ 22.500</s>
+            <span class="pkg-bonus-pill">+ 1.500 lainnya</span>
+          </div>
+          <button class="pkg-price-btn">199,99</button>
+        </div>
+
+        <div class="package-item">
+          <div class="pkg-left">
+            <span class="pkg-hex">⬡</span>
+            <span class="pkg-num">11.000</span>
+            <s class="pkg-old">⬡ 10.000</s>
+            <span class="pkg-bonus-pill">+ 1.000 lainnya</span>
+          </div>
+          <button class="pkg-price-btn">99,99</button>
+        </div>
+
+        <div class="package-item">
+          <div class="pkg-left">
+            <span class="pkg-hex">⬡</span>
+            <span class="pkg-num">5.250</span>
+            <s class="pkg-old">⬡ 4.500</s>
+            <span class="pkg-bonus-pill">+ 750 lainnya</span>
+          </div>
+          <button class="pkg-price-btn">49,99</button>
+        </div>
+
+        <div class="package-item">
+          <div class="pkg-left">
+            <span class="pkg-hex">⬡</span>
+            <span class="pkg-num">3.625</span>
+            <s class="pkg-old">⬡ 3.150</s>
+            <span class="pkg-bonus-pill">+ 475 lainnya</span>
+          </div>
+          <button class="pkg-price-btn">34,99</button>
+        </div>
+
+        <div class="package-item">
+          <div class="pkg-left">
+            <span class="pkg-hex">⬡</span>
+            <span class="pkg-num">2.000</span>
+            <s class="pkg-old">⬡ 1.700</s>
+            <span class="pkg-bonus-pill">+ 300 lainnya</span>
+          </div>
+          <button class="pkg-price-btn">19,99</button>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
 
   <!-- ============================================================== -->
-  <!-- 3. POPUP MODAL: UBAH / TAMBAH ROBUX (IKON ⚙)                   -->
+  <!-- 4. MODAL POPUP: UBAH / TAMBAH ROBUX (IKON ⚙)                   -->
   <!-- ============================================================== -->
   <div id="settingsModalOverlay" class="modal-backdrop hidden">
     <div class="modal-card mini-card">
       <div class="modal-header">
-        <div class="header-left">
+        <div class="header-left-title">
           <span class="gear-ico">⚙</span>
           <h4>Pengaturan Saldo Robux</h4>
         </div>
-        <button id="btnCloseSettings" class="btn-close">&times;</button>
+        <button id="btnCloseSettings" class="btn-close-x">&times;</button>
       </div>
 
       <div class="settings-content">
         <label class="field-label">Ubah Saldo Langsung:</label>
         <div class="balance-input-row">
-          <span class="robux-sym">⬡</span>
+          <span class="robux-hex-inline">⬡</span>
           <input type="number" id="settingBalanceInput" class="balance-input-field" value="115475" />
         </div>
 
-        <label class="field-label mt-12">Atau Tambahkan Saldo Cepat:</label>
+        <label class="field-label mt-12">Tambahkan Cepat:</label>
         <div class="quick-add-grid">
           <button class="btn-add-pill" data-add="1000">+1.000</button>
           <button class="btn-add-pill" data-add="10000">+10.000</button>
@@ -69,38 +257,38 @@
           <button class="btn-add-pill" data-add="100000">+100.000</button>
         </div>
 
-        <button id="btnSaveBalance" class="btn-blue-primary full-width mt-18">Simpan Saldo</button>
+        <button id="btnSaveBalance" class="btn-primary-blue full-width mt-18">Simpan Saldo</button>
       </div>
     </div>
   </div>
 
   <!-- ============================================================== -->
-  <!-- 4. POPUP MODAL: KIRIM ROBUX (FOTO 1 S/D 6)                     -->
+  <!-- 5. MODAL POPUP: KIRIM ROBUX (FOTO 1 S/D 6 LENGKAP)             -->
   <!-- ============================================================== -->
   <div id="modalOverlay" class="modal-backdrop hidden">
     <div class="modal-card">
       
-      <!-- Modal Header -->
+      <!-- Top Modal Bar -->
       <div class="modal-header">
-        <div class="header-left">
+        <div class="header-left-title">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111827" stroke-width="2">
             <polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2" />
             <circle cx="12" cy="12" r="3" />
           </svg>
           <h4>Kirim Robux</h4>
         </div>
-        <div class="header-right">
+        <div class="header-right-meta">
           <div class="modal-balance-badge">
-            <span class="robux-sym">⬡</span>
+            <span class="robux-hex-inline">⬡</span>
             <span id="modalBalanceDisplay">115.475</span>
           </div>
-          <button id="btnCloseModal" class="btn-close">&times;</button>
+          <button id="btnCloseModal" class="btn-close-x">&times;</button>
         </div>
       </div>
 
       <!-- STEP 1: PENCARIAN TARGET (FOTO 1 & 2) -->
       <div id="step1Search" class="step-panel">
-        <div class="search-input-pill">
+        <div class="search-modal-pill">
           <span class="lens-ico">🔍</span>
           <input type="text" id="targetSearchInput" placeholder="Pencarian" autocomplete="off" />
         </div>
@@ -123,20 +311,19 @@
         </div>
       </div>
 
-      <!-- STEP 2: NOMINAL ROBUX MANUAL / PRESET (FOTO 3) -->
+      <!-- STEP 2: NOMINAL ROBUX (FOTO 3) -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="target-profile-center">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
           <h3 id="step2Name">Jirun</h3>
         </div>
 
-        <!-- Input Manual Angka Robux -->
         <div class="hero-amount-box">
           <span class="robux-sym-huge">⬡</span>
           <input type="number" id="manualAmountInput" class="hero-input" value="0" min="0" />
         </div>
 
-        <!-- Presets 25, 50, 100, 200 -->
+        <!-- Preset 25, 50, 100, 200 -->
         <div class="presets-row">
           <button class="preset-pill" data-val="25">⬡ 25</button>
           <button class="preset-pill" data-val="50">⬡ 50</button>
@@ -164,12 +351,12 @@
         </div>
 
         <div class="confirm-amount-pill">
-          <span class="robux-sym-mid">⬡</span>
+          <span class="robux-hex-inline font-24">⬡</span>
           <span id="confirmAmountText" class="txt-amount-big">25</span>
         </div>
 
         <div class="split-actions">
-          <button id="btnSubmitSend" class="btn-blue-primary">
+          <button id="btnSubmitSend" class="btn-primary-blue">
             <span id="btnSendText">Kirim</span>
             <div id="btnSpinner" class="spinner-wheel hidden"></div>
           </button>
@@ -186,7 +373,7 @@
         <div class="success-wrap">
           <div class="check-circle-black">✓</div>
           <h3 class="success-heading">Anda mengirimkan <span id="successSentAmount">25</span> Robux</h3>
-          <button id="btnOkDone" class="btn-blue-primary full-width">OK</button>
+          <button id="btnOkDone" class="btn-primary-blue full-width">OK</button>
         </div>
       </div>
 
