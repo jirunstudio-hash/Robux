@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Public Profile Viewer</title>
+  <link rel="stylesheet" href="stylee.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Cari Profil Publik Roblox</h2>
+    
+    <div class="search-box">
+      <input type="text" id="usernameInput" placeholder="Masukkan username Roblox..." />
+      <button id="searchBtn">Cari</button>
+    </div>
+
+    <div id="statusMessage" class="status"></div>
+
+    <div id="profileCard" class="card hidden">
+      <img id="avatarImg" src="" alt="Avatar Roblox" />
+      <div class="profile-info">
+        <h3 id="displayName"></h3>
+        <p id="username"></p>
+        <p class="id-tag">ID: <span id="userId"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="apps.js"></script>
+</body>
+</html>
