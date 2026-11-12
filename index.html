@@ -5,264 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roblox</title>
   <link rel="stylesheet" href="stylee.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- ============================================================== -->
-  <!-- 1. HEADER UTAMA ROBLOX (PERSIS FOTO 1)                         -->
+  <!-- 1. NAVBAR UTAMA ROBLOX (PERSIS POTONGAN GAMBAR)                -->
   <!-- ============================================================== -->
-  <header class="rbx-header">
-    <div class="header-left">
-      <!-- Logo Roblox Hitam Kotak Miring -->
-      <div class="rbx-logo">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-          <path d="M5.2 0L0 18.8 18.8 24 24 5.2 5.2 0zm10.2 13.6l-4.4-1.2 1.2-4.4 4.4 1.2-1.2 4.4z"/>
+  <header class="roblox-navbar">
+    <div class="nav-left">
+      <!-- Logo Roblox -->
+      <div class="logo-box">
+        <svg class="rbx-svg-logo" viewBox="0 0 24 24" width="30" height="30" fill="#1e293b">
+          <path d="M5.3 0L0 18.7 18.7 24 24 5.3 5.3 0zm10.1 13.5l-4.3-1.2 1.2-4.3 4.3 1.2-1.2 4.3z"/>
         </svg>
-        <span>ROBLOX</span>
+        <span class="logo-text">ROBLOX</span>
       </div>
 
-      <nav class="rbx-nav-menu">
-        <a href="#" class="nav-link">Beranda</a>
-        <a href="#" class="nav-link">Grafik</a>
-        <a href="#" class="nav-link">Pasar</a>
-        <a href="#" class="nav-link">Buat</a>
+      <!-- Menu Link -->
+      <nav class="nav-links">
+        <a href="#" class="nav-item">Beranda</a>
+        <a href="#" class="nav-item">Grafik</a>
+        <a href="#" class="nav-item">Pasar</a>
+        <a href="#" class="nav-item">Buat</a>
       </nav>
     </div>
 
-    <!-- Kolom Pencarian Header -->
-    <div class="header-search">
-      <span class="search-icon">🔍</span>
-      <input type="text" placeholder="Pencarian" />
-    </div>
+    <div class="nav-right">
+      <!-- Search Bar Panjang -->
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Pencarian" />
+      </div>
 
-    <!-- Sisi Kanan: Akun Pengguna, Saldo, Tombol Kirim -->
-    <div class="header-right">
-      <div class="user-pill-header">
-        <img id="navAvatar" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="User">
-        <span id="navDisplayName">Jirun</span>
-        <svg class="verified-svg" viewBox="0 0 24 24" width="16" height="16">
-          <path fill="#0084ff" d="M12 2l2.4 2.6 3.5-.3 1.2 3.3 3.3 1.2-.3 3.5L24 14.7l-2 2.9.8 3.4-3.4.8-1.5 3.2-3.4-.9-2.5 2.5-2.5-2.5-3.4.9-1.5-3.2-3.4-.8.8-3.4L0 14.7l1.9-2.4-.3-3.5 3.3-1.2 1.2-3.3 3.5.3L12 2z"/>
-          <path fill="#fff" d="M10 15.5l-3.5-3.5 1.4-1.4 2.1 2.1 5.6-5.6 1.4 1.4z"/>
+      <!-- User Profile (Avatar + Nama) -->
+      <div class="user-profile-header">
+        <img id="navAvatar" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="">
+        <span id="navUsername">Jirun</span>
+      </div>
+
+      <!-- Icon Lonceng / Notifikasi -->
+      <div class="icon-nav-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
         </svg>
       </div>
 
-      <div class="header-icon-btn">🔔</div>
-
-      <!-- Saldo Robux + Tombol Kirim -->
-      <div class="balance-container">
-        <div class="balance-text">
-          <span class="robux-symbol">⬡</span>
-          <span id="headerBalance">113.500</span>
-        </div>
-        <button id="btnOpenKirim" class="btn-kirim-badge">↑ Kirim</button>
+      <!-- Saldo Robux (Bisa Diklik Untuk Membuka Modal Kirim) -->
+      <div class="balance-clickable" id="openSendRobuxBtn" title="Klik untuk Kirim Robux">
+        <span class="robux-icon-hexagon">⬡</span>
+        <span id="headerBalanceDisplay">115,475</span>
       </div>
 
-      <div class="header-icon-btn">⚙</div>
+      <!-- Icon Pengaturan (Klik untuk Pilih Foto dari Galeri) -->
+      <div class="icon-nav-btn" id="btnSettingsGear" title="Klik untuk Ganti Foto Bawah via Galeri">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </div>
+
+      <!-- Input File Tersembunyi (Akses Galeri / File) -->
+      <input type="file" id="galleryFileInput" accept="image/*" style="display: none;" />
     </div>
   </header>
 
   <!-- ============================================================== -->
-  <!-- 2. LAYOUT WEBSITE: SIDEBAR KIRI & KONTEN (PERSIS FOTO 1)        -->
+  <!-- 2. AREA TAMPILAN BAWAH (FOTO DARI GALERI)                      -->
   <!-- ============================================================== -->
-  <div class="main-layout">
-    
-    <!-- Sidebar Kiri -->
-    <aside class="left-sidebar">
-      <div class="side-profile">
-        <img id="sideAvatar" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="">
-        <div class="side-name-box">
-          <span id="sideDisplayName">Jirun</span>
-          <svg class="verified-svg" viewBox="0 0 24 24" width="14" height="14">
-            <path fill="#0084ff" d="M12 2l2.4 2.6 3.5-.3 1.2 3.3 3.3 1.2-.3 3.5L24 14.7l-2 2.9.8 3.4-3.4.8-1.5 3.2-3.4-.9-2.5 2.5-2.5-2.5-3.4.9-1.5-3.2-3.4-.8.8-3.4L0 14.7l1.9-2.4-.3-3.5 3.3-1.2 1.2-3.3 3.5.3L12 2z"/>
-            <path fill="#fff" d="M10 15.5l-3.5-3.5 1.4-1.4 2.1 2.1 5.6-5.6 1.4 1.4z"/>
-          </svg>
-        </div>
-      </div>
-
-      <ul class="nav-menu-list">
-        <li><a href="#"><span class="ico">👤</span> Profil</a></li>
-        <li class="active"><a href="#"><span class="ico">⬡</span> Roblox Plus</a></li>
-        <li><a href="#"><span class="ico">✉️</span> Pesan <span class="badge-num">20</span></a></li>
-        <li><a href="#"><span class="ico">👥</span> Teman-teman <span class="badge-num" id="sideFriendsCount">23</span></a></li>
-        <li><a href="#"><span class="ico">👕</span> Avatar</a></li>
-        <li><a href="#"><span class="ico">🎒</span> Inventaris</a></li>
-        <li><a href="#"><span class="ico">🔄</span> Perdagangan</a></li>
-        <li><a href="#"><span class="ico">🌐</span> Komunitas</a></li>
-        <li><a href="#"><span class="ico">📝</span> Blog</a></li>
-        <li><a href="#"><span class="ico">🛍️</span> Toko Resmi</a></li>
-        <li><a href="#"><span class="ico">💳</span> Beli Kartu Hadiah</a></li>
-      </ul>
-
-      <!-- Card Bawah: Langganan Roblox Plus -->
-      <div class="roblox-plus-card">
-        <span class="plus-icon">⬡</span>
-        <p>Lebih banyak keseruan dengan lebih sedikit Robux. Berlangganan Roblox Plus.</p>
-        <a href="#" class="link-berlangganan">Berlangganan</a>
-      </div>
-    </aside>
-
-    <!-- Konten Utama: Banner Promo & Daftar Beli Robux -->
-    <main class="page-content">
-      <div class="content-header">
-        <h1>Nikmati hingga 25%<br>lebih banyak Robux</h1>
-        <p class="section-label">Bonus item yang kami pilihkan untuk Anda</p>
-      </div>
-
-      <!-- Banner Halloween Curl Brainrot -->
-      <div class="halloween-banner">
-        <div class="banner-left">
-          <div class="badge-uang">x2 Uang</div>
-          <div class="banner-title">
-            <h3>[ 💀 ] Curl Brainrot</h3>
-            <span>2x Uang</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- List Paket Robux -->
-      <div class="robux-pack-list">
-        <div class="pack-item">
-          <div class="pack-info">
-            <span class="robux-symbol">⬡</span>
-            <span class="pack-qty">24.000</span>
-            <span class="pack-original"><span class="robux-symbol-sub">⬡</span> 22.500</span>
-            <span class="pack-bonus">+ 1.500 lainnya</span>
-          </div>
-          <button class="pack-price-btn">199,99</button>
-        </div>
-
-        <div class="pack-item">
-          <div class="pack-info">
-            <span class="robux-symbol">⬡</span>
-            <span class="pack-qty">11.000</span>
-            <span class="pack-original"><span class="robux-symbol-sub">⬡</span> 10.000</span>
-            <span class="pack-bonus">+ 1.000 lainnya</span>
-          </div>
-          <button class="pack-price-btn">99,99</button>
-        </div>
-
-        <div class="pack-item">
-          <div class="pack-info">
-            <span class="robux-symbol">⬡</span>
-            <span class="pack-qty">5.250</span>
-            <span class="pack-original"><span class="robux-symbol-sub">⬡</span> 4.500</span>
-            <span class="pack-bonus">+ 750 lainnya</span>
-          </div>
-          <button class="pack-price-btn">49,99</button>
-        </div>
-
-        <div class="pack-item">
-          <div class="pack-info">
-            <span class="robux-symbol">⬡</span>
-            <span class="pack-qty">3.625</span>
-            <span class="pack-original"><span class="robux-symbol-sub">⬡</span> 3.150</span>
-            <span class="pack-bonus">+ 475 lainnya</span>
-          </div>
-          <button class="pack-price-btn">34,99</button>
-        </div>
-      </div>
-    </main>
-  </div>
+  <main class="body-image-container">
+    <!-- Gambar ini bisa diganti bebas melalui galeri dengan klik icon ⚙ -->
+    <img id="bodyGalleryImage" src="" alt="Klik ikon ⚙ di kanan atas untuk memasang foto tampilan website dari galeri Anda" />
+    <div id="emptyImagePrompt" class="empty-prompt">
+      <p>Belum ada foto tampilan bawah.</p>
+      <button id="btnPromptUpload" class="btn-upload-helper">Pilih Foto dari Galeri (⚙)</button>
+    </div>
+  </main>
 
   <!-- ============================================================== -->
-  <!-- 3. MODAL POPUP: KIRIM ROBUX (FOTO 2, 3, 4, 5)                  -->
+  <!-- 3. MODAL POPUP: KIRIM ROBUX                                    -->
   <!-- ============================================================== -->
-  <div id="modalOverlay" class="modal-overlay hidden">
-    <div class="modal-card">
+  <div id="sendModalOverlay" class="modal-backdrop hidden">
+    <div class="modal-card-box">
       
       <!-- Top Modal Header -->
-      <div class="modal-header">
-        <div class="header-title">
-          <span class="brand-hex">⬡</span>
+      <div class="modal-top-bar">
+        <div class="modal-title-left">
+          <span class="icon-hex">⬡</span>
           <h4>Kirim Robux</h4>
         </div>
-        <div class="header-bal-right">
-          <span class="robux-symbol">⬡</span>
-          <span id="modalBalanceDisplay">113.500</span>
-          <button id="btnCloseModal" class="btn-close">&times;</button>
+        <div class="modal-top-right">
+          <span class="robux-icon-hexagon">⬡</span>
+          <span id="modalBalanceNumber">115,475</span>
+          <button id="btnCloseModal" class="btn-close-x">&times;</button>
         </div>
       </div>
 
-      <!-- TAHAP 1: CARI USERNAME TARGET (DETEKSI AKUN AKURAT) -->
-      <div id="stepSearchTarget" class="modal-step">
-        <div class="search-box-modal">
-          <span class="ico">🔍</span>
-          <input type="text" id="targetUsernameInput" placeholder="Masukkan username target lalu Enter..." />
-          <button id="btnFetchTarget" class="btn-detect-action">Cari</button>
+      <!-- STEP 1: DETEKSI TARGET USERNAME -->
+      <div id="step1Target" class="flow-step">
+        <div class="search-target-box">
+          <span>🔍</span>
+          <input type="text" id="targetUsernameInput" placeholder="Masukkan username target..." />
+          <button id="btnDetectUser" class="btn-action-blue">Cari</button>
         </div>
-        <p id="searchStatus" class="search-status-text"></p>
+        <p id="detectStatusText" class="status-msg"></p>
 
-        <h5 class="sub-list-title">Atau pilih teman (<span id="modalFriendsCount">0</span>)</h5>
-        <div class="friends-picker-list" id="friendsPickerList">
-          <!-- Item teman otomatis masuk dari API akun -->
+        <h5 class="sub-label">Daftar Teman Cepat</h5>
+        <div class="quick-friends" id="quickFriendsList">
+          <!-- Item Teman -->
         </div>
       </div>
 
-      <!-- TAHAP 2: INPUT MANUAL ROBUX / PILIH PRESET (FOTO 3) -->
-      <div id="stepInputAmount" class="modal-step hidden">
-        <div class="target-card-center">
-          <img id="targetAvatarStep2" class="avatar-lg" src="" alt="">
-          <h3 id="targetNameStep2">Jirun</h3>
+      <!-- STEP 2: INPUT MANUAL & PRESET (25, 50, 100, 200) -->
+      <div id="step2Amount" class="flow-step hidden">
+        <div class="center-target-info">
+          <img id="step2TargetAvatar" class="avatar-lg" src="" alt="">
+          <h3 id="step2TargetName">Jirun</h3>
         </div>
 
-        <!-- AREA INPUT NOMINAL (BISA DIKETIK MANUAL SECARA BEBAS) -->
-        <div class="amount-hero-wrapper">
-          <span class="robux-hex-huge">⬡</span>
-          <input type="number" id="robuxManualInput" class="manual-robux-input" value="25" min="1" />
+        <!-- INPUT MANUAL BEBAS DIKETIK -->
+        <div class="manual-amount-row">
+          <span class="robux-icon-huge">⬡</span>
+          <input type="number" id="robuxManualInput" class="robux-input-number" value="25" min="1" />
         </div>
 
-        <!-- PILIHAN PRESET 25, 50, 100, 200 -->
-        <div class="preset-pills-row">
-          <button class="preset-pill active" data-val="25">⬡ 25</button>
-          <button class="preset-pill" data-val="50">⬡ 50</button>
-          <button class="preset-pill" data-val="100">⬡ 100</button>
-          <button class="preset-pill" data-val="200">⬡ 200</button>
+        <!-- PRESET 25, 50, 100, 200 -->
+        <div class="preset-buttons-grid">
+          <button class="preset-btn active" data-val="25">⬡ 25</button>
+          <button class="preset-btn" data-val="50">⬡ 50</button>
+          <button class="preset-btn" data-val="100">⬡ 100</button>
+          <button class="preset-btn" data-val="200">⬡ 200</button>
         </div>
 
-        <button id="btnGoToConfirm" class="btn-primary full-width">Berikutnya</button>
+        <button id="btnGotoStep3" class="btn-primary full-width">Berikutnya</button>
         <p class="micro-note">Robux dikirim secara instan tanpa biaya.</p>
       </div>
 
-      <!-- TAHAP 3: KONFIRMASI PENGIRIMAN (FOTO 4) -->
-      <div id="stepConfirmSend" class="modal-step hidden">
-        <div class="confirm-user-box">
-          <img id="targetAvatarStep3" class="avatar-md" src="" alt="">
-          <div class="name-badge-row">
-            <h4 id="targetNameStep3">Jirun</h4>
-          </div>
-          <p id="targetUsernameStep3" class="username-handle">@sultancoins7</p>
+      <!-- STEP 3: KONFIRMASI PENGIRIMAN -->
+      <div id="step3Confirm" class="flow-step hidden">
+        <div class="confirm-info-card">
+          <img id="step3Avatar" class="avatar-mid" src="" alt="">
+          <h4 id="step3DisplayName">Jirun</h4>
+          <p id="step3UsernameTag" class="tag-handle">@sultancoins7</p>
 
-          <div class="meta-info-row">
+          <div class="meta-row">
             <span>📅 Terhubung 1 tahun</span>
             <span>•</span>
             <span>👥 0 Koneksi Bersama</span>
           </div>
-          <div class="meta-year-sub">
-            <span id="targetJoinYearStep3">ⓘ Bergabung pada tahun 2026</span>
-          </div>
+          <p id="step3JoinYear" class="meta-sub">ⓘ Bergabung pada tahun 2026</p>
         </div>
 
-        <div class="amount-pill-preview">
-          <span class="robux-hex-preview">⬡</span>
-          <span id="confirmAmountDisplay" class="amount-val-display">25</span>
+        <div class="amount-badge-card">
+          <span class="robux-icon-hexagon">⬡</span>
+          <span id="step3DisplayAmount" class="amount-number-bold">25</span>
         </div>
 
-        <div class="action-btn-split">
-          <button id="btnSendFinal" class="btn-primary">Kirim</button>
-          <button id="btnEditBack" class="btn-secondary">Edit</button>
+        <div class="btn-action-dual">
+          <button id="btnExecuteSend" class="btn-primary">Kirim</button>
+          <button id="btnBackToStep2" class="btn-secondary">Edit</button>
         </div>
 
-        <p class="disclaimer-text">
+        <p class="disclaimer-note">
           Anda memerlukan verifikasi usia atau persetujuan orang tua untuk mengirim Robux. Setelah dikirim, Anda tidak dapat membatalkannya.
         </p>
       </div>
 
-      <!-- TAHAP 4: SUKSES CENTANG (FOTO 5) -->
-      <div id="stepSuccess" class="modal-step hidden">
-        <div class="success-screen-box">
-          <div class="big-check-circle">✓</div>
-          <h3 class="success-msg">Anda mengirimkan <span id="successRobuxNumber">25</span> Robux</h3>
+      <!-- STEP 4: SUKSES CENTANG & POTONG SALDO -->
+      <div id="step4Success" class="flow-step hidden">
+        <div class="success-box-inner">
+          <div class="check-circle-icon">✓</div>
+          <h3>Anda mengirimkan <span id="successSentAmount">25</span> Robux</h3>
           <button id="btnSuccessOk" class="btn-primary full-width">OK</button>
         </div>
       </div>
