@@ -3,28 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roblox Public Profile Viewer</title>
+  <title>Kirim Robux - Roblox</title>
   <link rel="stylesheet" href="stylee.css">
+  <!-- Font Roblox/Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h2>Cari Profil Publik Roblox</h2>
+
+  <!-- Modal Wrapper -->
+  <div class="modal-card">
     
-    <div class="search-box">
-      <input type="text" id="usernameInput" placeholder="Masukkan username Roblox..." />
-      <button id="searchBtn">Cari</button>
-    </div>
+    <!-- Header Modal -->
+    <div class="modal-header">
+      <div class="header-left">
+        <!-- Logo Icon Segi Enam Roblox Plus -->
+        <svg class="icon-brand" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        <span class="modal-title">Kirim Robux</span>
+      </div>
 
-    <div id="statusMessage" class="status"></div>
-
-    <div id="profileCard" class="card hidden">
-      <img id="avatarImg" src="" alt="Avatar Roblox" />
-      <div class="profile-info">
-        <h3 id="displayName"></h3>
-        <p id="username"></p>
-        <p class="id-tag">ID: <span id="userId"></span></p>
+      <div class="header-right">
+        <!-- Saldo Robux Header -->
+        <div class="balance-badge">
+          <span class="robux-icon">⬡</span>
+          <span id="headerBalance">113.500</span>
+        </div>
+        <button class="btn-close" aria-label="Tutup">&times;</button>
       </div>
     </div>
+
+    <!-- Kotak Pencarian / Fetch Profile -->
+    <div class="search-container">
+      <div class="search-input-wrapper">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="usernameInput" placeholder="Masukkan username..." value="sultancoins7" />
+      </div>
+      <button id="searchBtn" class="btn-fetch">Fetch Profile</button>
+    </div>
+
+    <div id="statusMessage" class="status-text"></div>
+
+    <!-- TAMPILAN 1: Kartu Profil & Konfirmasi Kirim (Mirip Gambar 4) -->
+    <div id="profileSection" class="view-section">
+      <div class="user-card-box">
+        <div class="avatar-ring">
+          <img id="avatarImg" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="Avatar">
+        </div>
+        
+        <div class="name-row">
+          <h3 id="displayName">Jirun</h3>
+          <!-- Centang Verifikasi Biru -->
+          <svg class="verified-badge" viewBox="0 0 24 24" width="16" height="16" fill="#0084ff">
+            <path d="M12 2L15.09 5.26L19.5 6.1L19.91 10.58L23 13.5L20.36 17.07L20.76 21.56L16.35 22.4L13.26 25.66L9.65 24.34L6.56 27.6L2.15 26.76L1.75 22.28L-1.34 19.36L1.3 15.79L0.9 11.3L5.31 10.46L8.4 7.2L12 8.52V2Z" />
+            <path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+
+        <p id="usernameTag" class="username-sub">@sultancoins7</p>
+
+        <!-- Informasi Tambahan -->
+        <div class="metadata-row">
+          <span>📅 Terhubung 1 tahun</span>
+          <span class="dot">•</span>
+          <span>👥 0 Koneksi Bersama</span>
+        </div>
+        <div class="metadata-sub">
+          <span>ⓘ Bergabung pada tahun 2026</span>
+        </div>
+      </div>
+
+      <!-- Nominal Robux -->
+      <div class="amount-pill">
+        <span class="robux-icon-lg">⬡</span>
+        <span class="amount-text" id="amountDisplay">25</span>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="action-buttons">
+        <button id="btnSend" class="btn-primary">Kirim</button>
+        <button id="btnEdit" class="btn-secondary">Edit</button>
+      </div>
+
+      <p class="disclaimer-text">
+        Anda memerlukan verifikasi usia atau persetujuan orang tua untuk mengirim Robux. Setelah dikirim, Anda tidak dapat membatalkannya.
+      </p>
+    </div>
+
+    <!-- TAMPILAN 2: Pop-up Sukses Centang (Mirip Gambar 5) -->
+    <div id="successSection" class="view-section hidden">
+      <div class="success-box">
+        <div class="check-circle">
+          <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#111827" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h4 class="success-title">Anda mengirimkan <span id="sentAmount">25</span> Robux</h4>
+        <button id="btnOk" class="btn-primary full-width">OK</button>
+      </div>
+    </div>
+
   </div>
 
   <script src="apps.js"></script>
