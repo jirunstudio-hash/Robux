@@ -10,7 +10,7 @@
 <body>
 
   <!-- ============================================================== -->
-  <!-- 1. HEADER NAVBAR ATAS (FIXED / TIDAK BISA SCROLL)              -->
+  <!-- 1. NAVBAR ATAS (FIXED / TIDAK BISA SCROLL)                     -->
   <!-- ============================================================== -->
   <header class="rbx-navbar">
     <div class="nav-left">
@@ -37,7 +37,6 @@
     </div>
 
     <div class="nav-right">
-      <!-- Avatar & Nama Akun Anda -->
       <div class="user-profile-header">
         <img id="navUserAvatar" class="avatar-headshot" src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="">
         <span class="user-name">Jirun</span>
@@ -50,13 +49,11 @@
         </svg>
       </div>
 
-      <!-- Saldo Robux Header (Klik untuk Kirim) -->
       <div class="balance-header-btn" id="openSendFromHeader" title="Klik untuk Kirim Robux">
         <span class="robux-hex">⬡</span>
         <span class="dyn-balance">115.475</span>
       </div>
 
-      <!-- Ikon Pengaturan ⚙ (Klik untuk Ubah Saldo & Upload Galeri) -->
       <div class="header-icon-btn" id="btnOpenSettings" title="Pengaturan Foto & Saldo">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="3"></circle>
@@ -152,7 +149,7 @@
         <p class="section-subtitle">Bonus item yang kami pilihkan untuk Anda</p>
       </div>
 
-      <!-- Banner Promo Curl Brainrot (Bisa diganti fotonya via Pengaturan) -->
+      <!-- Banner Promo Curl Brainrot -->
       <div class="promo-banner-card" id="promoBannerCard">
         <div class="banner-overlay">
           <div class="banner-badge-uang">x2 Uang</div>
@@ -163,7 +160,7 @@
         </div>
       </div>
 
-      <!-- Tabel Daftar Paket Robux -->
+      <!-- Tabel Paket Robux -->
       <div class="robux-packages-table">
         <div class="package-item">
           <div class="pkg-left">
@@ -233,17 +230,14 @@
       </div>
 
       <div class="settings-content">
-        <!-- 1. Upload Foto Profil Pengguna (Jirun) -->
         <label class="field-label">Foto Profil Akun (Jirun):</label>
         <button id="btnTriggerAvatarUpload" class="btn-upload-file">📁 Upload Foto Profil dari Galeri</button>
         <input type="file" id="avatarFileInput" accept="image/*" style="display: none;" />
 
-        <!-- 2. Upload Foto Banner Promo -->
         <label class="field-label mt-12">Foto Banner Promo (Curl Brainrot):</label>
         <button id="btnTriggerBannerUpload" class="btn-upload-file">📁 Upload Foto Banner dari Galeri</button>
         <input type="file" id="bannerFileInput" accept="image/*" style="display: none;" />
 
-        <!-- 3. Ubah Saldo -->
         <label class="field-label mt-12">Ubah Saldo Robux:</label>
         <div class="balance-input-row">
           <span class="robux-hex-inline">⬡</span>
@@ -308,7 +302,7 @@
         </div>
       </div>
 
-      <!-- STEP 2: NOMINAL ROBUX (AWAL ANGKA 0 & MURNI KETIK KEYBOARD) -->
+      <!-- STEP 2: NOMINAL ROBUX (AWAL 0, NO UNDERLINE, NO MOUSE SCROLL) -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="target-profile-center">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
@@ -317,8 +311,15 @@
 
         <div class="hero-amount-box">
           <span class="robux-sym-huge">⬡</span>
-          <!-- Murni ketik keyboard, panah mouse hilang -->
-          <input type="number" id="manualAmountInput" class="hero-input no-spinner" value="0" min="0" />
+          <input 
+            type="text" 
+            id="manualAmountInput" 
+            class="hero-input-clean" 
+            inputmode="numeric" 
+            value="0" 
+            maxlength="8" 
+            autocomplete="off" 
+          />
         </div>
 
         <div class="presets-row">
@@ -365,7 +366,7 @@
         </p>
       </div>
 
-      <!-- STEP 4: SUKSES -->
+      <!-- STEP 4: SUKSES CENTANG -->
       <div id="step4Success" class="step-panel hidden">
         <div class="success-wrap">
           <div class="check-circle-black">✓</div>
