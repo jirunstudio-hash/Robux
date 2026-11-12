@@ -1,82 +1,154 @@
-const searchBtn = document.getElementById('searchBtn');
-const usernameInput = document.getElementById('usernameInput');
-const statusMessage = document.getElementById('statusMessage');
-
-// Elemen Tampilan Profil
-const avatarImg = document.getElementById('avatarImg');
-const displayName = document.getElementById('displayName');
-const usernameTag = document.getElementById('usernameTag');
-const profileSection = document.getElementById('profileSection');
-const successSection = document.getElementById('successSection');
-
-// Tombol & Nominal
-const btnSend = document.getElementById('btnSend');
-const btnOk = document.getElementById('btnOk');
-const headerBalance = document.getElementById('headerBalance');
-const sentAmount = document.getElementById('sentAmount');
-
-let currentBalance = 113500;
-let transferAmount = 25;
-
-// Fungsi Cari Pengguna ke Backend
-async function fetchRobloxUser() {
-  const query = usernameInput.value.trim();
-  if (!query) {
-    statusMessage.textContent = 'Masukkan username Roblox.';
-    return;
+// State Sistem
+let state = {
+  balance: 113500,
+  selectedAmount: 25,
+  recipient: {
+    displayName: "Jirun",
+    username: "sultancoins7",
+    avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter"
   }
+};
 
-  statusMessage.textContent = 'Mencari...';
-  statusMessage.style.color = '#64748b';
+// Nav & Balance Elements
+const navBalance = document.getElementById("navBalance");
+const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
+const openSendModalBtn = document.getElementById("openSendModalBtn");
+const openSettingsBtn = document.getElementById("openSettingsBtn");
 
-  try {
-    const response = await fetch(`/api/user?username=${encodeURIComponent(query)}`);
-    const data = await response.json();
+// Modals
+const sendRobuxModal = document.getElementById("sendRobuxModal");
+const settingsModal = document.getElementById("settingsModal");
+const closeSendModal = document.getElementById("closeSendModal");
+const closeSettingsModal = document.getElementById("closeSettingsModal");
 
-    if (!response.ok) {
-      statusMessage.textContent = data.error || 'Pengguna tidak ditemukan.';
-      statusMessage.style.color = '#ef4444';
-      return;
-    }
+// Steps in Send Modal
+const stepFriends = document.getElementById("stepFriends");
+const stepAmount = document.getElementById("stepAmount");
+const stepConfirm = document.getElementById("stepConfirm");
+const stepSuccess = document.getElementById("stepSuccess");
 
-    // Masukkan data hasil fetch
-    displayName.textContent = data.displayName || data.name;
-    usernameTag.textContent = `@${data.name}`;
-    if (data.avatarUrl) {
-      avatarImg.src = data.avatarUrl;
-    }
-
-    statusMessage.textContent = '';
-    
-    // Pastikan card konfirmasi kembali tampil jika sebelumnya di layar sukses
-    profileSection.classList.remove('hidden');
-    successSection.classList.add('hidden');
-  } catch (error) {
-    statusMessage.textContent = 'Gagal menghubungi server.';
-    statusMessage.style.color = '#ef4444';
-  }
+// Update Tampilan Saldo
+function updateBalanceDisplays() {
+  const formatted = state.balance.toLocaleString("id-ID");
+  navBalance.textContent = formatted;
+  modalBalanceDisplay.textContent = formatted;
 }
 
-searchBtn.addEventListener('click', fetchRobloxUser);
-usernameInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') fetchRobloxUser();
+// Buka / Tutup Modal
+openSendModalBtn.addEventListener("click", () => {
+  showStep(stepFriends);
+  sendRobuxModal.classList.remove("hidden");
 });
 
-// Aksi Klik "Kirim" -> Tampilkan Gambar 5 (Centang Sukses)
-btnSend.addEventListener('click', () => {
-  if (currentBalance >= transferAmount) {
-    currentBalance -= transferAmount;
-    // Format ke string ribuan (contoh: 113.475)
-    headerBalance.textContent = currentBalance.toLocaleString('id-ID');
+closeSendModal.addEventListener("click", () => sendRobuxModal.classList.add("hidden"));
+openSettingsBtn.addEventListener("click", () => settingsModal.classList.remove("hidden"));
+closeSettingsModal.addEventListener("click", () => settingsModal.classList.add("hidden"));
+
+// Helper Navigasi Antar Step
+function showStep(stepElement) {
+  [stepFriends, stepAmount, stepConfirm, stepSuccess].forEach(s => s.classList.add("hidden"));
+  stepElement.classList.remove("hidden");
+}
+
+// ==========================================
+// 1. KLIK TEMAN DI LIST (Foto 2 -> Foto 3)
+// ==========================================
+document.querySelectorAll(".friend-item").forEach(item => {
+  item.addEventListener("click", () => {
+    state.recipient.displayName = item.getAttribute("data-name");
+    state.recipient.username = item.getAttribute("data-username");
+    state.recipient.avatarUrl = item.getAttribute("data-avatar");
+
+    // Pasang data ke Step 2
+    document.getElementById("targetNameStep2").textContent = state.recipient.displayName;
+    document.getElementById("targetAvatarStep2").src = state.recipient.avatarUrl;
+
+    showStep(stepAmount);
+  });
+});
+
+// ==========================================
+// 2. PILIH NOMINAL PRESET (Foto 3)
+// ==========================================
+const presetButtons = document.querySelectorAll(".preset-pill");
+presetButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    presetButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.selectedAmount = parseInt(btn.getAttribute("data-val"));
+    document.getElementById("chosenAmountText").textContent = state.selectedAmount;
+  });
+});
+
+document.getElementById("btnGotoConfirm").addEventListener("click", () => {
+  // Pasang data ke Step 3 (Konfirmasi)
+  document.getElementById("targetAvatarStep3").src = state.recipient.avatarUrl;
+  document.getElementById("targetNameStep3").textContent = state.recipient.displayName;
+  document.getElementById("targetUserTagStep3").textContent = `@${state.recipient.username}`;
+  document.getElementById("finalRobuxAmount").textContent = state.selectedAmount;
+
+  showStep(stepConfirm);
+});
+
+// Tombol Edit di Konfirmasi (Kembali ke Step 2)
+document.getElementById("btnEditBack").addEventListener("click", () => {
+  showStep(stepAmount);
+});
+
+// ==========================================
+// 3. EKSEKUSI KIRIM (Foto 4 -> Foto 5 Potong Saldo)
+// ==========================================
+document.getElementById("btnExecuteSend").addEventListener("click", () => {
+  // Potong saldo
+  state.balance -= state.selectedAmount;
+  updateBalanceDisplays();
+
+  document.getElementById("successSentVal").textContent = state.selectedAmount;
+  showStep(stepSuccess);
+});
+
+document.getElementById("btnSuccessOk").addEventListener("click", () => {
+  sendRobuxModal.classList.add("hidden");
+  showStep(stepFriends);
+});
+
+// ==========================================
+// 4. SETTINGS & FETCH PROFILE (Foto 6)
+// ==========================================
+const cfgDisplayName = document.getElementById("cfgDisplayName");
+const cfgUsername = document.getElementById("cfgUsername");
+const cfgBalanceAmount = document.getElementById("cfgBalanceAmount");
+const cfgBtnFetch = document.getElementById("cfgBtnFetch");
+
+cfgBtnFetch.addEventListener("click", async () => {
+  const uName = cfgUsername.value.trim();
+  if (!uName) return alert("Masukkan username");
+
+  cfgBtnFetch.textContent = "Fetching...";
+  try {
+    const res = await fetch(`/api/user?username=${encodeURIComponent(uName)}`);
+    const data = await res.json();
+    if (res.ok) {
+      cfgDisplayName.value = data.displayName || data.name;
+      state.recipient.avatarUrl = data.avatarUrl;
+      alert("Profil berhasil diambil!");
+    } else {
+      alert(data.error || "Gagal mengambil akun");
+    }
+  } catch (e) {
+    alert("Gagal koneksi ke API");
+  } finally {
+    cfgBtnFetch.textContent = "🔍 Fetch Profile";
   }
-
-  sentAmount.textContent = transferAmount;
-  profileSection.classList.add('hidden');
-  successSection.classList.remove('hidden');
 });
 
-// Aksi Klik "OK" di layar sukses
-btnOk.addEventListener('click', () => {
-  successSection.classList.add('hidden');
-  profileSection.classList.remove('hidden');
+document.getElementById("cfgSaveBtn").addEventListener("click", () => {
+  state.balance = parseInt(cfgBalanceAmount.value) || 0;
+  state.recipient.displayName = cfgDisplayName.value;
+  state.recipient.username = cfgUsername.value;
+  updateBalanceDisplays();
+  settingsModal.classList.add("hidden");
 });
+
+// Inisialisasi awal
+updateBalanceDisplays();
