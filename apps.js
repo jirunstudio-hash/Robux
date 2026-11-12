@@ -1,6 +1,6 @@
 // State Sistem
 let appState = {
-  balance: 115475, // Saldo awal Foto 1
+  balance: 115475, // Saldo default Foto 1
   currentSelectedAmount: 25,
   targetUser: {
     displayName: "Jirun",
@@ -10,14 +10,24 @@ let appState = {
   }
 };
 
-// Elemen DOM Trigger & Modal
-const hotspotHeaderKirim = document.getElementById("hotspotHeaderKirim");
-const hotspotSidebarKirim = document.getElementById("hotspotSidebarKirim");
+// 1. ELEMEN HEADER YANG BISA DIKLIK
+const hotspotKirimRobux = document.getElementById("hotspotKirimRobux");
+const hotspotOpenSettings = document.getElementById("hotspotOpenSettings");
+const navDynamicBalance = document.getElementById("navDynamicBalance");
+const mainHeaderSearch = document.getElementById("mainHeaderSearch");
+
+// 2. MODAL PENGATURAN (UBAH SALDO)
+const settingsModalOverlay = document.getElementById("settingsModalOverlay");
+const btnCloseSettings = document.getElementById("btnCloseSettings");
+const settingBalanceInput = document.getElementById("settingBalanceInput");
+const btnSaveBalance = document.getElementById("btnSaveBalance");
+
+// 3. MODAL KIRIM ROBUX
 const modalOverlay = document.getElementById("modalOverlay");
 const btnCloseModal = document.getElementById("btnCloseModal");
 const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
 
-// Step Panels
+// Steps
 const step1Search = document.getElementById("step1Search");
 const step2Amount = document.getElementById("step2Amount");
 const step3Confirm = document.getElementById("step3Confirm");
@@ -53,44 +63,72 @@ const btnEditBack = document.getElementById("btnEditBack");
 const successSentAmount = document.getElementById("successSentAmount");
 const btnOkDone = document.getElementById("btnOkDone");
 
-// Ganti Step Modal
+// Sinkronisasi Tampilan Saldo
+function updateAllBalanceUI() {
+  const formatted = appState.balance.toLocaleString("id-ID");
+  navDynamicBalance.textContent = formatted;
+  modalBalanceDisplay.textContent = formatted;
+  settingBalanceInput.value = appState.balance;
+}
+
 function showStep(step) {
   [step1Search, step2Amount, step3Confirm, step4Success].forEach(s => s.classList.add("hidden"));
   step.classList.remove("hidden");
 }
 
-// Update Saldo Modal
-function renderBalance() {
-  modalBalanceDisplay.textContent = appState.balance.toLocaleString("id-ID");
+function resetModalState() {
+  targetSearchInput.value = "";
+  emptyFriendsPlaceholder.classList.remove("hidden");
+  foundUserContainer.classList.add("hidden");
+  showStep(step1Search);
 }
 
-// Buka Modal (Dari Header atau Sidebar Kiri)
-function openModal() {
-  resetModalToStart();
+// ==============================================================
+// 1. PENGATURAN SALDO ROBUX (IKON ⚙)
+// ==============================================================
+hotspotOpenSettings.addEventListener("click", () => {
+  settingsModalOverlay.classList.remove("hidden");
+});
+
+btnCloseSettings.addEventListener("click", () => {
+  settingsModalOverlay.classList.add("hidden");
+});
+
+btnSaveBalance.addEventListener("click", () => {
+  const newBal = parseInt(settingBalanceInput.value) || 0;
+  appState.balance = newBal;
+  updateAllBalanceUI();
+  settingsModalOverlay.classList.add("hidden");
+});
+
+// ==============================================================
+// 2. BUKA MODAL KIRIM ROBUX (KLIK SALDO / KIRIM)
+// ==============================================================
+hotspotKirimRobux.addEventListener("click", () => {
+  resetModalState();
   modalOverlay.classList.remove("hidden");
-}
+});
 
-hotspotHeaderKirim.addEventListener("click", openModal);
-hotspotSidebarKirim.addEventListener("click", openModal);
-btnCloseModal.addEventListener("click", () => modalOverlay.classList.add("hidden"));
+btnCloseModal.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+});
 
 // ==============================================================
-// 1. PENCARIAN & DETEKSI AKUN REAL-TIME (FOTO 1 -> FOTO 2)
+// 3. DETEKSI AKUN REAL-TIME (FOTO 1 -> FOTO 2)
 // ==============================================================
-let searchDebounce = null;
+let searchTimer = null;
 
 targetSearchInput.addEventListener("input", (e) => {
   const query = e.target.value.trim();
+  clearTimeout(searchTimer);
 
-  clearTimeout(searchDebounce);
   if (!query) {
     emptyFriendsPlaceholder.classList.remove("hidden");
     foundUserContainer.classList.add("hidden");
     return;
   }
 
-  // Cari ke API Roblox
-  searchDebounce = setTimeout(async () => {
+  searchTimer = setTimeout(async () => {
     try {
       const res = await fetch(`/api/user?username=${encodeURIComponent(query)}`);
       const data = await res.json();
@@ -114,7 +152,7 @@ targetSearchInput.addEventListener("input", (e) => {
         foundUserContainer.classList.add("hidden");
       }
     } catch (err) {
-      // Fallback lokal jika API offline saat tes
+      // Fallback data jika backend sedang offline
       appState.targetUser = {
         displayName: "Jirun",
         username: query,
@@ -130,17 +168,16 @@ targetSearchInput.addEventListener("input", (e) => {
   }, 300);
 });
 
-// Klik Target Terdeteksi -> Pindah ke Step 2 (Foto 3)
+// Klik Hasil Pencarian Target (Pindah ke Foto 3)
 targetUserCard.addEventListener("click", () => {
   step2Name.textContent = appState.targetUser.displayName;
   step2Avatar.src = appState.targetUser.avatarUrl;
   manualAmountInput.value = appState.currentSelectedAmount;
-
   showStep(step2Amount);
 });
 
 // ==============================================================
-// 2. INPUT MANUAL ROBUX & PRESET PILIHAN (FOTO 3)
+// 4. PILIH NOMINAL / INPUT MANUAL (FOTO 3)
 // ==============================================================
 manualAmountInput.addEventListener("input", (e) => {
   const val = parseInt(e.target.value) || 0;
@@ -168,11 +205,10 @@ presetPills.forEach(pill => {
 
 btnNextToConfirm.addEventListener("click", () => {
   if (appState.currentSelectedAmount <= 0) {
-    alert("Masukkan nominal Robux terlebih dahulu.");
+    alert("Masukkan nominal Robux yang valid.");
     return;
   }
 
-  // Siapkan data konfirmasi (Foto 4)
   step3Name.textContent = appState.targetUser.displayName;
   step3Handle.textContent = `@${appState.targetUser.username}`;
   step3Avatar.src = appState.targetUser.avatarUrl;
@@ -186,44 +222,36 @@ btnEditBack.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 3. EKSEKUSI KIRIM + LOADING PUTAR (FOTO 4 -> FOTO 5 -> FOTO 6)
+// 5. PROSES KIRIM + SPINNER (FOTO 4 -> FOTO 5 -> FOTO 6)
 // ==============================================================
 btnSubmitSend.addEventListener("click", () => {
-  // 1. Tampilkan animasi loading spinner (Foto 5)
   btnSendText.classList.add("hidden");
   btnSpinner.classList.remove("hidden");
   btnSubmitSend.disabled = true;
 
   setTimeout(() => {
-    // 2. Kurangi saldo
+    // Kurangi saldo
     appState.balance -= appState.currentSelectedAmount;
-    renderBalance();
+    updateAllBalanceUI();
 
-    // 3. Matikan loading
     btnSendText.classList.remove("hidden");
     btnSpinner.classList.add("hidden");
     btnSubmitSend.disabled = false;
 
-    // 4. Masuk ke layar sukses (Foto 6)
     successSentAmount.textContent = appState.currentSelectedAmount;
     showStep(step4Success);
   }, 1200);
 });
 
 // ==============================================================
-// 4. KLIK OK -> KEMBALI KE AWAL (FOTO 1) & TARGET TER-REFRESH
+// 6. KLIK "OK" -> KEMBALI KE TAMPILAN AWAL WEBSITE UTAMA
 // ==============================================================
-function resetModalToStart() {
-  targetSearchInput.value = "";
-  emptyFriendsPlaceholder.classList.remove("hidden");
-  foundUserContainer.classList.add("hidden");
-  showStep(step1Search);
-}
-
 btnOkDone.addEventListener("click", () => {
-  // Sesuai permintaan Anda: masuk ke tampilan awal dan langsung ke-refresh untuk target baru
-  resetModalToStart();
+  // Modal ditutup langsung
+  modalOverlay.classList.add("hidden");
+  // Reset alur modal sehingga saat dibuka berikutnya siap untuk target baru
+  resetModalState();
 });
 
-// Inisialisasi Awal
-renderBalance();
+// Inisialisasi awal
+updateAllBalanceUI();
