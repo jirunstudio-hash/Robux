@@ -5,18 +5,19 @@ let appState = {
   targetUser: {
     displayName: "Jirun",
     username: "sultancoins7",
-    avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter",
+    avatarUrl: "",
     joinYear: 2026
   }
 };
 
 // Elemen DOM
 const dynBalanceSpans = document.querySelectorAll(".dyn-balance");
-const openSendFromHeader = document.getElementById("openSendFromHeader");
-const btnOpenSendContent = document.getElementById("btnOpenSendContent");
-const btnOpenSettings = document.getElementById("btnOpenSettings");
+const btnOnlyKirimText = document.getElementById("btnOnlyKirimText"); // HANYA TEKS KIRIM
+const btnOpenSettings = document.getElementById("btnOpenSettings");   // IKON ⚙
 const navUserAvatar = document.getElementById("navUserAvatar");
+const navAvatarPlaceholder = document.getElementById("navAvatarPlaceholder");
 const sideUserAvatar = document.getElementById("sideUserAvatar");
+const sideAvatarPlaceholder = document.getElementById("sideAvatarPlaceholder");
 const promoBannerCard = document.getElementById("promoBannerCard");
 
 // Modal Pengaturan (⚙)
@@ -74,7 +75,7 @@ const btnEditBack = document.getElementById("btnEditBack");
 const successSentAmount = document.getElementById("successSentAmount");
 const btnOkDone = document.getElementById("btnOkDone");
 
-// Update Saldo di Seluruh Halaman
+// Update Tampilan Saldo
 function updateAllBalanceUI() {
   const formatted = appState.balance.toLocaleString("id-ID");
   dynBalanceSpans.forEach(el => el.textContent = formatted);
@@ -103,8 +104,18 @@ function resetModalState() {
   showStep(step1Search);
 }
 
+// Pasang Foto Profil dari LocalStorage / File
+function applyAvatarImage(imgData) {
+  navUserAvatar.src = imgData;
+  sideUserAvatar.src = imgData;
+  navUserAvatar.classList.remove("hidden");
+  sideUserAvatar.classList.remove("hidden");
+  navAvatarPlaceholder.classList.add("hidden");
+  sideAvatarPlaceholder.classList.add("hidden");
+}
+
 // ==============================================================
-// 1. PENGATURAN SALDO (IKON ⚙) & UPLOAD FOTO
+// 1. PENGATURAN (IKON ⚙): UPLOAD FOTO & UBAH SALDO
 // ==============================================================
 btnOpenSettings.addEventListener("click", () => {
   settingBalanceInput.value = appState.balance;
@@ -115,7 +126,7 @@ btnCloseSettings.addEventListener("click", () => {
   settingsModalOverlay.classList.add("hidden");
 });
 
-// Upload Avatar Pengguna (Jirun)
+// Upload Foto Profil Jirun dari Galeri
 btnTriggerAvatarUpload.addEventListener("click", () => avatarFileInput.click());
 avatarFileInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
@@ -123,16 +134,15 @@ avatarFileInput.addEventListener("change", (e) => {
     const reader = new FileReader();
     reader.onload = (event) => {
       const imgData = event.target.result;
-      navUserAvatar.src = imgData;
-      sideUserAvatar.src = imgData;
-      localStorage.setItem("savedUserAvatar", imgData);
-      alert("Foto profil berhasil diperbarui!");
+      applyAvatarImage(imgData);
+      localStorage.setItem("savedCustomAvatar", imgData);
+      alert("Foto profil berhasil dipasang!");
     };
     reader.readAsDataURL(file);
   }
 });
 
-// Upload Banner Promo
+// Upload Foto Banner Promo dari Galeri
 btnTriggerBannerUpload.addEventListener("click", () => bannerFileInput.click());
 bannerFileInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
@@ -141,21 +151,20 @@ bannerFileInput.addEventListener("change", (e) => {
     reader.onload = (event) => {
       const bannerData = event.target.result;
       promoBannerCard.style.backgroundImage = `url('${bannerData}')`;
-      localStorage.setItem("savedPromoBanner", bannerData);
-      alert("Foto banner berhasil diperbarui!");
+      localStorage.setItem("savedCustomBanner", bannerData);
+      alert("Foto banner berhasil dipasang!");
     };
     reader.readAsDataURL(file);
   }
 });
 
-// Load Simpanan Foto
+// Cek Apakah User Pernah Upload Sebelumnya
 window.addEventListener("DOMContentLoaded", () => {
-  const savedAvatar = localStorage.getItem("savedUserAvatar");
+  const savedAvatar = localStorage.getItem("savedCustomAvatar");
   if (savedAvatar) {
-    navUserAvatar.src = savedAvatar;
-    sideUserAvatar.src = savedAvatar;
+    applyAvatarImage(savedAvatar);
   }
-  const savedBanner = localStorage.getItem("savedPromoBanner");
+  const savedBanner = localStorage.getItem("savedCustomBanner");
   if (savedBanner) {
     promoBannerCard.style.backgroundImage = `url('${savedBanner}')`;
   }
@@ -179,13 +188,11 @@ btnSaveBalance.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 2. BUKA MODAL KIRIM (DARI TEKS KIRIM HEADER / KONTEN)
+// 2. HANYA TEKS '↑ Kirim' DI KONTEN YANG BUKA POPUP
 // ==============================================================
-[openSendFromHeader, btnOpenSendContent].forEach(btn => {
-  btn.addEventListener("click", () => {
-    resetModalState();
-    modalOverlay.classList.remove("hidden");
-  });
+btnOnlyKirimText.addEventListener("click", () => {
+  resetModalState();
+  modalOverlay.classList.remove("hidden");
 });
 
 btnCloseModal.addEventListener("click", () => {
@@ -193,7 +200,7 @@ btnCloseModal.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 3. DETEKSI TARGET REAL-TIME DARI ROBLOX API
+// 3. DETEKSI AKUN REAL-TIME DARI ROBLOX API
 // ==============================================================
 let searchTimer = null;
 
@@ -246,7 +253,7 @@ targetSearchInput.addEventListener("input", (e) => {
   }, 300);
 });
 
-// Klik Target -> Pindah ke Step 2 (Awal Angka 0)
+// Klik Target Terdeteksi
 targetUserCard.addEventListener("click", () => {
   step2Name.textContent = appState.targetUser.displayName;
   step2Avatar.src = appState.targetUser.avatarUrl;
