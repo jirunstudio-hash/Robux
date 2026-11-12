@@ -16,41 +16,63 @@ html, body {
 }
 
 /* ========================================================= */
-/* 1. TAMPILAN FULL SCREEN WEBSITE UTAMA                     */
+/* 1. HEADER ATAS: STICKY/FIXED (TIDAK BISA DI-SCROLL)       */
 /* ========================================================= */
-.roblox-fullscreen-container {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
+.header-fixed-top {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #f2f4f5;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  line-height: 0;
 }
 
-.header-image-container {
+.header-frame {
   position: relative;
   width: 100%;
 }
 
-.body-image-container {
-  position: relative;
-  width: 100%;
-}
-
-.header-bg-img, .body-bg-img {
+.img-header {
   width: 100%;
   height: auto;
   display: block;
-  pointer-events: none; /* Mencegah drag gambar */
+  pointer-events: none;
 }
 
 /* ========================================================= */
-/* 2. HANYA 3 ELEMEN INI YANG AKTIF DI HEADER                */
+/* 2. BODY BAWAH: BISA DI-SCROLL SEPUASNYA                   */
 /* ========================================================= */
-.active-hotspot {
+.body-scrollable {
+  width: 100%;
+  line-height: 0;
+  overflow-y: auto;
+}
+
+.body-frame {
+  position: relative;
+  width: 100%;
+}
+
+.img-body {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* ========================================================= */
+/* 3. AREA INTERAKTIF DI ATAS HEADER                         */
+/* ========================================================= */
+.header-hotspot {
   position: absolute;
   z-index: 10;
   cursor: pointer;
+  line-height: normal;
 }
 
-/* 1. Kolom Pencarian Header */
+/* Kolom Search */
 .hotspot-search {
   top: 18%;
   right: 27.5%;
@@ -71,13 +93,13 @@ html, body {
   padding-left: 28px;
 }
 
-/* 2. Saldo Robux + Tombol Kirim */
-.hotspot-balance-display {
+/* Saldo Robux / Kirim */
+.hotspot-balance {
   top: 15%;
   right: 6%;
   width: 13%;
   height: 70%;
-  background-color: #ebedf0; /* Menutupi angka statis pada gambar */
+  background-color: #ebedf0; /* Menutupi angka bawaan di gambar */
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -89,17 +111,17 @@ html, body {
   transition: opacity 0.2s;
 }
 
-.hotspot-balance-display:hover {
+.hotspot-balance:hover {
   opacity: 0.85;
 }
 
-.nav-robux-hex {
+.robux-hex-sym {
   font-size: 15px;
   font-weight: 900;
 }
 
-/* 3. Ikon Pengaturan (⚙) */
-.hotspot-gear-btn {
+/* Ikon Pengaturan ⚙ */
+.hotspot-gear {
   top: 15%;
   right: 1.5%;
   width: 4%;
@@ -107,12 +129,12 @@ html, body {
   border-radius: 6px;
 }
 
-.hotspot-gear-btn:hover {
+.hotspot-gear:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* ========================================================= */
-/* 3. MODAL POPUP & KOMPONENNYA                              */
+/* 4. MODAL POPUP GLOBAL                                     */
 /* ========================================================= */
 .modal-backdrop {
   position: fixed;
@@ -123,6 +145,7 @@ html, body {
   justify-content: center;
   z-index: 9999;
   padding: 16px;
+  line-height: normal;
 }
 
 .modal-card {
@@ -135,7 +158,7 @@ html, body {
 }
 
 .mini-card {
-  max-width: 360px;
+  max-width: 380px;
 }
 
 .modal-header {
@@ -157,6 +180,10 @@ html, body {
   color: #111827;
 }
 
+.gear-ico {
+  font-size: 20px;
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -172,7 +199,7 @@ html, body {
   color: #111827;
 }
 
-.robux-symbol {
+.robux-sym {
   font-size: 15px;
   font-weight: 800;
 }
@@ -186,8 +213,58 @@ html, body {
   line-height: 1;
 }
 
-/* Step 1 Search */
-.search-input-wrapper {
+/* Pengaturan Saldo Modal */
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.balance-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.balance-input-field {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.quick-add-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.btn-add-pill {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.btn-add-pill:hover {
+  background: #e2e8f0;
+}
+
+/* Modal Step 1: Search */
+.search-input-pill {
   background: #ffffff;
   border: 1.5px solid #d1d5db;
   border-radius: 25px;
@@ -195,15 +272,14 @@ html, body {
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: 0.2s;
 }
 
-.search-input-wrapper:focus-within {
+.search-input-pill:focus-within {
   border-color: #0070f3;
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.15);
 }
 
-.search-input-wrapper input {
+.search-input-pill input {
   width: 100%;
   border: none;
   background: transparent;
@@ -211,7 +287,7 @@ html, body {
   font-size: 14px;
 }
 
-.placeholder-empty {
+.empty-placeholder {
   text-align: center;
   color: #64748b;
   font-size: 13.5px;
@@ -219,51 +295,50 @@ html, body {
   padding: 60px 10px;
 }
 
-.section-title {
+.sub-title {
   font-size: 14px;
   font-weight: 700;
   margin: 16px 0 10px;
   color: #111827;
 }
 
-.user-item-row {
+.user-card-row {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px;
   border-radius: 12px;
   cursor: pointer;
-  transition: 0.15s;
 }
 
-.user-item-row:hover {
+.user-card-row:hover {
   background-color: #f1f5f9;
 }
 
-.user-item-row img {
+.user-card-row img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
   background-color: #e2e8f0;
 }
 
-.user-info-text {
+.user-card-meta {
   display: flex;
   flex-direction: column;
 }
 
-.name-bold {
+.txt-bold {
   font-weight: 700;
   font-size: 14px;
 }
 
-.tag-gray {
+.txt-gray {
   font-size: 12.5px;
   color: #64748b;
 }
 
-/* Step 2 Amount */
-.center-profile {
+/* Modal Step 2: Amount */
+.target-profile-center {
   text-align: center;
   margin-bottom: 12px;
 }
@@ -275,13 +350,13 @@ html, body {
   background: #e2e8f0;
 }
 
-.center-profile h3 {
+.target-profile-center h3 {
   font-size: 17px;
   font-weight: 700;
   margin-top: 6px;
 }
 
-.amount-hero {
+.hero-amount-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -289,12 +364,12 @@ html, body {
   margin: 18px 0;
 }
 
-.robux-symbol-huge {
+.robux-sym-huge {
   font-size: 34px;
   font-weight: 900;
 }
 
-.amount-manual-field {
+.hero-input {
   width: 140px;
   font-size: 40px;
   font-weight: 800;
@@ -303,10 +378,6 @@ html, body {
   text-align: center;
   outline: none;
   background: transparent;
-}
-
-.amount-manual-field:focus {
-  border-color: #7b97fc;
 }
 
 .presets-row {
@@ -331,7 +402,7 @@ html, body {
   box-shadow: inset 0 0 0 1.5px #64748b;
 }
 
-.btn-primary-purple {
+.btn-purple-primary {
   background-color: #8da4f7;
   color: white;
   border: none;
@@ -342,8 +413,8 @@ html, body {
   cursor: pointer;
 }
 
-/* Step 3 Confirm */
-.confirm-card-box {
+/* Modal Step 3: Confirm */
+.confirm-card-panel {
   background: #f8fafc;
   border-radius: 16px;
   padding: 18px;
@@ -356,18 +427,13 @@ html, body {
   border-radius: 50%;
 }
 
-.confirm-card-box h4 {
+.confirm-card-panel h4 {
   font-size: 15px;
   font-weight: 700;
   margin-top: 6px;
 }
 
-.handle-gray {
-  font-size: 12.5px;
-  color: #64748b;
-}
-
-.metadata-row {
+.meta-row {
   display: flex;
   justify-content: center;
   gap: 6px;
@@ -382,7 +448,7 @@ html, body {
   margin-top: 4px;
 }
 
-.amount-card-box {
+.confirm-amount-pill {
   margin: 16px 0;
   background: #f8fafc;
   padding: 14px;
@@ -393,17 +459,17 @@ html, body {
   gap: 8px;
 }
 
-.robux-symbol-mid {
+.robux-sym-mid {
   font-size: 24px;
   font-weight: 900;
 }
 
-.amount-bold {
+.txt-amount-big {
   font-size: 28px;
   font-weight: 800;
 }
 
-.buttons-split {
+.split-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -436,7 +502,7 @@ html, body {
 }
 
 /* Spinner Loading */
-.spinner {
+.spinner-wheel {
   width: 20px;
   height: 20px;
   border: 3px solid rgba(255, 255, 255, 0.3);
@@ -449,13 +515,13 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-/* Step 4 Success */
-.success-screen {
+/* Modal Step 4: Success */
+.success-wrap {
   text-align: center;
   padding: 30px 10px 10px;
 }
 
-.circle-check-border {
+.check-circle-black {
   width: 72px;
   height: 72px;
   border: 4px solid #111827;
@@ -464,53 +530,28 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.check-symbol {
   font-size: 32px;
   font-weight: 800;
 }
 
-.success-headline {
+.success-heading {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 30px;
   color: #111827;
 }
 
-/* Form Ubah Saldo (Pengaturan) */
-.input-label {
-  font-size: 12px;
-  font-weight: 700;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.input-balance-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  padding: 8px 12px;
-}
-
-.custom-field {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.mt-16 {
-  margin-top: 16px;
-}
-
+/* Utilities */
 .full-width {
   width: 100%;
+}
+
+.mt-12 {
+  margin-top: 12px;
+}
+
+.mt-18 {
+  margin-top: 18px;
 }
 
 .micro-note, .disclaimer-note {
