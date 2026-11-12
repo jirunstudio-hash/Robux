@@ -2,303 +2,467 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-  background-color: #e2e8f0;
+  background-color: #f1f5f9;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px;
 }
 
-/* Modal Box Utama */
-.modal-card {
+/* Header Simulator */
+.top-nav-bar {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+
+.nav-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.nav-btn-outline {
+  background: white;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.balance-pill {
+  background: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.btn-send-nav {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Modal Popup Window */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
+}
+
+.modal-window {
   background: #ffffff;
   width: 100%;
-  max-width: 440px;
+  max-width: 430px;
   border-radius: 20px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* Header */
-.modal-header {
+.modal-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 14px;
+  margin-bottom: 16px;
 }
 
-.header-left {
+.modal-title-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.modal-title {
-  font-size: 18px;
+.modal-title-wrap h3 {
+  font-size: 17px;
   font-weight: 700;
-  color: #0f172a;
 }
 
-.header-right {
+.sub-header-text {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.modal-top-right {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.balance-badge {
+.modal-balance {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 14px;
+  gap: 4px;
   font-weight: 700;
-  color: #1e293b;
+  font-size: 14px;
 }
 
-.robux-icon {
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.btn-close {
+.btn-close-modal {
   background: none;
   border: none;
   font-size: 22px;
   color: #64748b;
   cursor: pointer;
-  line-height: 1;
 }
 
-/* Input / Search Box */
-.search-container {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  margin-bottom: 14px;
-}
-
-.search-input-wrapper {
-  flex: 1;
+/* Step 1: Friend List */
+.search-input-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #f1f5f9;
-  border-radius: 10px;
-  padding: 0 12px;
-  border: 1px solid #e2e8f0;
 }
 
-.search-input-wrapper input {
-  width: 100%;
+.search-input-box input {
   border: none;
   background: transparent;
-  padding: 10px 0;
-  font-size: 13.5px;
   outline: none;
-  color: #0f172a;
+  width: 100%;
+  font-size: 13.5px;
 }
 
-.btn-fetch {
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 0 14px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-  white-space: nowrap;
+.list-heading {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 16px 0 10px;
+  color: #1e293b;
 }
 
-.btn-fetch:hover {
-  background-color: #005bb5;
-}
-
-.status-text {
-  font-size: 12px;
-  color: #ef4444;
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-/* Card Profil Pengguna (Background Abu-abu) */
-.user-card-box {
-  background-color: #f8fafc;
-  border-radius: 18px;
-  padding: 22px 16px;
+.friends-list {
+  max-height: 250px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 1px solid #f1f5f9;
+  gap: 8px;
 }
 
-.avatar-ring {
-  width: 76px;
-  height: 76px;
+.friend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.friend-item:hover {
+  background-color: #f1f5f9;
+}
+
+.friend-item img {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  overflow: hidden;
-  background-color: #e2e8f0;
+  background: #e2e8f0;
+}
+
+.friend-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Step 2: Amount Hero */
+.target-profile-center {
+  text-align: center;
   margin-bottom: 12px;
 }
 
-.avatar-ring img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.round-avatar-lg {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #e2e8f0;
 }
 
-.name-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.name-row h3 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.verified-badge {
-  flex-shrink: 0;
-}
-
-.username-sub {
-  font-size: 13px;
-  color: #64748b;
-  margin-top: 2px;
-  font-weight: 500;
-}
-
-.metadata-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 14px;
-  font-size: 12px;
-  color: #64748b;
-  font-weight: 500;
-}
-
-.metadata-row .dot {
-  font-size: 10px;
-}
-
-.metadata-sub {
-  margin-top: 4px;
-  font-size: 12px;
-  color: #64748b;
-}
-
-/* Kotak Nominal Robux (Besar) */
-.amount-pill {
-  margin-top: 16px;
-  background-color: #f8fafc;
-  border: 1px solid #f1f5f9;
-  border-radius: 16px;
-  padding: 16px;
+.amount-input-hero {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  margin: 20px 0;
 }
 
-.robux-icon-lg {
+.robux-hex-huge {
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.amount-number {
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.preset-pill {
+  background: #f1f5f9;
+  border: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.preset-pill.active {
+  background: #e2e8f0;
+  box-shadow: inset 0 0 0 1.5px #94a3b8;
+}
+
+/* Step 3: Confirmation Box */
+.confirm-profile-card {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 18px;
+  text-align: center;
+  border: 1px solid #f1f5f9;
+}
+
+.round-avatar-md {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.confirm-name-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.blue-badge {
+  color: #0084ff;
+  font-size: 14px;
+}
+
+.user-handle {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.meta-tags {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 12px;
+}
+
+.meta-sub {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.amount-card-preview {
+  margin: 16px 0;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.robux-hex-big {
   font-size: 26px;
   font-weight: 800;
-  color: #1e293b;
 }
 
-.amount-text {
+.amount-preview-val {
   font-size: 30px;
   font-weight: 800;
-  color: #0f172a;
 }
 
-/* Tombol Aksi */
-.action-buttons {
+.split-btn-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 18px;
+  gap: 10px;
 }
 
+/* Step 4: Success Circle */
+.success-screen {
+  text-align: center;
+  padding: 30px 10px 10px;
+}
+
+.success-ring {
+  width: 72px;
+  height: 72px;
+  border: 4px solid #0f172a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.check-symbol {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.success-screen h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+/* Button & Utilitas */
 .btn-primary {
-  background-color: #3b5bed;
+  background: #3b5bed;
   color: white;
   border: none;
+  padding: 12px;
   border-radius: 12px;
-  padding: 14px;
-  font-size: 14px;
   font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
 }
 
 .btn-secondary {
-  background-color: #e2e8f0;
+  background: #e2e8f0;
   color: #1e293b;
   border: none;
+  padding: 12px;
   border-radius: 12px;
-  padding: 14px;
-  font-size: 14px;
   font-weight: 700;
+  font-size: 14px;
   cursor: pointer;
-}
-
-.btn-secondary:hover {
-  background-color: #cbd5e1;
 }
 
 .full-width {
   width: 100%;
 }
 
+.micro-text {
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+  margin-top: 14px;
+}
+
 .disclaimer-text {
   font-size: 11px;
   color: #64748b;
   text-align: center;
-  margin-top: 14px;
+  margin-top: 12px;
   line-height: 1.4;
 }
 
-/* Tampilan Sukses (Centang) */
-.success-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 10px 10px;
-  text-align: center;
+/* Settings Form (Foto 6) */
+.form-label {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 12px;
+  display: block;
+  margin-bottom: 4px;
 }
 
-.check-circle {
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  border: 4px solid #111827;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
+.form-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
 }
 
-.success-title {
-  font-size: 16px;
+.fetch-row {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-fetch-blue {
+  background: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0 14px;
   font-weight: 600;
-  color: #111827;
-  margin-bottom: 36px;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.toggle-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.badge-toggle-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.badge-toggle-btn.active {
+  border-color: #0070f3;
+  color: #0070f3;
+  background: #eff6ff;
+}
+
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.micro-text-left {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.robux-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mt-16 {
+  margin-top: 16px;
 }
 
 .hidden {
