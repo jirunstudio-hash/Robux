@@ -5,20 +5,20 @@
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* KUNCI ELEMEN YANG TIDAK BOLEH BISA DIKLIK */
+/* ELEMEN TIDAK BISA DIKLIK */
 .unclickable {
   pointer-events: none !important;
   user-select: none !important;
   cursor: default !important;
 }
 
-/* ELEMEN YANG AKTIF BISA DIKLIK */
+/* HANYA ELEMEN INI YANG BISA DIKLIK */
 .clickable-item {
   pointer-events: auto !important;
   cursor: pointer !important;
 }
 
-/* HILANGKAN PANAH BROWSER NUMBER */
+/* HILANGKAN PANAH BROWSER PADA NUMBER */
 input[type=number].no-spinner::-webkit-inner-spin-button, 
 input[type=number].no-spinner::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -42,10 +42,10 @@ html, body {
 }
 
 /* ========================================================= */
-/* 1. NAVBAR ATAS (FIXED / TIDAK BISA SCROLL)                */
+/* 1. NAVBAR ATAS (PERSIS SUSUNAN SCREENSHOT)                */
 /* ========================================================= */
 .rbx-navbar {
-  height: 50px;
+  height: 48px;
   background-color: #f2f4f5;
   border-bottom: 1px solid #e3e5e8;
   display: flex;
@@ -56,10 +56,11 @@ html, body {
   z-index: 1000;
 }
 
+/* Sisi Kiri: Logo + Menu Beranda, Grafik, Pasar, Buat */
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 
 .rbx-brand {
@@ -82,7 +83,7 @@ html, body {
 
 .nav-menu {
   display: flex;
-  gap: 18px;
+  gap: 20px;
 }
 
 .nav-link {
@@ -91,34 +92,11 @@ html, body {
   font-weight: 700;
 }
 
-.nav-center {
-  flex: 0 1 320px;
-}
-
-/* Kolom Pencarian Header */
-.search-input-pill {
-  background-color: #e3e5e8;
-  border-radius: 8px;
-  padding: 5px 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-input-pill input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 13px;
-  color: #191b1d;
-  cursor: text;
-}
-
+/* Sisi Kanan: Foto Jirun -> Lonceng -> ⬡ 10.000 -> ⚙ -> 🔍 Pencarian */
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .user-profile-header {
@@ -129,12 +107,27 @@ html, body {
   font-size: 14px;
 }
 
-.avatar-headshot {
-  width: 26px;
-  height: 26px;
+/* Avatar Kosong / Placeholder Sampai Diupload */
+.avatar-headshot-blank {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #cbd5e1;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-img-element {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+.blank-avatar-svg {
+  width: 20px;
+  height: 20px;
 }
 
 .header-icon-btn {
@@ -150,34 +143,40 @@ html, body {
   background-color: #e3e5e8;
 }
 
-/* Tombol Saldo & Kirim Header */
-.balance-header-btn {
+/* Display Saldo Header (TIDAK BISA DIKLIK) */
+.balance-header-display {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 14px;
   font-weight: 800;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: 0.15s;
-}
-
-.balance-header-btn:hover {
-  background-color: #e3e5e8;
-}
-
-.btn-header-kirim {
-  background: #e3e5e8;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  margin-left: 2px;
+  padding: 4px 6px;
 }
 
 .robux-hex {
   font-size: 16px;
   font-weight: 900;
+}
+
+/* Kolom Pencarian di Paling Kanan */
+.search-input-pill {
+  background-color: #e3e5e8;
+  border-radius: 8px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 220px;
+}
+
+.search-input-pill input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: #191b1d;
+  cursor: text;
 }
 
 /* ========================================================= */
@@ -189,7 +188,7 @@ html, body {
   overflow: hidden;
 }
 
-/* SIDEBAR KIRI (TIDAK BISA DI-SCROLL & SEMUA LINK MATI) */
+/* SIDEBAR KIRI (TIDAK BISA SCROLL & SEMUA LINK MATI) */
 .rbx-sidebar {
   width: 220px;
   flex-shrink: 0;
@@ -290,10 +289,6 @@ html, body {
   gap: 10px;
 }
 
-.robux-kirim-badge-wrap:hover {
-  background: #e5e7eb;
-}
-
 .badge-robux-amount {
   display: flex;
   align-items: center;
@@ -302,14 +297,19 @@ html, body {
   font-size: 14px;
 }
 
+/* HANYA TEKS INI YANG BISA DIKLIK */
 .btn-kirim-action {
   background: #e3e5e8;
   border: none;
   border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 11.5px;
+  padding: 5px 12px;
+  font-size: 12px;
   font-weight: 700;
-  cursor: pointer;
+  transition: 0.15s;
+}
+
+.btn-kirim-action:hover {
+  background: #d1d5db;
 }
 
 .headline-section {
@@ -331,17 +331,16 @@ html, body {
   text-align: left;
 }
 
-/* Banner Curl Brainrot */
+/* Banner Promo (Polos Gelap Default Sampai Diupload) */
 .promo-banner-card {
   height: 130px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #09090b 0%, #1c1917 50%, #292524 100%);
+  background-color: #111111;
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
   margin: 12px 0 24px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 
 .banner-overlay {
@@ -377,7 +376,7 @@ html, body {
   color: #a8a29e;
 }
 
-/* Tabel Paket */
+/* Tabel Paket Robux */
 .robux-packages-table {
   display: flex;
   flex-direction: column;
@@ -430,7 +429,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 4. MODAL GLOBAL (SEMUA KONTENNYA AKTIF BISA DIKLIK)       */
+/* 4. MODAL GLOBAL                                           */
 /* ========================================================= */
 .modal-backdrop {
   position: fixed;
