@@ -7,134 +7,413 @@
 
 html, body {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow: hidden; /* Mencegah halaman utama bergulir ganda */
   background-color: #f7f9fa;
-  user-select: none;
+  color: #191b1d;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ========================================================= */
-/* 1. HEADER ATAS: STICKY/FIXED (TIDAK BISA DI-SCROLL)       */
+/* 1. NAVBAR ATAS (PERSIS FOTO 1 - FIXED & TIDAK BISA SCROLL)*/
 /* ========================================================= */
-.header-fixed-top {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
+.rbx-navbar {
+  height: 50px;
   background-color: #f2f4f5;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-  line-height: 0;
-}
-
-.header-frame {
-  position: relative;
-  width: 100%;
-}
-
-.img-header {
-  width: 100%;
-  height: auto;
-  display: block;
-  pointer-events: none;
-}
-
-/* ========================================================= */
-/* 2. BODY BAWAH: BISA DI-SCROLL SEPUASNYA                   */
-/* ========================================================= */
-.body-scrollable {
-  width: 100%;
-  line-height: 0;
-  overflow-y: auto;
-}
-
-.body-frame {
-  position: relative;
-  width: 100%;
-}
-
-.img-body {
-  width: 100%;
-  height: auto;
-  display: block;
-  pointer-events: none;
-}
-
-/* ========================================================= */
-/* 3. AREA INTERAKTIF DI ATAS HEADER                         */
-/* ========================================================= */
-.header-hotspot {
-  position: absolute;
-  z-index: 10;
-  cursor: pointer;
-  line-height: normal;
-}
-
-/* Kolom Search */
-.hotspot-search {
-  top: 18%;
-  right: 27.5%;
-  width: 20%;
-  height: 64%;
+  border-bottom: 1px solid #e3e5e8;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  flex-shrink: 0;
+  z-index: 1000;
 }
 
-.hotspot-search input {
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.rbx-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rbx-logo-icon {
+  width: 26px;
+  height: 26px;
+  fill: #191b1d;
+}
+
+.rbx-brand-name {
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: -0.5px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #191b1d;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+/* Search Bar Tengah */
+.nav-center {
+  flex: 0 1 320px;
+}
+
+.search-input-pill {
+  background-color: #e3e5e8;
+  border-radius: 8px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-input-pill input {
   width: 100%;
-  height: 100%;
   border: none;
   background: transparent;
   outline: none;
   font-size: 13px;
   color: #191b1d;
-  padding-left: 28px;
 }
 
-/* Saldo Robux / Kirim */
-.hotspot-balance {
-  top: 15%;
-  right: 6%;
-  width: 13%;
-  height: 70%;
-  background-color: #ebedf0; /* Menutupi angka bawaan di gambar */
-  border-radius: 20px;
+/* Kanan Navbar */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.avatar-headshot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.header-icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: #191b1d;
+}
+
+.header-icon-btn:hover {
+  background-color: #e3e5e8;
+}
+
+/* Saldo Robux Header */
+.balance-header-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 14px;
   font-weight: 800;
-  color: #191b1d;
-  transition: opacity 0.2s;
-}
-
-.hotspot-balance:hover {
-  opacity: 0.85;
-}
-
-.robux-hex-sym {
-  font-size: 15px;
-  font-weight: 900;
-}
-
-/* Ikon Pengaturan ⚙ */
-.hotspot-gear {
-  top: 15%;
-  right: 1.5%;
-  width: 4%;
-  height: 70%;
+  cursor: pointer;
+  padding: 4px 8px;
   border-radius: 6px;
 }
 
-.hotspot-gear:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.balance-header-btn:hover {
+  background-color: #e3e5e8;
+}
+
+.robux-hex {
+  font-size: 16px;
+  font-weight: 900;
 }
 
 /* ========================================================= */
-/* 4. MODAL POPUP GLOBAL                                     */
+/* 2. LAYOUT VIEWPORT (SIDEBAR KIRI & KONTEN KANAN)          */
+/* ========================================================= */
+.rbx-viewport {
+  flex: 1;
+  display: flex;
+  overflow: hidden; /* Kontainer tidak bergulir */
+}
+
+/* ========================================================= */
+/* 3. SIDEBAR KIRI (PERSIS FOTO 2 - TIDAK BISA DI-SCROLL)   */
+/* ========================================================= */
+.rbx-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  overflow: hidden; /* Terkunci tidak bisa di-scroll */
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #191b1d;
+  font-size: 13.5px;
+  font-weight: 700;
+  transition: 0.15s;
+}
+
+.sidebar-item:hover {
+  background-color: #ebedf0;
+}
+
+.sidebar-item.active {
+  background-color: #ebedf0; /* Highlight abu-abu aktif seperti Foto 2 */
+}
+
+.item-badge {
+  margin-left: auto;
+  background-color: #0f172a;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Box Berlangganan Bawah */
+.sidebar-subscribe-card {
+  margin-top: auto;
+  border: 1px solid #e3e5e8;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-subscribe-card p {
+  font-size: 11.5px;
+  color: #374151;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.sub-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: #191b1d;
+  text-decoration: underline;
+}
+
+/* ========================================================= */
+/* 4. KONTEN KANAN BAWAH (FOTO 3 - HANYA INI YANG BISA SCROLL)*/
+/* ========================================================= */
+.rbx-main-content {
+  flex: 1;
+  overflow-y: auto; /* HANYA KANAN BAWAH YANG BISA DI-SCROLL */
+  padding: 24px 60px 80px;
+  background-color: #ffffff;
+}
+
+/* Pill Saldo + Tombol Kirim Kanan Atas Konten */
+.content-top-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+.robux-kirim-badge-wrap {
+  display: flex;
+  align-items: center;
+  background: #f2f4f5;
+  border-radius: 20px;
+  padding: 4px 6px 4px 14px;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.badge-robux-amount {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.btn-kirim-action {
+  background: #e3e5e8;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Headline */
+.headline-section {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.main-title {
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.section-subtitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 36px;
+  text-align: left;
+}
+
+/* Banner Curl Brainrot */
+.promo-banner-card {
+  height: 130px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #09090b 0%, #1c1917 50%, #292524 100%);
+  position: relative;
+  overflow: hidden;
+  margin: 12px 0 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.banner-badge-uang {
+  background: #22c55e;
+  color: white;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.banner-item-meta {
+  color: white;
+}
+
+.banner-item-name {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.banner-subtext {
+  font-size: 12px;
+  color: #a8a29e;
+}
+
+/* Tabel Paket Robux */
+.robux-packages-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.package-item {
+  background: #ffffff;
+  border: 1px solid #e3e5e8;
+  border-radius: 12px;
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pkg-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pkg-hex {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.pkg-num {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.pkg-old {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.pkg-bonus-pill {
+  font-size: 11px;
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.pkg-price-btn {
+  background: #e3e5e8;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 24px;
+  font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+/* ========================================================= */
+/* 5. MODAL GLOBAL (KIRIM ROBUX & PENGATURAN)                */
 /* ========================================================= */
 .modal-backdrop {
   position: fixed;
@@ -145,7 +424,6 @@ html, body {
   justify-content: center;
   z-index: 9999;
   padding: 16px;
-  line-height: normal;
 }
 
 .modal-card {
@@ -168,23 +446,22 @@ html, body {
   margin-bottom: 18px;
 }
 
-.header-left {
+.header-left-title {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.header-left h4 {
+.header-left-title h4 {
   font-size: 17px;
   font-weight: 700;
-  color: #111827;
 }
 
 .gear-ico {
   font-size: 20px;
 }
 
-.header-right {
+.header-right-meta {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -196,15 +473,18 @@ html, body {
   gap: 4px;
   font-size: 14px;
   font-weight: 800;
-  color: #111827;
 }
 
-.robux-sym {
-  font-size: 15px;
-  font-weight: 800;
+.robux-hex-inline {
+  font-size: 16px;
+  font-weight: 900;
 }
 
-.btn-close {
+.font-24 {
+  font-size: 24px;
+}
+
+.btn-close-x {
   background: none;
   border: none;
   font-size: 22px;
@@ -213,7 +493,7 @@ html, body {
   line-height: 1;
 }
 
-/* Pengaturan Saldo Modal */
+/* Modal Pengaturan (⚙) */
 .field-label {
   font-size: 12px;
   font-weight: 700;
@@ -256,7 +536,6 @@ html, body {
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.15s;
 }
 
 .btn-add-pill:hover {
@@ -264,7 +543,7 @@ html, body {
 }
 
 /* Modal Step 1: Search */
-.search-input-pill {
+.search-modal-pill {
   background: #ffffff;
   border: 1.5px solid #d1d5db;
   border-radius: 25px;
@@ -274,12 +553,12 @@ html, body {
   gap: 10px;
 }
 
-.search-input-pill:focus-within {
+.search-modal-pill:focus-within {
   border-color: #0070f3;
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.15);
 }
 
-.search-input-pill input {
+.search-modal-pill input {
   width: 100%;
   border: none;
   background: transparent;
@@ -299,7 +578,6 @@ html, body {
   font-size: 14px;
   font-weight: 700;
   margin: 16px 0 10px;
-  color: #111827;
 }
 
 .user-card-row {
@@ -347,7 +625,6 @@ html, body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #e2e8f0;
 }
 
 .target-profile-center h3 {
@@ -459,11 +736,6 @@ html, body {
   gap: 8px;
 }
 
-.robux-sym-mid {
-  font-size: 24px;
-  font-weight: 900;
-}
-
 .txt-amount-big {
   font-size: 28px;
   font-weight: 800;
@@ -475,7 +747,7 @@ html, body {
   gap: 10px;
 }
 
-.btn-blue-primary {
+.btn-primary-blue {
   background-color: #3056d3;
   color: white;
   border: none;
@@ -501,7 +773,6 @@ html, body {
   cursor: pointer;
 }
 
-/* Spinner Loading */
 .spinner-wheel {
   width: 20px;
   height: 20px;
@@ -538,10 +809,9 @@ html, body {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 30px;
-  color: #111827;
 }
 
-/* Utilities */
+/* Utilitas Global */
 .full-width {
   width: 100%;
 }
