@@ -1,89 +1,306 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
+  background-color: #e2e8f0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  margin: 0;
+  padding: 16px;
 }
 
-.container {
+/* Modal Box Utama */
+.modal-card {
   background: #ffffff;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
-  text-align: center;
+  max-width: 440px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
-.search-box {
+/* Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.balance-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.robux-icon {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #64748b;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Input / Search Box */
+.search-container {
   display: flex;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-top: 10px;
+  margin-bottom: 14px;
 }
 
-input {
+.search-input-wrapper {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f1f5f9;
+  border-radius: 10px;
+  padding: 0 12px;
+  border: 1px solid #e2e8f0;
 }
 
-button {
-  padding: 10px 16px;
+.search-input-wrapper input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  font-size: 13.5px;
+  outline: none;
+  color: #0f172a;
+}
+
+.btn-fetch {
   background-color: #0070f3;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
 }
 
-button:hover {
+.btn-fetch:hover {
   background-color: #005bb5;
 }
 
-.status {
-  margin-bottom: 12px;
-  font-size: 14px;
-  color: #666;
+.status-text {
+  font-size: 12px;
+  color: #ef4444;
+  margin-bottom: 8px;
+  text-align: center;
 }
 
-.card {
+/* Card Profil Pengguna (Background Abu-abu) */
+.user-card-box {
+  background-color: #f8fafc;
+  border-radius: 18px;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #f1f5f9;
+}
+
+.avatar-ring {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e2e8f0;
+  margin-bottom: 12px;
+}
+
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
-  border: 1px solid #e1e4e8;
-  border-radius: 6px;
-  text-align: left;
+  gap: 6px;
 }
 
-.card img {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  background: #eee;
+.name-row h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
 }
 
-.card h3 {
-  margin: 0 0 4px 0;
-  font-size: 18px;
+.verified-badge {
+  flex-shrink: 0;
 }
 
-.card p {
-  margin: 0;
-  color: #555;
-  font-size: 14px;
+.username-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+  font-weight: 500;
 }
 
-.id-tag {
-  margin-top: 6px;
+.metadata-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
   font-size: 12px;
-  color: #888;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.metadata-row .dot {
+  font-size: 10px;
+}
+
+.metadata-sub {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Kotak Nominal Robux (Besar) */
+.amount-pill {
+  margin-top: 16px;
+  background-color: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.robux-icon-lg {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.amount-text {
+  font-size: 30px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Tombol Aksi */
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-primary {
+  background-color: #3b5bed;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #1e293b;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.disclaimer-text {
+  font-size: 11px;
+  color: #64748b;
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.4;
+}
+
+/* Tampilan Sukses (Centang) */
+.success-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px 10px;
+  text-align: center;
+}
+
+.check-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 4px solid #111827;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.success-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 36px;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
