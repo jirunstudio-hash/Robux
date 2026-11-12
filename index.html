@@ -10,38 +10,71 @@
 <body>
 
   <!-- ============================================================== -->
-  <!-- 1. TAMPILAN WEBSITE UTAMA (FOTO ATAS & FOTO BAWAH)             -->
+  <!-- 1. TAMPILAN WEBSITE UTAMA (FULL SCREEN)                        -->
   <!-- ============================================================== -->
-  <div class="roblox-web-wrapper">
+  <div class="roblox-fullscreen-container">
     
-    <!-- POTO ATAS (HEADER NAVBAR) -->
-    <div class="top-header-frame">
-      <img src="https://g.top4top.io/p_3968k597w2.png" alt="Roblox Header" class="img-responsive">
-      
-      <!-- Area Klik Transparan di Atas Teks Kirim / Saldo Header -->
-      <div class="hotspot-trigger" id="hotspotHeaderKirim" title="Klik Kirim Robux"></div>
+    <!-- HEADER NAVBAR (FOTO ATAS) -->
+    <div class="header-image-container">
+      <img src="https://g.top4top.io/p_3968k597w2.png" alt="Roblox Header" class="header-bg-img" draggable="false">
+
+      <!-- HANYA 3 ELEMEN INI YANG AKTIF BISA DIKLIK: -->
+
+      <!-- 1. Input Pencarian Nyata di Atas Gambar Header -->
+      <div class="active-hotspot hotspot-search">
+        <input type="text" id="mainHeaderSearch" placeholder="Pencarian" autocomplete="off" />
+      </div>
+
+      <!-- Penimpa Saldo Otomatis (Agar Angka Robux Berubah Nyata di Header) -->
+      <div class="active-hotspot hotspot-balance-display" id="hotspotKirimRobux" title="Klik untuk Kirim Robux">
+        <span class="nav-robux-hex">⬡</span>
+        <span id="navDynamicBalance">115,475</span>
+      </div>
+
+      <!-- 2. Ikon Pengaturan ⚙ (Ubah Jumlah Saldo) -->
+      <div class="active-hotspot hotspot-gear-btn" id="hotspotOpenSettings" title="Klik untuk Ubah Jumlah Robux"></div>
     </div>
 
-    <!-- POTO BAWAH (BODY / HALAMAN KONTEN) -->
-    <div class="bottom-body-frame">
-      <img src="https://f.top4top.io/p_3968631e01.png" alt="Roblox Main Body" class="img-responsive">
-      
-      <!-- Area Klik Transparan di Menu Sebelah Kiri (Roblox Plus / Kirim) -->
-      <div class="hotspot-trigger-sidebar" id="hotspotSidebarKirim" title="Klik Kirim Robux"></div>
+    <!-- BODY KONTEN (FOTO BAWAH) -->
+    <div class="body-image-container">
+      <img src="https://f.top4top.io/p_3968631e01.png" alt="Roblox Body" class="body-bg-img" draggable="false">
     </div>
 
   </div>
 
   <!-- ============================================================== -->
-  <!-- 2. POPUP MODAL KIRIM ROBUX (PERSIS 6 TANGKAPAN LAYAR)          -->
+  <!-- 2. POPUP MODAL: PENGATURAN SALDO (IKON ⚙)                      -->
+  <!-- ============================================================== -->
+  <div id="settingsModalOverlay" class="modal-backdrop hidden">
+    <div class="modal-card mini-card">
+      <div class="modal-header">
+        <div class="header-left">
+          <span class="hex-icon">⚙</span>
+          <h4>Ubah Saldo Robux</h4>
+        </div>
+        <button id="btnCloseSettings" class="btn-close">&times;</button>
+      </div>
+
+      <div class="settings-form">
+        <label class="input-label">Jumlah Saldo Robux Baru:</label>
+        <div class="input-balance-box">
+          <span class="robux-symbol">⬡</span>
+          <input type="number" id="settingBalanceInput" class="custom-field" value="115475" />
+        </div>
+        <button id="btnSaveBalance" class="btn-blue-primary full-width mt-16">Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- 3. POPUP MODAL: KIRIM ROBUX (FOTO 1 S/D 6)                     -->
   <!-- ============================================================== -->
   <div id="modalOverlay" class="modal-backdrop hidden">
     <div class="modal-card">
       
-      <!-- Header Modal -->
+      <!-- Top Modal Bar -->
       <div class="modal-header">
         <div class="header-left">
-          <!-- Logo Hexagon Roblox Plus -->
           <svg class="hex-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111827" stroke-width="2">
             <polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2" />
             <circle cx="12" cy="12" r="3" />
@@ -57,19 +90,19 @@
         </div>
       </div>
 
-      <!-- FOTO 1 & 2: PENCARIAN & DETEKSI TARGET -->
+      <!-- FOTO 1 & 2: PENCARIAN TARGET USERNAME -->
       <div id="step1Search" class="step-panel">
         <div class="search-input-wrapper">
           <span class="search-lens">🔍</span>
           <input type="text" id="targetSearchInput" placeholder="Pencarian" autocomplete="off" />
         </div>
 
-        <!-- Tampilan Awal: Foto 1 (No friends added yet) -->
+        <!-- Default: Foto 1 (No friends added yet) -->
         <div id="emptyFriendsPlaceholder" class="placeholder-empty">
           <p>No friends added yet</p>
         </div>
 
-        <!-- Tampilan Saat Ditemukan: Foto 2 (Orang (1)) -->
+        <!-- Terdeteksi: Foto 2 (Orang (1)) -->
         <div id="foundUserContainer" class="found-container hidden">
           <h5 class="section-title">Orang (1)</h5>
           <div class="user-item-row" id="targetUserCard">
@@ -82,14 +115,14 @@
         </div>
       </div>
 
-      <!-- FOTO 3: PILIH NOMINAL ROBUX (MANUAL / PRESET) -->
+      <!-- FOTO 3: NOMINAL ROBUX (MANUAL / PRESET 25, 50, 100, 200) -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="center-profile">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
           <h3 id="step2Name">Jirun</h3>
         </div>
 
-        <!-- Area Nominal (Bisa Ketik Manual) -->
+        <!-- Input Manual Angka -->
         <div class="amount-hero">
           <span class="robux-symbol-huge">⬡</span>
           <input type="number" id="manualAmountInput" class="amount-manual-field" value="0" min="0" />
@@ -107,7 +140,7 @@
         <p class="micro-note">Robux dikirim secara instan tanpa biaya.</p>
       </div>
 
-      <!-- FOTO 4 & 5: KONFIRMASI DENGAN LOADING SPINNER -->
+      <!-- FOTO 4 & 5: KONFIRMASI DENGAN SPINNER LOADING -->
       <div id="step3Confirm" class="step-panel hidden">
         <div class="confirm-card-box">
           <img id="step3Avatar" class="avatar-mid" src="" alt="">
@@ -115,11 +148,11 @@
           <p id="step3Handle" class="handle-gray">@sultancoins7</p>
 
           <div class="metadata-row">
-            <span id="metaDuration">📅 Terhubung 1 tahun</span>
+            <span>📅 Terhubung 1 tahun</span>
             <span>•</span>
             <span>👥 0 Koneksi Bersama</span>
           </div>
-          <p id="metaJoin" class="meta-sub">ⓘ Bergabung pada tahun 2026</p>
+          <p class="meta-sub">ⓘ Bergabung pada tahun 2026</p>
         </div>
 
         <div class="amount-card-box">
@@ -140,7 +173,7 @@
         </p>
       </div>
 
-      <!-- FOTO 6: LAYAR SUKSES CENTANG HITAM -->
+      <!-- FOTO 6: SUKSES CENTANG HITAM -->
       <div id="step4Success" class="step-panel hidden">
         <div class="success-screen">
           <div class="circle-check-border">
