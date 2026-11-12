@@ -1,6 +1,6 @@
-// State Sistem
+// State Sistem (Saldo Awal 10.000)
 let appState = {
-  balance: 115475,
+  balance: 10000,
   currentSelectedAmount: 0,
   targetUser: {
     displayName: "Jirun",
@@ -10,7 +10,7 @@ let appState = {
   }
 };
 
-// Elemen DOM Tampilan Utama
+// Elemen DOM
 const dynBalanceSpans = document.querySelectorAll(".dyn-balance");
 const openSendFromHeader = document.getElementById("openSendFromHeader");
 const btnOpenSendContent = document.getElementById("btnOpenSendContent");
@@ -37,7 +37,7 @@ const modalOverlay = document.getElementById("modalOverlay");
 const btnCloseModal = document.getElementById("btnCloseModal");
 const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
 
-// Steps Modal
+// Steps
 const step1Search = document.getElementById("step1Search");
 const step2Amount = document.getElementById("step2Amount");
 const step3Confirm = document.getElementById("step3Confirm");
@@ -74,7 +74,7 @@ const btnEditBack = document.getElementById("btnEditBack");
 const successSentAmount = document.getElementById("successSentAmount");
 const btnOkDone = document.getElementById("btnOkDone");
 
-// Update Seluruh Saldo di Layar
+// Update Saldo di Seluruh Halaman
 function updateAllBalanceUI() {
   const formatted = appState.balance.toLocaleString("id-ID");
   dynBalanceSpans.forEach(el => el.textContent = formatted);
@@ -104,7 +104,7 @@ function resetModalState() {
 }
 
 // ==============================================================
-// 1. PENGATURAN: UPLOAD AVATAR & BANNER VIA GALERI
+// 1. PENGATURAN SALDO (IKON ⚙) & UPLOAD FOTO
 // ==============================================================
 btnOpenSettings.addEventListener("click", () => {
   settingBalanceInput.value = appState.balance;
@@ -132,7 +132,7 @@ avatarFileInput.addEventListener("change", (e) => {
   }
 });
 
-// Upload Foto Banner Promo
+// Upload Banner Promo
 btnTriggerBannerUpload.addEventListener("click", () => bannerFileInput.click());
 bannerFileInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
@@ -148,7 +148,7 @@ bannerFileInput.addEventListener("change", (e) => {
   }
 });
 
-// Load simpanan foto dari LocalStorage saat pertama buka
+// Load Simpanan Foto
 window.addEventListener("DOMContentLoaded", () => {
   const savedAvatar = localStorage.getItem("savedUserAvatar");
   if (savedAvatar) {
@@ -179,7 +179,7 @@ btnSaveBalance.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 2. BUKA MODAL KIRIM ROBUX
+// 2. BUKA MODAL KIRIM (DARI TEKS KIRIM HEADER / KONTEN)
 // ==============================================================
 [openSendFromHeader, btnOpenSendContent].forEach(btn => {
   btn.addEventListener("click", () => {
@@ -231,7 +231,6 @@ targetSearchInput.addEventListener("input", (e) => {
         foundUserContainer.classList.add("hidden");
       }
     } catch (err) {
-      // Fallback
       appState.targetUser = {
         displayName: query,
         username: query,
@@ -247,7 +246,7 @@ targetSearchInput.addEventListener("input", (e) => {
   }, 300);
 });
 
-// Klik Target Terdeteksi -> Pindah ke Step 2 (Nilai Awal 0)
+// Klik Target -> Pindah ke Step 2 (Awal Angka 0)
 targetUserCard.addEventListener("click", () => {
   step2Name.textContent = appState.targetUser.displayName;
   step2Avatar.src = appState.targetUser.avatarUrl;
@@ -261,15 +260,12 @@ targetUserCard.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 4. INPUT MANUAL MURNI KEYBOARD (NO MOUSE WHEEL & NO GARIS)
+// 4. INPUT MANUAL MURNI KEYBOARD (NO WHEEL & NO GARIS)
 // ==============================================================
-
-// Kunci Roda Mouse Tengah (Scroll Wheel Mati)
 manualAmountInput.addEventListener("wheel", (e) => {
   e.preventDefault();
 }, { passive: false });
 
-// Hanya Boleh Diketik Angka 0-9
 manualAmountInput.addEventListener("input", (e) => {
   let val = e.target.value.replace(/[^0-9]/g, "");
 
@@ -314,7 +310,7 @@ presetPills.forEach(pill => {
   });
 });
 
-// Lanjut ke Konfirmasi (Step 3)
+// Lanjut ke Konfirmasi
 btnNextToConfirm.addEventListener("click", () => {
   if (appState.currentSelectedAmount <= 0) {
     alert("Masukkan nominal Robux yang lebih dari 0.");
@@ -335,14 +331,13 @@ btnEditBack.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 5. PROSES KIRIM: LOADING TEPAT 5 DETIK (5000 MS)
+// 5. PROSES KIRIM: LOADING TEPAT 5 DETIK
 // ==============================================================
 btnSubmitSend.addEventListener("click", () => {
   btnSendText.classList.add("hidden");
   btnSpinner.classList.remove("hidden");
   btnSubmitSend.disabled = true;
 
-  // Tepat 5 Detik
   setTimeout(() => {
     appState.balance -= appState.currentSelectedAmount;
     updateAllBalanceUI();
@@ -357,7 +352,7 @@ btnSubmitSend.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 6. TEKAN "OK" -> KEMBALI KE TAMPILAN AWAL WEBSITE
+// 6. TEKAN "OK" -> KEMBALI KE TAMPILAN AWAL
 // ==============================================================
 btnOkDone.addEventListener("click", () => {
   modalOverlay.classList.add("hidden");
