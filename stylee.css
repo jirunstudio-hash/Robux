@@ -5,7 +5,7 @@
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* HILANGKAN PANAH ANGKANYA (NO SPINNER MOUSE) */
+/* Hilangkan Panah Bawaan Browser pada Input Number */
 input[type=number].no-spinner::-webkit-inner-spin-button, 
 input[type=number].no-spinner::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -249,7 +249,7 @@ html, body {
 /* ========================================================= */
 .rbx-main-content {
   flex: 1;
-  overflow-y: auto; /* HANYA INI YANG BISA DI-SCROLL */
+  overflow-y: auto;
   padding: 24px 60px 80px;
   background-color: #ffffff;
 }
@@ -554,7 +554,7 @@ html, body {
   background: #e2e8f0;
 }
 
-/* Step 1 Search */
+/* Modal Step 1 Search */
 .search-modal-pill {
   background: #ffffff;
   border: 1.5px solid #d1d5db;
@@ -628,7 +628,7 @@ html, body {
   color: #64748b;
 }
 
-/* Step 2 Amount */
+/* Modal Step 2: Input Polos Tanpa Garis Bawah */
 .target-profile-center {
   text-align: center;
   margin-bottom: 12px;
@@ -652,23 +652,33 @@ html, body {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin: 18px 0;
+  margin: 18px 0 22px;
 }
 
 .robux-sym-huge {
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 900;
+  line-height: 1;
+  color: #111827;
 }
 
-.hero-input {
-  width: 140px;
+.hero-input-clean {
+  width: 1.2ch;
+  min-width: 32px;
+  max-width: 260px;
   font-size: 44px;
   font-weight: 800;
-  border: none;
-  border-bottom: 2px solid #e2e8f0;
-  text-align: center;
-  outline: none;
-  background: transparent;
+  color: #111827;
+  border: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-align: left;
+  line-height: 1;
+  caret-color: #3b5bed;
 }
 
 .presets-row {
@@ -704,7 +714,7 @@ html, body {
   cursor: pointer;
 }
 
-/* Step 3 Confirm */
+/* Modal Step 3 Confirm */
 .confirm-card-panel {
   background: #f8fafc;
   border-radius: 16px;
@@ -788,6 +798,7 @@ html, body {
   cursor: pointer;
 }
 
+/* Spinner Loading */
 .spinner-wheel {
   width: 20px;
   height: 20px;
@@ -801,7 +812,7 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-/* Step 4 Success */
+/* Modal Step 4 Success */
 .success-wrap {
   text-align: center;
   padding: 30px 10px 10px;
@@ -826,7 +837,7 @@ html, body {
   margin-bottom: 30px;
 }
 
-/* Utilitas */
+/* Utilitas Global */
 .full-width {
   width: 100%;
 }
