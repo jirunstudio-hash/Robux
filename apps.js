@@ -12,8 +12,8 @@ let appState = {
 
 // Elemen DOM
 const dynBalanceSpans = document.querySelectorAll(".dyn-balance");
-const btnOnlyKirimText = document.getElementById("btnOnlyKirimText"); // HANYA TEKS KIRIM
-const btnOpenSettings = document.getElementById("btnOpenSettings");   // IKON ⚙
+const btnOnlyKirimText = document.getElementById("btnOnlyKirimText"); // HANYA TEKS '↑ Kirim' DI KONTEN
+const btnOpenSettings = document.getElementById("btnOpenSettings");   // IKON ⚙ DI PALING KANAN NAVBAR
 const navUserAvatar = document.getElementById("navUserAvatar");
 const navAvatarPlaceholder = document.getElementById("navAvatarPlaceholder");
 const sideUserAvatar = document.getElementById("sideUserAvatar");
@@ -158,7 +158,7 @@ bannerFileInput.addEventListener("change", (e) => {
   }
 });
 
-// Cek Apakah User Pernah Upload Sebelumnya
+// Cek Apakah Pernah Upload Foto Sebelumnya
 window.addEventListener("DOMContentLoaded", () => {
   const savedAvatar = localStorage.getItem("savedCustomAvatar");
   if (savedAvatar) {
