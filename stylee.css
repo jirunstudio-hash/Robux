@@ -5,12 +5,23 @@
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* HILANGKAN PANAH ANGKANYA (NO SPINNER MOUSE) */
+input[type=number].no-spinner::-webkit-inner-spin-button, 
+input[type=number].no-spinner::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number].no-spinner {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 html, body {
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Mencegah halaman utama bergulir ganda */
+  overflow: hidden;
   background-color: #f7f9fa;
   color: #191b1d;
   display: flex;
@@ -18,7 +29,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 1. NAVBAR ATAS (PERSIS FOTO 1 - FIXED & TIDAK BISA SCROLL)*/
+/* 1. NAVBAR ATAS (FIXED / TIDAK BISA SCROLL)                */
 /* ========================================================= */
 .rbx-navbar {
   height: 50px;
@@ -68,11 +79,6 @@ html, body {
   font-weight: 700;
 }
 
-.nav-link:hover {
-  opacity: 0.7;
-}
-
-/* Search Bar Tengah */
 .nav-center {
   flex: 0 1 320px;
 }
@@ -95,7 +101,6 @@ html, body {
   color: #191b1d;
 }
 
-/* Kanan Navbar */
 .nav-right {
   display: flex;
   align-items: center;
@@ -115,6 +120,7 @@ html, body {
   height: 26px;
   border-radius: 50%;
   background: #cbd5e1;
+  object-fit: cover;
 }
 
 .header-icon-btn {
@@ -131,7 +137,6 @@ html, body {
   background-color: #e3e5e8;
 }
 
-/* Saldo Robux Header */
 .balance-header-btn {
   display: flex;
   align-items: center;
@@ -153,21 +158,19 @@ html, body {
 }
 
 /* ========================================================= */
-/* 2. LAYOUT VIEWPORT (SIDEBAR KIRI & KONTEN KANAN)          */
+/* 2. LAYOUT VIEWPORT                                        */
 /* ========================================================= */
 .rbx-viewport {
   flex: 1;
   display: flex;
-  overflow: hidden; /* Kontainer tidak bergulir */
+  overflow: hidden;
 }
 
-/* ========================================================= */
-/* 3. SIDEBAR KIRI (PERSIS FOTO 2 - TIDAK BISA DI-SCROLL)   */
-/* ========================================================= */
+/* SIDEBAR KIRI (TIDAK BISA SCROLL) */
 .rbx-sidebar {
   width: 220px;
   flex-shrink: 0;
-  overflow: hidden; /* Terkunci tidak bisa di-scroll */
+  overflow: hidden;
   padding: 16px 12px;
   display: flex;
   flex-direction: column;
@@ -203,12 +206,8 @@ html, body {
   transition: 0.15s;
 }
 
-.sidebar-item:hover {
+.sidebar-item:hover, .sidebar-item.active {
   background-color: #ebedf0;
-}
-
-.sidebar-item.active {
-  background-color: #ebedf0; /* Highlight abu-abu aktif seperti Foto 2 */
 }
 
 .item-badge {
@@ -221,7 +220,6 @@ html, body {
   font-weight: 700;
 }
 
-/* Box Berlangganan Bawah */
 .sidebar-subscribe-card {
   margin-top: auto;
   border: 1px solid #e3e5e8;
@@ -247,16 +245,15 @@ html, body {
 }
 
 /* ========================================================= */
-/* 4. KONTEN KANAN BAWAH (FOTO 3 - HANYA INI YANG BISA SCROLL)*/
+/* 3. KONTEN KANAN BAWAH (BISA DI-SCROLL)                    */
 /* ========================================================= */
 .rbx-main-content {
   flex: 1;
-  overflow-y: auto; /* HANYA KANAN BAWAH YANG BISA DI-SCROLL */
+  overflow-y: auto; /* HANYA INI YANG BISA DI-SCROLL */
   padding: 24px 60px 80px;
   background-color: #ffffff;
 }
 
-/* Pill Saldo + Tombol Kirim Kanan Atas Konten */
 .content-top-action {
   display: flex;
   justify-content: flex-end;
@@ -291,7 +288,6 @@ html, body {
   cursor: pointer;
 }
 
-/* Headline */
 .headline-section {
   text-align: center;
   margin-bottom: 28px;
@@ -316,6 +312,8 @@ html, body {
   height: 130px;
   border-radius: 14px;
   background: linear-gradient(135deg, #09090b 0%, #1c1917 50%, #292524 100%);
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: hidden;
   margin: 12px 0 24px;
@@ -325,6 +323,7 @@ html, body {
 .banner-overlay {
   position: absolute;
   inset: 0;
+  background: rgba(0,0,0,0.4);
   padding: 20px 24px;
   display: flex;
   align-items: center;
@@ -354,7 +353,7 @@ html, body {
   color: #a8a29e;
 }
 
-/* Tabel Paket Robux */
+/* Tabel Paket */
 .robux-packages-table {
   display: flex;
   flex-direction: column;
@@ -377,12 +376,7 @@ html, body {
   gap: 10px;
 }
 
-.pkg-hex {
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.pkg-num {
+.pkg-hex, .pkg-num {
   font-size: 20px;
   font-weight: 800;
 }
@@ -413,7 +407,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 5. MODAL GLOBAL (KIRIM ROBUX & PENGATURAN)                */
+/* 4. MODAL GLOBAL                                           */
 /* ========================================================= */
 .modal-backdrop {
   position: fixed;
@@ -502,6 +496,24 @@ html, body {
   color: #374151;
 }
 
+.btn-upload-file {
+  width: 100%;
+  background-color: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.15s;
+}
+
+.btn-upload-file:hover {
+  background-color: #e2e8f0;
+}
+
 .balance-input-row {
   display: flex;
   align-items: center;
@@ -525,7 +537,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .btn-add-pill {
@@ -542,7 +554,7 @@ html, body {
   background: #e2e8f0;
 }
 
-/* Modal Step 1: Search */
+/* Step 1 Search */
 .search-modal-pill {
   background: #ffffff;
   border: 1.5px solid #d1d5db;
@@ -598,6 +610,7 @@ html, body {
   height: 44px;
   border-radius: 50%;
   background-color: #e2e8f0;
+  object-fit: cover;
 }
 
 .user-card-meta {
@@ -615,7 +628,7 @@ html, body {
   color: #64748b;
 }
 
-/* Modal Step 2: Amount */
+/* Step 2 Amount */
 .target-profile-center {
   text-align: center;
   margin-bottom: 12px;
@@ -625,6 +638,7 @@ html, body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .target-profile-center h3 {
@@ -648,7 +662,7 @@ html, body {
 
 .hero-input {
   width: 140px;
-  font-size: 40px;
+  font-size: 44px;
   font-weight: 800;
   border: none;
   border-bottom: 2px solid #e2e8f0;
@@ -690,7 +704,7 @@ html, body {
   cursor: pointer;
 }
 
-/* Modal Step 3: Confirm */
+/* Step 3 Confirm */
 .confirm-card-panel {
   background: #f8fafc;
   border-radius: 16px;
@@ -702,6 +716,7 @@ html, body {
   width: 64px;
   height: 64px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .confirm-card-panel h4 {
@@ -786,7 +801,7 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-/* Modal Step 4: Success */
+/* Step 4 Success */
 .success-wrap {
   text-align: center;
   padding: 30px 10px 10px;
@@ -811,7 +826,7 @@ html, body {
   margin-bottom: 30px;
 }
 
-/* Utilitas Global */
+/* Utilitas */
 .full-width {
   width: 100%;
 }
