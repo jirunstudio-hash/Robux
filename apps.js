@@ -1,7 +1,7 @@
 // State Sistem
 let appState = {
   balance: 115475,
-  currentSelectedAmount: 0, // Awal dimulai dari 0 (Foto 3)
+  currentSelectedAmount: 0,
   targetUser: {
     displayName: "Jirun",
     username: "sultancoins7",
@@ -37,7 +37,7 @@ const modalOverlay = document.getElementById("modalOverlay");
 const btnCloseModal = document.getElementById("btnCloseModal");
 const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
 
-// Steps
+// Steps Modal
 const step1Search = document.getElementById("step1Search");
 const step2Amount = document.getElementById("step2Amount");
 const step3Confirm = document.getElementById("step3Confirm");
@@ -87,18 +87,24 @@ function showStep(step) {
   step.classList.remove("hidden");
 }
 
+function resizeAmountInput() {
+  const len = manualAmountInput.value.length || 1;
+  manualAmountInput.style.width = `${len + 0.2}ch`;
+}
+
 function resetModalState() {
   targetSearchInput.value = "";
   emptyFriendsPlaceholder.classList.remove("hidden");
   foundUserContainer.classList.add("hidden");
   appState.currentSelectedAmount = 0;
-  manualAmountInput.value = 0;
+  manualAmountInput.value = "0";
+  resizeAmountInput();
   presetPills.forEach(p => p.classList.remove("active"));
   showStep(step1Search);
 }
 
 // ==============================================================
-// 1. PENGATURAN: UPLOAD AVATAR JIRUN & BANNER PROMO VIA GALERI
+// 1. PENGATURAN: UPLOAD AVATAR & BANNER VIA GALERI
 // ==============================================================
 btnOpenSettings.addEventListener("click", () => {
   settingBalanceInput.value = appState.balance;
@@ -126,7 +132,7 @@ avatarFileInput.addEventListener("change", (e) => {
   }
 });
 
-// Upload Foto Banner Promo (Curl Brainrot)
+// Upload Foto Banner Promo
 btnTriggerBannerUpload.addEventListener("click", () => bannerFileInput.click());
 bannerFileInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
@@ -142,7 +148,7 @@ bannerFileInput.addEventListener("change", (e) => {
   }
 });
 
-// Cek LocalStorage Foto saat website pertama dibuka
+// Load simpanan foto dari LocalStorage saat pertama buka
 window.addEventListener("DOMContentLoaded", () => {
   const savedAvatar = localStorage.getItem("savedUserAvatar");
   if (savedAvatar) {
@@ -246,30 +252,56 @@ targetUserCard.addEventListener("click", () => {
   step2Name.textContent = appState.targetUser.displayName;
   step2Avatar.src = appState.targetUser.avatarUrl;
   
-  // Tampilan Utama Dimulai dari Angka 0 (Foto 3)
   appState.currentSelectedAmount = 0;
-  manualAmountInput.value = 0;
+  manualAmountInput.value = "0";
+  resizeAmountInput();
   presetPills.forEach(p => p.classList.remove("active"));
 
   showStep(step2Amount);
 });
 
 // ==============================================================
-// 4. INPUT MANUAL MURNI KEYBOARD (TANPA PANAH MOUSE) & PRESET
+// 4. INPUT MANUAL MURNI KEYBOARD (NO MOUSE WHEEL & NO GARIS)
 // ==============================================================
+
+// Kunci Roda Mouse Tengah (Scroll Wheel Mati)
+manualAmountInput.addEventListener("wheel", (e) => {
+  e.preventDefault();
+}, { passive: false });
+
+// Hanya Boleh Diketik Angka 0-9
 manualAmountInput.addEventListener("input", (e) => {
-  const val = parseInt(e.target.value) || 0;
-  appState.currentSelectedAmount = val;
+  let val = e.target.value.replace(/[^0-9]/g, "");
+
+  if (val.length > 1 && val.startsWith("0")) {
+    val = val.replace(/^0+/, "");
+  }
+
+  if (!val) {
+    val = "0";
+  }
+
+  manualAmountInput.value = val;
+  appState.currentSelectedAmount = parseInt(val) || 0;
 
   presetPills.forEach(btn => {
-    if (parseInt(btn.getAttribute("data-val")) === val) {
+    if (parseInt(btn.getAttribute("data-val")) === appState.currentSelectedAmount) {
       btn.classList.add("active");
     } else {
       btn.classList.remove("active");
     }
   });
+
+  resizeAmountInput();
 });
 
+manualAmountInput.addEventListener("focus", () => {
+  if (manualAmountInput.value === "0") {
+    manualAmountInput.select();
+  }
+});
+
+// Preset Buttons (25, 50, 100, 200)
 presetPills.forEach(pill => {
   pill.addEventListener("click", () => {
     presetPills.forEach(p => p.classList.remove("active"));
@@ -277,18 +309,18 @@ presetPills.forEach(pill => {
 
     const val = parseInt(pill.getAttribute("data-val"));
     appState.currentSelectedAmount = val;
-    manualAmountInput.value = val;
+    manualAmountInput.value = val.toString();
+    resizeAmountInput();
   });
 });
 
-// Lanjut ke Konfirmasi (Step 3: Foto 2)
+// Lanjut ke Konfirmasi (Step 3)
 btnNextToConfirm.addEventListener("click", () => {
   if (appState.currentSelectedAmount <= 0) {
     alert("Masukkan nominal Robux yang lebih dari 0.");
     return;
   }
 
-  // Tampilkan data sesuai target yang dideteksi
   step3Name.textContent = appState.targetUser.displayName;
   step3Handle.textContent = `@${appState.targetUser.username}`;
   step3Avatar.src = appState.targetUser.avatarUrl;
@@ -310,7 +342,7 @@ btnSubmitSend.addEventListener("click", () => {
   btnSpinner.classList.remove("hidden");
   btnSubmitSend.disabled = true;
 
-  // Loading spinner berjalan selama 5 detik
+  // Tepat 5 Detik
   setTimeout(() => {
     appState.balance -= appState.currentSelectedAmount;
     updateAllBalanceUI();
@@ -321,11 +353,11 @@ btnSubmitSend.addEventListener("click", () => {
 
     successSentAmount.textContent = appState.currentSelectedAmount;
     showStep(step4Success);
-  }, 5000); // 5 DETIK LENGKAP
+  }, 5000);
 });
 
 // ==============================================================
-// 6. KLIK "OK" -> KEMBALI KE TAMPILAN AWAL WEBSITE
+// 6. TEKAN "OK" -> KEMBALI KE TAMPILAN AWAL WEBSITE
 // ==============================================================
 btnOkDone.addEventListener("click", () => {
   modalOverlay.classList.add("hidden");
