@@ -5,7 +5,7 @@
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* KUNCI ELEMEN YANG TIDAK BOLEH DIKLIK */
+/* KUNCI ELEMEN TIDAK BOLEH BISA DIKLIK */
 .unclickable {
   pointer-events: none !important;
   user-select: none !important;
@@ -42,10 +42,10 @@ html, body {
 }
 
 /* ========================================================= */
-/* 1. NAVBAR ATAS (PERSIS 100% URUTAN SCREENSHOT)            */
+/* 1. NAVBAR ATAS (PERSIS SESUAI SCREENSHOT)                 */
 /* ========================================================= */
 .rbx-navbar {
-  height: 48px;
+  height: 44px;
   background-color: #f2f4f5;
   border-bottom: 1px solid #e3e5e8;
   display: flex;
@@ -56,43 +56,41 @@ html, body {
   z-index: 1000;
 }
 
-/* 1. KIRI: ROBLOX + Beranda, Grafik, Pasar, Buat */
+/* Sisi Kiri: Logo Roblox + Menu */
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
 }
 
 .rbx-brand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  flex-shrink: 0;
+  margin-right: 4px;
 }
 
-.rbx-logo-icon {
-  width: 26px;
-  height: 26px;
-  fill: #191b1d;
-}
-
-.rbx-brand-name {
-  font-weight: 900;
-  font-size: 19px;
-  letter-spacing: -0.5px;
+/* LOGO ROBLOX RAMPING & PAS (16px) */
+.rbx-logo-wordmark {
+  height: 16px;
+  width: auto;
+  display: block;
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .nav-menu {
   display: flex;
-  gap: 20px;
+  gap: 18px;
 }
 
 .nav-link {
   color: #191b1d;
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 700;
 }
 
-/* 2. TENGAH: PENCARIAN (SETELAH BUAT) */
+/* Kolom Pencarian Tengah (Setelah Menu Buat) */
 .nav-center {
   flex: 0 1 340px;
 }
@@ -100,7 +98,7 @@ html, body {
 .search-input-pill {
   background-color: #e3e5e8;
   border-radius: 8px;
-  padding: 5px 12px;
+  padding: 4px 12px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -117,7 +115,7 @@ html, body {
   cursor: text;
 }
 
-/* 3. KANAN: Foto Jirun -> Lonceng -> ⬡ 10.000 -> ⚙ (Paling Kanan) */
+/* Sisi Kanan: Foto Jirun -> Lonceng -> ⬡ 10.000 -> ⚙ */
 .nav-right {
   display: flex;
   align-items: center;
@@ -129,13 +127,13 @@ html, body {
   align-items: center;
   gap: 8px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 /* Placeholder Avatar Kosong */
 .avatar-headshot-blank {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #e2e8f0;
   display: flex;
@@ -151,15 +149,15 @@ html, body {
 }
 
 .blank-avatar-svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .header-icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 5px;
   border-radius: 6px;
   color: #191b1d;
 }
@@ -172,14 +170,14 @@ html, body {
 .balance-header-display {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 14px;
+  gap: 5px;
+  font-size: 13.5px;
   font-weight: 800;
-  padding: 4px 6px;
+  padding: 2px 4px;
 }
 
 .robux-hex {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
 }
 
@@ -192,15 +190,15 @@ html, body {
   overflow: hidden;
 }
 
-/* SIDEBAR KIRI (TIDAK BISA SCROLL) */
+/* SIDEBAR KIRI (TIDAK BISA SCROLL & SEMUA LINK MATI) */
 .rbx-sidebar {
   width: 220px;
   flex-shrink: 0;
   overflow: hidden;
-  padding: 16px 12px;
+  padding: 14px 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .sidebar-user {
@@ -209,7 +207,7 @@ html, body {
   gap: 10px;
   padding: 6px 10px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13.5px;
   margin-bottom: 4px;
 }
 
@@ -226,7 +224,7 @@ html, body {
   padding: 8px 12px;
   border-radius: 8px;
   color: #191b1d;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -248,21 +246,21 @@ html, body {
   margin-top: auto;
   border: 1px solid #e3e5e8;
   border-radius: 10px;
-  padding: 14px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .sidebar-subscribe-card p {
-  font-size: 11.5px;
+  font-size: 11px;
   color: #374151;
   line-height: 1.4;
   font-weight: 500;
 }
 
 .sub-link {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #191b1d;
   text-decoration: underline;
@@ -274,14 +272,14 @@ html, body {
 .rbx-main-content {
   flex: 1;
   overflow-y: auto;
-  padding: 24px 60px 80px;
+  padding: 20px 60px 80px;
   background-color: #ffffff;
 }
 
 .content-top-action {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .robux-kirim-badge-wrap {
@@ -289,16 +287,16 @@ html, body {
   align-items: center;
   background: #f2f4f5;
   border-radius: 20px;
-  padding: 4px 6px 4px 14px;
-  gap: 10px;
+  padding: 3px 5px 3px 12px;
+  gap: 8px;
 }
 
 .badge-robux-amount {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 /* HANYA TEKS INI YANG BISA DIKLIK */
@@ -306,8 +304,8 @@ html, body {
   background: #e3e5e8;
   border: none;
   border-radius: 6px;
-  padding: 5px 12px;
-  font-size: 12px;
+  padding: 4px 10px;
+  font-size: 11.5px;
   font-weight: 700;
   transition: 0.15s;
 }
@@ -318,40 +316,40 @@ html, body {
 
 .headline-section {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .main-title {
-  font-size: 44px;
+  font-size: 40px;
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -1px;
 }
 
 .section-subtitle {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
-  margin-top: 36px;
+  margin-top: 32px;
   text-align: left;
 }
 
-/* Banner Promo (Polos Gelap Default Sampai Diupload) */
+/* Banner Promo */
 .promo-banner-card {
-  height: 130px;
+  height: 125px;
   border-radius: 14px;
   background-color: #111111;
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
-  margin: 12px 0 24px;
+  margin: 12px 0 22px;
 }
 
 .banner-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  padding: 20px 24px;
+  padding: 18px 22px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -360,10 +358,10 @@ html, body {
 .banner-badge-uang {
   background: #22c55e;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 900;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
 }
 
 .banner-item-meta {
@@ -371,12 +369,12 @@ html, body {
 }
 
 .banner-item-name {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
 }
 
 .banner-subtext {
-  font-size: 12px;
+  font-size: 11.5px;
   color: #a8a29e;
 }
 
@@ -384,14 +382,14 @@ html, body {
 .robux-packages-table {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .package-item {
   background: #ffffff;
   border: 1px solid #e3e5e8;
   border-radius: 12px;
-  padding: 16px 22px;
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -404,20 +402,20 @@ html, body {
 }
 
 .pkg-hex, .pkg-num {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
 }
 
 .pkg-old {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #94a3b8;
   font-weight: 600;
 }
 
 .pkg-bonus-pill {
-  font-size: 11px;
+  font-size: 10.5px;
   background: #f1f5f9;
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-radius: 6px;
   font-weight: 700;
   color: #334155;
@@ -427,9 +425,9 @@ html, body {
   background: #e3e5e8;
   border: none;
   border-radius: 8px;
-  padding: 9px 24px;
+  padding: 8px 22px;
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 13px;
 }
 
 /* ========================================================= */
