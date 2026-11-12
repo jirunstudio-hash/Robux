@@ -1,137 +1,204 @@
 // State Sistem
 let appState = {
-  currentUser: null,
   balance: 113500,
-  selectedRecipient: null,
-  transferAmount: 25,
+  targetUser: {
+    displayName: "Jirun",
+    name: "sultancoins7",
+    avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter",
+    joinYear: 2026
+  },
+  amount: 25,
   friendsList: []
 };
 
-// Elemen DOM Website Utama
-const accountDetectorInput = document.getElementById("accountDetectorInput");
-const navAvatar = document.getElementById("navAvatar");
-const navDisplayName = document.getElementById("navDisplayName");
-const sideAvatar = document.getElementById("sideAvatar");
-const sideDisplayName = document.getElementById("sideDisplayName");
-const sideFriendsBadge = document.getElementById("sideFriendsBadge");
-const headerBalanceDisplay = document.getElementById("headerBalanceDisplay");
-const modalBalanceNumber = document.getElementById("modalBalanceNumber");
-
-// Elemen Modal & Steps
-const btnOpenKirimModal = document.getElementById("btnOpenKirimModal");
+// Elemen DOM
+const headerBalance = document.getElementById("headerBalance");
+const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
+const btnOpenKirim = document.getElementById("btnOpenKirim");
 const modalOverlay = document.getElementById("modalOverlay");
 const btnCloseModal = document.getElementById("btnCloseModal");
 
-const stepSelectFriend = document.getElementById("stepSelectFriend");
-const stepChooseAmount = document.getElementById("stepChooseAmount");
+// Step Containers
+const stepSearchTarget = document.getElementById("stepSearchTarget");
+const stepInputAmount = document.getElementById("stepInputAmount");
 const stepConfirmSend = document.getElementById("stepConfirmSend");
 const stepSuccess = document.getElementById("stepSuccess");
 
-const friendsContainer = document.getElementById("friendsContainer");
+// Step 1: Input Search & Filter
+const targetUsernameInput = document.getElementById("targetUsernameInput");
+const btnFetchTarget = document.getElementById("btnFetchTarget");
+const searchStatus = document.getElementById("searchStatus");
+const friendsPickerList = document.getElementById("friendsPickerList");
 const modalFriendsCount = document.getElementById("modalFriendsCount");
-const friendFilterInput = document.getElementById("friendFilterInput");
 
-// Helper Pergantian Langkah Modal
-function switchStep(activeStep) {
-  [stepSelectFriend, stepChooseAmount, stepConfirmSend, stepSuccess].forEach(step => {
-    step.classList.add("hidden");
-  });
-  activeStep.classList.remove("hidden");
+// Step 2: Amount & Presets
+const robuxManualInput = document.getElementById("robuxManualInput");
+const presetPills = document.querySelectorAll(".preset-pill");
+const btnGoToConfirm = document.getElementById("btnGoToConfirm");
+
+// Step 3 & 4
+const btnSendFinal = document.getElementById("btnSendFinal");
+const btnEditBack = document.getElementById("btnEditBack");
+const btnSuccessOk = document.getElementById("btnSuccessOk");
+
+function setStep(step) {
+  [stepSearchTarget, stepInputAmount, stepConfirmSend, stepSuccess].forEach(s => s.classList.add("hidden"));
+  step.classList.remove("hidden");
 }
 
-function updateBalanceUI() {
+function refreshBalance() {
   const formatted = appState.balance.toLocaleString("id-ID");
-  headerBalanceDisplay.textContent = formatted;
-  modalBalanceNumber.textContent = formatted;
+  headerBalance.textContent = formatted;
+  modalBalanceDisplay.textContent = formatted;
 }
 
 // ==============================================================
-// DETEKSI AKUN AKURAT DARI API ROBLOX
+// 1. DETEKSI AKUN TARGET SECARA AKURAT DARI API
 // ==============================================================
-async function detectRobloxAccount(username) {
+async function detectTargetUser(username) {
+  if (!username) return;
+  searchStatus.textContent = "Mendeteksi akun Roblox...";
+  searchStatus.style.color = "#0070f3";
+
   try {
     const res = await fetch(`/api/user?username=${encodeURIComponent(username)}`);
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.error || "Akun tidak ditemukan");
+      searchStatus.textContent = data.error || "Pengguna tidak ditemukan.";
+      searchStatus.style.color = "#ef4444";
       return;
     }
 
-    appState.currentUser = data;
-    appState.friendsList = data.friends || [];
+    // Set Akun Target yang Terdeteksi
+    appState.targetUser = {
+      displayName: data.displayName,
+      name: data.name,
+      avatarUrl: data.avatarUrl,
+      joinYear: data.joinYear || 2026
+    };
 
-    // 1. Terapkan ke Tampilan Website Utama (Foto 1)
-    navDisplayName.textContent = data.displayName;
-    sideDisplayName.textContent = data.displayName;
-    sideFriendsBadge.textContent = data.friendsCount;
-    modalFriendsCount.textContent = data.friendsCount;
+    // Buka Langkah Input Robux (Foto 3)
+    document.getElementById("targetNameStep2").textContent = data.displayName;
+    document.getElementById("targetAvatarStep2").src = data.avatarUrl;
+    searchStatus.textContent = "";
 
-    if (data.avatarUrl) {
-      navAvatar.src = data.avatarUrl;
-      sideAvatar.src = data.avatarUrl;
-    }
-
-    // 2. Render Daftar Teman Asli ke Modal (Foto 2)
-    renderFriendsList(appState.friendsList);
+    setStep(stepInputAmount);
 
   } catch (err) {
-    console.error("Gagal mendeteksi akun:", err);
+    searchStatus.textContent = "Gagal menghubungi server Roblox.";
+    searchStatus.style.color = "#ef4444";
   }
 }
 
-// Render Teman Asli dari API
-function renderFriendsList(friends) {
-  friendsContainer.innerHTML = "";
+btnFetchTarget.addEventListener("click", () => {
+  detectTargetUser(targetUsernameInput.value.trim());
+});
 
-  if (friends.length === 0) {
-    friendsContainer.innerHTML = `<div style="text-align:center; padding:20px; font-size:12px; color:#64748b;">Tidak ada teman ditemukan pada akun ini.</div>`;
-    return;
+targetUsernameInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    detectTargetUser(targetUsernameInput.value.trim());
   }
+});
 
-  friends.forEach(friend => {
+// Render Teman di Modal (Bisa dipilih langsung)
+function loadInitialFriends() {
+  const dummyFriends = [
+    { name: "Sub2Swift", displayName: "Sub2Swift", avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+    { name: "sad_boy", displayName: "sad_boy", avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-C9AA74A7C18BD9C7A179BC58509F9C62-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+    { name: "Mila", displayName: "Mila", avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-F74254DF57463DA6ED56D60DE2B7218F-Png/150/150/AvatarHeadshot/Webp/noFilter" },
+    { name: "05samuel_2017", displayName: "05samuel_2017", avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-B1DFBFF37A179C933C710A88F11BAE24-Png/150/150/AvatarHeadshot/Webp/noFilter" }
+  ];
+
+  modalFriendsCount.textContent = dummyFriends.length;
+  friendsPickerList.innerHTML = "";
+
+  dummyFriends.forEach(f => {
     const row = document.createElement("div");
     row.className = "friend-row";
     row.innerHTML = `
-      <img src="${friend.avatarUrl || 'https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter'}" alt="">
-      <span class="friend-name">${friend.displayName || friend.name}</span>
+      <img src="${f.avatarUrl}" alt="">
+      <span style="font-weight: 600; font-size: 14px;">${f.displayName}</span>
     `;
-
-    // Klik Teman -> Masuk ke Step 2 (Foto 3)
     row.addEventListener("click", () => {
-      appState.selectedRecipient = friend;
-
-      document.getElementById("step2DisplayName").textContent = friend.displayName;
-      document.getElementById("step2Avatar").src = friend.avatarUrl;
-
-      switchStep(stepChooseAmount);
+      // Deteksi akun teman yang diklik
+      detectTargetUser(f.name);
     });
-
-    friendsContainer.appendChild(row);
+    friendsPickerList.appendChild(row);
   });
 }
 
-// Filter Pencarian Teman
-friendFilterInput.addEventListener("input", (e) => {
-  const q = e.target.value.toLowerCase();
-  const filtered = appState.friendsList.filter(f => 
-    f.name.toLowerCase().includes(q) || f.displayName.toLowerCase().includes(q)
-  );
-  renderFriendsList(filtered);
+// ==============================================================
+// 2. INPUT MANUAL ROBUX & PRESET PILIHAN (25, 50, 100, 200)
+// ==============================================================
+// Input Manual (Ketik Angka Bebas)
+robuxManualInput.addEventListener("input", (e) => {
+  const val = parseInt(e.target.value) || 0;
+  appState.amount = val;
+
+  // Hapus tanda aktif di tombol preset jika angka diketik bebas
+  presetPills.forEach(btn => {
+    if (parseInt(btn.getAttribute("data-val")) === val) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
 });
 
-// Deteksi Akun saat Enter di Search Bar Header
-accountDetectorInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    detectRobloxAccount(accountDetectorInput.value.trim());
+// Pilih Opsi Preset (25, 50, 100, 200)
+presetPills.forEach(btn => {
+  btn.addEventListener("click", () => {
+    presetPills.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const val = parseInt(btn.getAttribute("data-val"));
+    appState.amount = val;
+    robuxManualInput.value = val; // Update kolom input manual
+  });
+});
+
+// Lanjut ke Konfirmasi (Foto 4)
+btnGoToConfirm.addEventListener("click", () => {
+  if (appState.amount <= 0) {
+    alert("Masukkan nominal Robux yang valid.");
+    return;
   }
+
+  const t = appState.targetUser;
+  document.getElementById("targetNameStep3").textContent = t.displayName;
+  document.getElementById("targetUsernameStep3").textContent = `@${t.name}`;
+  document.getElementById("targetAvatarStep3").src = t.avatarUrl;
+  document.getElementById("confirmAmountDisplay").textContent = appState.amount;
+  document.getElementById("targetJoinYearStep3").textContent = `ⓘ Bergabung pada tahun ${t.joinYear}`;
+
+  setStep(stepConfirmSend);
+});
+
+// Tombol Edit (Kembali ke Foto 3)
+btnEditBack.addEventListener("click", () => {
+  setStep(stepInputAmount);
 });
 
 // ==============================================================
-// ALUR MODAL (Foto 2 -> Foto 3 -> Foto 4 -> Foto 5)
+// 3. EKSEKUSI KIRIM (Foto 5 Sukses Centang & Kurangi Saldo)
 // ==============================================================
-btnOpenKirimModal.addEventListener("click", () => {
-  switchStep(stepSelectFriend);
+btnSendFinal.addEventListener("click", () => {
+  appState.balance -= appState.amount;
+  refreshBalance();
+
+  document.getElementById("successRobuxNumber").textContent = appState.amount;
+  setStep(stepSuccess);
+});
+
+btnSuccessOk.addEventListener("click", () => {
+  modalOverlay.classList.add("hidden");
+  setStep(stepSearchTarget);
+});
+
+// Buka & Tutup Modal
+btnOpenKirim.addEventListener("click", () => {
+  setStep(stepSearchTarget);
   modalOverlay.classList.remove("hidden");
 });
 
@@ -139,49 +206,6 @@ btnCloseModal.addEventListener("click", () => {
   modalOverlay.classList.add("hidden");
 });
 
-// Presets Nominal (25, 50, 100, 200)
-document.querySelectorAll(".preset-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".preset-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    appState.transferAmount = parseInt(btn.getAttribute("data-amount"));
-    document.getElementById("displaySelectedAmount").textContent = appState.transferAmount;
-  });
-});
-
-// Lanjut ke Konfirmasi (Foto 4)
-document.getElementById("btnNextToConfirm").addEventListener("click", () => {
-  const r = appState.selectedRecipient;
-  document.getElementById("step3DisplayName").textContent = r.displayName;
-  document.getElementById("step3UsernameTag").textContent = `@${r.name}`;
-  document.getElementById("step3Avatar").src = r.avatarUrl;
-  document.getElementById("step3AmountNumber").textContent = appState.transferAmount;
-  
-  // Tampilkan tahun join penerima atau default akun
-  document.getElementById("step3JoinYear").textContent = `ⓘ Bergabung pada tahun ${appState.currentUser?.joinYear || 2026}`;
-
-  switchStep(stepConfirmSend);
-});
-
-// Tombol Edit (Kembali ke Foto 3)
-document.getElementById("btnBackToStep2").addEventListener("click", () => {
-  switchStep(stepChooseAmount);
-});
-
-// Eksekusi Kirim (Foto 5 Sukses & Pengurangan Saldo)
-document.getElementById("btnExecuteSend").addEventListener("click", () => {
-  appState.balance -= appState.transferAmount;
-  updateBalanceUI();
-
-  document.getElementById("successAmountText").textContent = appState.transferAmount;
-  switchStep(stepSuccess);
-});
-
-document.getElementById("btnSuccessDone").addEventListener("click", () => {
-  modalOverlay.classList.add("hidden");
-  switchStep(stepSelectFriend);
-});
-
-// Inisialisasi Deteksi Akun Default Awal
-detectRobloxAccount("sultancoins7");
-updateBalanceUI();
+// Inisialisasi
+loadInitialFriends();
+refreshBalance();
