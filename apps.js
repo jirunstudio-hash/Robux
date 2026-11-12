@@ -10,10 +10,11 @@ let appState = {
   }
 };
 
-// Elemen Header Interaktif
-const btnOpenSendRobux = document.getElementById("btnOpenSendRobux");
+// Elemen Tampilan Utama
+const dynBalanceSpans = document.querySelectorAll(".dyn-balance");
+const openSendFromHeader = document.getElementById("openSendFromHeader");
+const btnOpenSendContent = document.getElementById("btnOpenSendContent");
 const btnOpenSettings = document.getElementById("btnOpenSettings");
-const navDynamicBalance = document.getElementById("navDynamicBalance");
 
 // Modal Pengaturan (⚙)
 const settingsModalOverlay = document.getElementById("settingsModalOverlay");
@@ -27,13 +28,13 @@ const modalOverlay = document.getElementById("modalOverlay");
 const btnCloseModal = document.getElementById("btnCloseModal");
 const modalBalanceDisplay = document.getElementById("modalBalanceDisplay");
 
-// Steps
+// Steps Modal
 const step1Search = document.getElementById("step1Search");
 const step2Amount = document.getElementById("step2Amount");
 const step3Confirm = document.getElementById("step3Confirm");
 const step4Success = document.getElementById("step4Success");
 
-// Step 1 Elemen
+// Step 1
 const targetSearchInput = document.getElementById("targetSearchInput");
 const emptyFriendsPlaceholder = document.getElementById("emptyFriendsPlaceholder");
 const foundUserContainer = document.getElementById("foundUserContainer");
@@ -42,14 +43,14 @@ const detectedAvatar = document.getElementById("detectedAvatar");
 const detectedDisplayName = document.getElementById("detectedDisplayName");
 const detectedUsername = document.getElementById("detectedUsername");
 
-// Step 2 Elemen
+// Step 2
 const step2Avatar = document.getElementById("step2Avatar");
 const step2Name = document.getElementById("step2Name");
 const manualAmountInput = document.getElementById("manualAmountInput");
 const presetPills = document.querySelectorAll(".preset-pill");
 const btnNextToConfirm = document.getElementById("btnNextToConfirm");
 
-// Step 3 Elemen
+// Step 3
 const step3Avatar = document.getElementById("step3Avatar");
 const step3Name = document.getElementById("step3Name");
 const step3Handle = document.getElementById("step3Handle");
@@ -59,14 +60,14 @@ const btnSendText = document.getElementById("btnSendText");
 const btnSpinner = document.getElementById("btnSpinner");
 const btnEditBack = document.getElementById("btnEditBack");
 
-// Step 4 Elemen
+// Step 4
 const successSentAmount = document.getElementById("successSentAmount");
 const btnOkDone = document.getElementById("btnOkDone");
 
-// Sinkronisasi Angka Saldo di Seluruh Tampilan
+// Update Seluruh Saldo di Layar
 function updateAllBalanceUI() {
   const formatted = appState.balance.toLocaleString("id-ID");
-  navDynamicBalance.textContent = formatted;
+  dynBalanceSpans.forEach(el => el.textContent = formatted);
   modalBalanceDisplay.textContent = formatted;
   settingBalanceInput.value = appState.balance;
 }
@@ -95,16 +96,14 @@ btnCloseSettings.addEventListener("click", () => {
   settingsModalOverlay.classList.add("hidden");
 });
 
-// Tombol Cepat Tambah (+1.000, +10.000, dst)
 btnAddPills.forEach(pill => {
   pill.addEventListener("click", () => {
     const addVal = parseInt(pill.getAttribute("data-add"));
-    let currentInput = parseInt(settingBalanceInput.value) || 0;
-    settingBalanceInput.value = currentInput + addVal;
+    let cur = parseInt(settingBalanceInput.value) || 0;
+    settingBalanceInput.value = cur + addVal;
   });
 });
 
-// Simpan Saldo Baru
 btnSaveBalance.addEventListener("click", () => {
   const newBal = parseInt(settingBalanceInput.value) || 0;
   appState.balance = newBal;
@@ -113,11 +112,13 @@ btnSaveBalance.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 2. MODAL KIRIM ROBUX (KLIK SALDO)
+// 2. BUKA MODAL KIRIM (DARI HEADER ATAU TOMBOL KIRIM KONTEN)
 // ==============================================================
-btnOpenSendRobux.addEventListener("click", () => {
-  resetModalState();
-  modalOverlay.classList.remove("hidden");
+[openSendFromHeader, btnOpenSendContent].forEach(btn => {
+  btn.addEventListener("click", () => {
+    resetModalState();
+    modalOverlay.classList.remove("hidden");
+  });
 });
 
 btnCloseModal.addEventListener("click", () => {
@@ -125,7 +126,7 @@ btnCloseModal.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 3. PENCARIAN & DETEKSI TARGET REAL-TIME
+// 3. DETEKSI TARGET REAL-TIME
 // ==============================================================
 let searchTimer = null;
 
@@ -188,7 +189,7 @@ targetUserCard.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 4. INPUT ROBUX (MANUAL / PRESET)
+// 4. INPUT NOMINAL ROBUX (MANUAL / PRESET)
 // ==============================================================
 manualAmountInput.addEventListener("input", (e) => {
   const val = parseInt(e.target.value) || 0;
@@ -233,7 +234,7 @@ btnEditBack.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 5. PROSES KIRIM + SPINNER PUTAR
+// 5. PROSES KIRIM & ANIMASI LOADING
 // ==============================================================
 btnSubmitSend.addEventListener("click", () => {
   btnSendText.classList.add("hidden");
