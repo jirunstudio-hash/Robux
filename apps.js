@@ -3,17 +3,17 @@ let appState = {
   balance: 10000,
   currentSelectedAmount: 0,
   targetUser: {
-    displayName: "Jirun",
-    username: "sultancoins7",
+    displayName: "biex",
+    username: "elzan7676",
     avatarUrl: "",
-    joinYear: 2026
+    joinYear: 2022
   }
 };
 
 // Elemen DOM
 const dynBalanceSpans = document.querySelectorAll(".dyn-balance");
-const btnOnlyKirimText = document.getElementById("btnOnlyKirimText"); // HANYA TEKS '↑ Kirim' DI KONTEN
-const btnOpenSettings = document.getElementById("btnOpenSettings");   // IKON ⚙ DI PALING KANAN NAVBAR
+const btnOnlyKirimText = document.getElementById("btnOnlyKirimText");
+const btnOpenSettings = document.getElementById("btnOpenSettings");
 const navUserAvatar = document.getElementById("navUserAvatar");
 const navAvatarPlaceholder = document.getElementById("navAvatarPlaceholder");
 const sideUserAvatar = document.getElementById("sideUserAvatar");
@@ -75,7 +75,7 @@ const btnEditBack = document.getElementById("btnEditBack");
 const successSentAmount = document.getElementById("successSentAmount");
 const btnOkDone = document.getElementById("btnOkDone");
 
-// Update Tampilan Saldo
+// Update Seluruh Saldo di Layar
 function updateAllBalanceUI() {
   const formatted = appState.balance.toLocaleString("id-ID");
   dynBalanceSpans.forEach(el => el.textContent = formatted);
@@ -224,7 +224,7 @@ targetSearchInput.addEventListener("input", (e) => {
           displayName: data.displayName || data.name,
           username: data.name,
           avatarUrl: data.avatarUrl,
-          joinYear: data.joinYear || 2026
+          joinYear: data.joinYear || 2022
         };
 
         detectedDisplayName.textContent = appState.targetUser.displayName;
@@ -242,7 +242,7 @@ targetSearchInput.addEventListener("input", (e) => {
         displayName: query,
         username: query,
         avatarUrl: "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-11F24FE35A13710777B0AC655D187A13-Png/150/150/AvatarHeadshot/Webp/noFilter",
-        joinYear: 2026
+        joinYear: 2022
       };
       detectedDisplayName.textContent = appState.targetUser.displayName;
       detectedUsername.textContent = `@${appState.targetUser.username}`;
@@ -338,13 +338,14 @@ btnEditBack.addEventListener("click", () => {
 });
 
 // ==============================================================
-// 5. PROSES KIRIM: LOADING TEPAT 5 DETIK
+// 5. PROSES KIRIM: LOADING TEPAT 3 DETIK (3000 MS)
 // ==============================================================
 btnSubmitSend.addEventListener("click", () => {
   btnSendText.classList.add("hidden");
   btnSpinner.classList.remove("hidden");
   btnSubmitSend.disabled = true;
 
+  // TEPAT 3 DETIK
   setTimeout(() => {
     appState.balance -= appState.currentSelectedAmount;
     updateAllBalanceUI();
@@ -355,7 +356,7 @@ btnSubmitSend.addEventListener("click", () => {
 
     successSentAmount.textContent = appState.currentSelectedAmount;
     showStep(step4Success);
-  }, 5000);
+  }, 3000);
 });
 
 // ==============================================================
