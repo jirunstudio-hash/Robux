@@ -14,7 +14,7 @@
   <!-- ============================================================== -->
   <header class="rbx-navbar">
     
-    <!-- Sisi Kiri: Logo Wordmark ROBLOX (16px) + Menu Navigasi -->
+    <!-- Kiri: Logo Wordmark ROBLOX (16px) + Menu -->
     <div class="nav-left">
       <div class="rbx-brand unclickable">
         <img 
@@ -25,25 +25,25 @@
       </div>
 
       <nav class="nav-menu unclickable">
-        <span class="nav-link">Home</span>
-        <span class="nav-link">Chart</span>
-        <span class="nav-link">Market</span>
-        <span class="nav-link">For</span>
+        <span class="nav-link">Beranda</span>
+        <span class="nav-link">Grafik</span>
+        <span class="nav-link">Pasar</span>
+        <span class="nav-link">Buat</span>
       </nav>
     </div>
 
-    <!-- Bagian Tengah: KOLOM PENCARIAN (BISA DIKLIK & DIKETIK) -->
+    <!-- Tengah: Kolom Pencarian -->
     <div class="nav-center">
       <div class="search-input-pill clickable-item">
         <span class="search-icon">🔍</span>
-        <input type="text" id="headerSearchInput" placeholder="Search" autocomplete="off" />
+        <input type="text" id="headerSearchInput" placeholder="Pencarian" autocomplete="off" />
       </div>
     </div>
 
-    <!-- Sisi Kanan: Foto Jirun -> Lonceng -> Robux 10.000 -> ⚙ Paling Kanan -->
+    <!-- Kanan: Foto Jirun -> Lonceng -> Robux -> ⚙ Paling Kanan -->
     <div class="nav-right">
       
-      <!-- Foto Profil Jirun (Kosong / Placeholder sampai diisi via ⚙) -->
+      <!-- Foto Profil Jirun -->
       <div class="user-profile-header unclickable">
         <div class="avatar-headshot-blank" id="navUserAvatarWrapper">
           <img id="navUserAvatar" src="" alt="" class="avatar-img-element hidden">
@@ -62,13 +62,16 @@
         </svg>
       </div>
 
-      <!-- Saldo Robux Header (Hanya Display - Tidak Bisa Diklik) -->
+      <!-- Saldo Robux Header (Logo Robux Asli) -->
       <div class="balance-header-display unclickable">
-        <span class="robux-hex">⬡</span>
+        <svg class="rbx-coin-svg sm" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+        </svg>
         <span class="dyn-balance">10.000</span>
       </div>
 
-      <!-- IKON PENGATURAN ⚙ DI PALING KANAN (BISA DIKLIK) -->
+      <!-- Ikon Pengaturan ⚙ (Bisa Diklik) -->
       <div class="header-icon-btn clickable-item" id="btnOpenSettings" title="Pengaturan Foto & Saldo">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="3"></circle>
@@ -84,7 +87,7 @@
   <!-- ============================================================== -->
   <div class="rbx-viewport">
     
-    <!-- SIDEBAR KIRI (TIDAK BISA SCROLL & SEMUA LINK MATI) -->
+    <!-- SIDEBAR KIRI (TIDAK BISA SCROLL) -->
     <aside class="rbx-sidebar unclickable">
       <div class="sidebar-user">
         <div class="avatar-headshot-blank" id="sideUserAvatarWrapper">
@@ -155,24 +158,26 @@
     <!-- KONTEN KANAN BAWAH (HANYA INI YANG BISA DI-SCROLL) -->
     <main class="rbx-main-content">
       
-      <!-- HANYA TOMBOL '↑ Kirim' DI BAWAH INI YANG MEMBUKA POPUP -->
+      <!-- HANYA TOMBOL '↑ Kirim' YANG MEMBUKA POPUP -->
       <div class="content-top-action">
         <div class="robux-kirim-badge-wrap">
           <div class="badge-robux-amount unclickable">
-            <span class="robux-hex">⬡</span>
+            <svg class="rbx-coin-svg sm" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span class="dyn-balance">10.000</span>
           </div>
-          <!-- HANYA TOMBOL INI YANG BISA DIKLIK -->
-          <button class="btn-kirim-action clickable-item" id="btnOnlyKirimText" title="Klik untuk Send Robux">↑ Send</button>
+          <button class="btn-kirim-action clickable-item" id="btnOnlyKirimText" title="Klik untuk Kirim Robux">↑ Kirim</button>
         </div>
       </div>
 
       <div class="headline-section unclickable">
-        <h1 class="main-title">Enjoy up to 25%<br>more Robux</h1>
-        <p class="section-subtitle">Bonus items that we have selected for you</p>
+        <h1 class="main-title">Nikmati hingga 25%<br>lebih banyak Robux</h1>
+        <p class="section-subtitle">Bonus item yang kami pilihkan untuk Anda</p>
       </div>
 
-      <!-- Banner Promo (Polos Sampai Diupload via ⚙) -->
+      <!-- Banner Promo -->
       <div class="promo-banner-card unclickable" id="promoBannerCard">
         <div class="banner-overlay">
           <div class="banner-badge-uang">x2 Uang</div>
@@ -183,13 +188,16 @@
         </div>
       </div>
 
-      <!-- Tabel Paket Robux (Semua Tombol Beli Mati) -->
+      <!-- Tabel Paket Robux -->
       <div class="robux-packages-table unclickable">
         <div class="package-item">
           <div class="pkg-left">
-            <span class="pkg-hex">⬡</span>
+            <svg class="rbx-coin-svg md" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span class="pkg-num">24.000</span>
-            <s class="pkg-old">⬡ 22.500</s>
+            <s class="pkg-old">22.500</s>
             <span class="pkg-bonus-pill">+ 1.500 lainnya</span>
           </div>
           <button class="pkg-price-btn">199,99</button>
@@ -197,9 +205,12 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <span class="pkg-hex">⬡</span>
+            <svg class="rbx-coin-svg md" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span class="pkg-num">11.000</span>
-            <s class="pkg-old">⬡ 10.000</s>
+            <s class="pkg-old">10.000</s>
             <span class="pkg-bonus-pill">+ 1.000 lainnya</span>
           </div>
           <button class="pkg-price-btn">99,99</button>
@@ -207,9 +218,12 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <span class="pkg-hex">⬡</span>
+            <svg class="rbx-coin-svg md" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span class="pkg-num">5.250</span>
-            <s class="pkg-old">⬡ 4.500</s>
+            <s class="pkg-old">4.500</s>
             <span class="pkg-bonus-pill">+ 750 lainnya</span>
           </div>
           <button class="pkg-price-btn">49,99</button>
@@ -217,9 +231,12 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <span class="pkg-hex">⬡</span>
+            <svg class="rbx-coin-svg md" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span class="pkg-num">3.625</span>
-            <s class="pkg-old">⬡ 3.150</s>
+            <s class="pkg-old">3.150</s>
             <span class="pkg-bonus-pill">+ 475 lainnya</span>
           </div>
           <button class="pkg-price-btn">34,99</button>
@@ -227,9 +244,12 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <span class="pkg-hex">⬡</span>
+            <svg class="rbx-coin-svg md" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span class="pkg-num">2.000</span>
-            <s class="pkg-old">⬡ 1.700</s>
+            <s class="pkg-old">1.700</s>
             <span class="pkg-bonus-pill">+ 300 lainnya</span>
           </div>
           <button class="pkg-price-btn">19,99</button>
@@ -240,7 +260,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- 3. MODAL PENGATURAN (IKON ⚙: UPLOAD FOTO DARI GALERI)           -->
+  <!-- 3. MODAL PENGATURAN (IKON ⚙)                                   -->
   <!-- ============================================================== -->
   <div id="settingsModalOverlay" class="modal-backdrop hidden">
     <div class="modal-card mini-card">
@@ -253,20 +273,20 @@
       </div>
 
       <div class="settings-content">
-        <!-- Upload Foto Profil Jirun -->
         <label class="field-label">Foto Profil Akun (Jirun):</label>
         <button id="btnTriggerAvatarUpload" class="btn-upload-file">📁 Upload Foto Profil dari Galeri</button>
         <input type="file" id="avatarFileInput" accept="image/*" style="display: none;" />
 
-        <!-- Upload Foto Banner Curl Brainrot -->
         <label class="field-label mt-12">Foto Banner Promo (Curl Brainrot):</label>
         <button id="btnTriggerBannerUpload" class="btn-upload-file">📁 Upload Foto Banner dari Galeri</button>
         <input type="file" id="bannerFileInput" accept="image/*" style="display: none;" />
 
-        <!-- Ubah Saldo -->
         <label class="field-label mt-12">Ubah Saldo Robux:</label>
         <div class="balance-input-row">
-          <span class="robux-hex-inline">⬡</span>
+          <svg class="rbx-coin-svg sm" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+          </svg>
           <input type="number" id="settingBalanceInput" class="balance-input-field no-spinner" value="10000" />
         </div>
 
@@ -283,22 +303,26 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- 4. MODAL KIRIM ROBUX                                           -->
+  <!-- 4. MODAL KIRIM ROBUX (PERSIS SESUAI FOTO TERBARU ANDA)         -->
   <!-- ============================================================== -->
   <div id="modalOverlay" class="modal-backdrop hidden">
     <div class="modal-card">
       
+      <!-- Modal Header Atas -->
       <div class="modal-header">
         <div class="header-left-title">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111827" stroke-width="2">
             <polygon points="12 2 2 7 2 17 12 22 22 17 22 7 12 2" />
             <circle cx="12" cy="12" r="3" />
           </svg>
-          <h4>Send Robux</h4>
+          <h4>Kirim Robux</h4>
         </div>
         <div class="header-right-meta">
           <div class="modal-balance-badge">
-            <span class="robux-hex-inline">⬡</span>
+            <svg class="rbx-coin-svg sm" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg>
             <span id="modalBalanceDisplay">10.000</span>
           </div>
           <button id="btnCloseModal" class="btn-close-x">&times;</button>
@@ -321,22 +345,26 @@
           <div class="user-card-row" id="targetUserCard">
             <img id="detectedAvatar" src="" alt="Avatar">
             <div class="user-card-meta">
-              <span id="detectedDisplayName" class="txt-bold">Jirun</span>
-              <span id="detectedUsername" class="txt-gray">@sultancoins7</span>
+              <span id="detectedDisplayName" class="txt-bold">biex</span>
+              <span id="detectedUsername" class="txt-gray">@biex</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- STEP 2: NOMINAL ROBUX (AWAL 0, NO UNDERLINE, NO MOUSE SCROLL) -->
+      <!-- STEP 2: NOMINAL ROBUX (PERSIS FOTO 1 - AWAL 0 & LOGO ROBUX RESMI) -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="target-profile-center">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
-          <h3 id="step2Name">Jirun</h3>
+          <h3 id="step2Name">biex</h3>
         </div>
 
+        <!-- Logo Koin Robux & Angka 0 Persis Foto 1 -->
         <div class="hero-amount-box">
-          <span class="robux-sym-huge">⬡</span>
+          <svg class="rbx-coin-svg hero" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+          </svg>
           <input 
             type="text" 
             id="manualAmountInput" 
@@ -348,23 +376,44 @@
           />
         </div>
 
+        <!-- Preset 25, 50, 100, 200 dengan Logo Koin Robux Asli -->
         <div class="presets-row">
-          <button class="preset-pill" data-val="25">⬡ 25</button>
-          <button class="preset-pill" data-val="50">⬡ 50</button>
-          <button class="preset-pill" data-val="100">⬡ 100</button>
-          <button class="preset-pill" data-val="200">⬡ 200</button>
+          <button class="preset-pill" data-val="25">
+            <svg class="rbx-coin-svg xs" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg> 25
+          </button>
+          <button class="preset-pill" data-val="50">
+            <svg class="rbx-coin-svg xs" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg> 50
+          </button>
+          <button class="preset-pill" data-val="100">
+            <svg class="rbx-coin-svg xs" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg> 100
+          </button>
+          <button class="preset-pill" data-val="200">
+            <svg class="rbx-coin-svg xs" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+            </svg> 200
+          </button>
         </div>
 
-        <button id="btnNextToConfirm" class="btn-purple-primary full-width">Next</button>
-        <p class="micro-note">Robux are delivered instantly at no cost.</p>
+        <button id="btnNextToConfirm" class="btn-purple-primary full-width">Berikutnya</button>
+        <p class="micro-note">Robux dikirim secara instan tanpa biaya.</p>
       </div>
 
       <!-- STEP 3: KONFIRMASI -->
       <div id="step3Confirm" class="step-panel hidden">
         <div class="confirm-card-panel">
           <img id="step3Avatar" class="avatar-mid" src="" alt="">
-          <h4 id="step3Name">Jirun</h4>
-          <p id="step3Handle" class="txt-gray">@sultancoins7</p>
+          <h4 id="step3Name">biex</h4>
+          <p id="step3Handle" class="txt-gray">@biex</p>
 
           <div class="meta-row">
             <span>📅 Terhubung 1 tahun</span>
@@ -375,28 +424,35 @@
         </div>
 
         <div class="confirm-amount-pill">
-          <span class="robux-hex-inline font-24">⬡</span>
+          <svg class="rbx-coin-svg lg" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5ZM9.6 9.6H14.4V14.4H9.6V9.6Z" fill="currentColor"/>
+          </svg>
           <span id="confirmAmountText" class="txt-amount-big">0</span>
         </div>
 
         <div class="split-actions">
           <button id="btnSubmitSend" class="btn-primary-blue">
-            <span id="btnSendText">Send</span>
+            <span id="btnSendText">Kirim</span>
             <div id="btnSpinner" class="spinner-wheel hidden"></div>
           </button>
           <button id="btnEditBack" class="btn-gray-secondary">Edit</button>
         </div>
 
         <p class="disclaimer-note">
-          You need age verification or parental consent to send Robux. Once sent, you cannot cancel the transaction.
+          Anda memerlukan verifikasi usia atau persetujuan orang tua untuk mengirim Robux. Setelah dikirim, Anda tidak dapat membatalkannya.
         </p>
       </div>
 
-      <!-- STEP 4: SUKSES -->
+      <!-- STEP 4: SUKSES (PERSIS FOTO 2 DENGAN CENTANG HITAM & TOMBOL OK) -->
       <div id="step4Success" class="step-panel hidden">
         <div class="success-wrap">
-          <div class="check-circle-black">✓</div>
-          <h3 class="success-heading">You sent <span id="successSentAmount">0</span> Robux</h3>
+          <div class="check-circle-black">
+            <svg viewBox="0 0 24 24" class="check-svg" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="success-heading">Anda mengirimkan <span id="successSentAmount">25</span> Robux</h3>
           <button id="btnOkDone" class="btn-primary-blue full-width">OK</button>
         </div>
       </div>
