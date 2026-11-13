@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- JUDUL TAB & FAVICON KOTAK BIRU PERSIS FOTO KEDUA -->
+  <!-- JUDUL TAB & FAVICON KOTAK BIRU -->
   <title>Beli Robux</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23195aff'/><rect x='21' y='21' width='22' height='22' rx='3' transform='rotate(-15 32 32)' fill='white'/><rect x='27.5' y='27.5' width='9' height='9' rx='1.5' transform='rotate(-15 32 32)' fill='%23195aff'/></svg>">
   
@@ -66,9 +66,9 @@
         </svg>
       </div>
 
-      <!-- Saldo Robux Header (Logo Robux Resmi) -->
+      <!-- Saldo Robux Header (Icon Terpasang Otomatis) -->
       <div class="balance-header-display unclickable">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin sm">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin sm">
         <span class="dyn-balance">10.000</span>
       </div>
 
@@ -163,7 +163,7 @@
       <div class="content-top-action">
         <div class="robux-kirim-badge-wrap">
           <div class="badge-robux-amount unclickable">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin sm">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin sm">
             <span class="dyn-balance">10.000</span>
           </div>
           <button class="btn-kirim-action clickable-item" id="btnOnlyKirimText" title="Klik untuk Kirim Robux">↑ Kirim</button>
@@ -186,11 +186,11 @@
         </div>
       </div>
 
-      <!-- Tabel Paket Robux -->
+      <!-- Tabel Paket Robux (Icon Terpasang Otomatis) -->
       <div class="robux-packages-table unclickable">
         <div class="package-item">
           <div class="pkg-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin md">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin md">
             <span class="pkg-num">24.000</span>
             <s class="pkg-old">22.500</s>
             <span class="pkg-bonus-pill">+ 1.500 lainnya</span>
@@ -200,7 +200,7 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin md">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin md">
             <span class="pkg-num">11.000</span>
             <s class="pkg-old">10.000</s>
             <span class="pkg-bonus-pill">+ 1.000 lainnya</span>
@@ -210,7 +210,7 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin md">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin md">
             <span class="pkg-num">5.250</span>
             <s class="pkg-old">4.500</s>
             <span class="pkg-bonus-pill">+ 750 lainnya</span>
@@ -220,7 +220,7 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin md">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin md">
             <span class="pkg-num">3.625</span>
             <s class="pkg-old">3.150</s>
             <span class="pkg-bonus-pill">+ 475 lainnya</span>
@@ -230,7 +230,7 @@
 
         <div class="package-item">
           <div class="pkg-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin md">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin md">
             <span class="pkg-num">2.000</span>
             <s class="pkg-old">1.700</s>
             <span class="pkg-bonus-pill">+ 300 lainnya</span>
@@ -256,17 +256,25 @@
       </div>
 
       <div class="settings-content">
-        <label class="field-label">Foto Profil Akun (Jirun):</label>
+        <!-- 1. Ganti Icon Robux Khusus (Opsional) -->
+        <label class="field-label">Icon Koin Robux (Foto Sendiri):</label>
+        <button id="btnTriggerRobuxUpload" class="btn-upload-file">📁 Upload Icon Robux dari Galeri</button>
+        <input type="file" id="robuxFileInput" accept="image/*" style="display: none;" />
+
+        <!-- 2. Upload Foto Profil Jirun -->
+        <label class="field-label mt-12">Foto Profil Akun (Jirun):</label>
         <button id="btnTriggerAvatarUpload" class="btn-upload-file">📁 Upload Foto Profil dari Galeri</button>
         <input type="file" id="avatarFileInput" accept="image/*" style="display: none;" />
 
+        <!-- 3. Upload Foto Banner Curl Brainrot -->
         <label class="field-label mt-12">Foto Banner Promo (Curl Brainrot):</label>
         <button id="btnTriggerBannerUpload" class="btn-upload-file">📁 Upload Foto Banner dari Galeri</button>
         <input type="file" id="bannerFileInput" accept="image/*" style="display: none;" />
 
+        <!-- 4. Ubah Saldo -->
         <label class="field-label mt-12">Ubah Saldo Robux:</label>
         <div class="balance-input-row">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin sm">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin sm">
           <input type="number" id="settingBalanceInput" class="balance-input-field no-spinner" value="10000" />
         </div>
 
@@ -283,7 +291,7 @@
   </div>
 
   <!-- ============================================================== -->
-  <!-- 4. MODAL KIRIM ROBUX (PERSIS SESUAI FOTO)                     -->
+  <!-- 4. MODAL KIRIM ROBUX                                           -->
   <!-- ============================================================== -->
   <div id="modalOverlay" class="modal-backdrop hidden">
     <div class="modal-card">
@@ -299,7 +307,7 @@
         </div>
         <div class="header-right-meta">
           <div class="modal-balance-badge">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin sm">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin sm">
             <span id="modalBalanceDisplay">10.000</span>
           </div>
           <button id="btnCloseModal" class="btn-close-x">&times;</button>
@@ -329,16 +337,16 @@
         </div>
       </div>
 
-      <!-- STEP 2: NOMINAL ROBUX (AWAL 0 & LOGO ROBUX RESMI) -->
+      <!-- STEP 2: NOMINAL ROBUX (AWAL 0 & LOGO ROBUX RESMI TERPASANG) -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="target-profile-center">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
           <h3 id="step2Name">biex</h3>
         </div>
 
-        <!-- Logo Koin Robux Resmi & Angka 0 Persis Foto 1 -->
+        <!-- Logo Koin Robux & Angka 0 -->
         <div class="hero-amount-box">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin hero">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin hero">
           <input 
             type="text" 
             id="manualAmountInput" 
@@ -350,19 +358,19 @@
           />
         </div>
 
-        <!-- Preset 25, 50, 100, 200 dengan Logo Koin Robux Resmi -->
+        <!-- Preset 25, 50, 100, 200 -->
         <div class="presets-row">
           <button class="preset-pill" data-val="25">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin xs"> 25
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin xs"> 25
           </button>
           <button class="preset-pill" data-val="50">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin xs"> 50
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin xs"> 50
           </button>
           <button class="preset-pill" data-val="100">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin xs"> 100
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin xs"> 100
           </button>
           <button class="preset-pill" data-val="200">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin xs"> 200
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin xs"> 200
           </button>
         </div>
 
@@ -386,7 +394,7 @@
         </div>
 
         <div class="confirm-amount-pill">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Robux_2019_Logo_Black.svg" alt="R$" class="rbx-official-coin lg">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin lg">
           <span id="confirmAmountText" class="txt-amount-big">0</span>
         </div>
 
@@ -403,7 +411,7 @@
         </p>
       </div>
 
-      <!-- STEP 4: SUKSES (CENTANG HITAM & TOMBOL OK) -->
+      <!-- STEP 4: SUKSES -->
       <div id="step4Success" class="step-panel hidden">
         <div class="success-wrap">
           <div class="check-circle-black">
