@@ -5,7 +5,7 @@
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* KUNCI ELEMEN TIDAK BOLEH BISA DIKLIK */
+/* KUNCI ELEMEN YANG TIDAK BOLEH DIKLIK */
 .unclickable {
   pointer-events: none !important;
   user-select: none !important;
@@ -42,6 +42,36 @@ html, body {
 }
 
 /* ========================================================= */
+/* 0. IKON KOIN RESMI ROBUX (PERSIS FOTO 1)                  */
+/* ========================================================= */
+.rbx-coin-svg {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.rbx-coin-svg.xs {
+  width: 15px;
+  height: 15px;
+}
+.rbx-coin-svg.sm {
+  width: 18px;
+  height: 18px;
+}
+.rbx-coin-svg.md {
+  width: 20px;
+  height: 20px;
+}
+.rbx-coin-svg.lg {
+  width: 28px;
+  height: 28px;
+}
+.rbx-coin-svg.hero {
+  width: 40px;
+  height: 40px;
+  color: #111827;
+}
+
+/* ========================================================= */
 /* 1. NAVBAR ATAS (PERSIS SESUAI SCREENSHOT)                 */
 /* ========================================================= */
 .rbx-navbar {
@@ -56,7 +86,6 @@ html, body {
   z-index: 1000;
 }
 
-/* Sisi Kiri: Logo Roblox + Menu */
 .nav-left {
   display: flex;
   align-items: center;
@@ -70,7 +99,6 @@ html, body {
   margin-right: 4px;
 }
 
-/* LOGO ROBLOX RAMPING & PAS (16px) */
 .rbx-logo-wordmark {
   height: 16px;
   width: auto;
@@ -90,7 +118,6 @@ html, body {
   font-weight: 700;
 }
 
-/* Kolom Pencarian Tengah (Setelah Menu Buat) */
 .nav-center {
   flex: 0 1 340px;
 }
@@ -115,7 +142,6 @@ html, body {
   cursor: text;
 }
 
-/* Sisi Kanan: Foto Jirun -> Lonceng -> ⬡ 10.000 -> ⚙ */
 .nav-right {
   display: flex;
   align-items: center;
@@ -130,7 +156,6 @@ html, body {
   font-size: 13.5px;
 }
 
-/* Placeholder Avatar Kosong */
 .avatar-headshot-blank {
   width: 26px;
   height: 26px;
@@ -166,19 +191,13 @@ html, body {
   background-color: #e3e5e8;
 }
 
-/* Display Saldo Header (TIDAK BISA DIKLIK) */
 .balance-header-display {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 13.5px;
   font-weight: 800;
   padding: 2px 4px;
-}
-
-.robux-hex {
-  font-size: 15px;
-  font-weight: 900;
 }
 
 /* ========================================================= */
@@ -190,7 +209,6 @@ html, body {
   overflow: hidden;
 }
 
-/* SIDEBAR KIRI (TIDAK BISA SCROLL & SEMUA LINK MATI) */
 .rbx-sidebar {
   width: 220px;
   flex-shrink: 0;
@@ -294,12 +312,11 @@ html, body {
 .badge-robux-amount {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-weight: 800;
   font-size: 13.5px;
 }
 
-/* HANYA TEKS INI YANG BISA DIKLIK */
 .btn-kirim-action {
   background: #e3e5e8;
   border: none;
@@ -401,7 +418,7 @@ html, body {
   gap: 10px;
 }
 
-.pkg-hex, .pkg-num {
+.pkg-num {
   font-size: 18px;
   font-weight: 800;
 }
@@ -489,18 +506,9 @@ html, body {
 .modal-balance-badge {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   font-size: 14px;
   font-weight: 800;
-}
-
-.robux-hex-inline {
-  font-size: 16px;
-  font-weight: 900;
-}
-
-.font-24 {
-  font-size: 24px;
 }
 
 .btn-close-x {
@@ -653,7 +661,7 @@ html, body {
   color: #64748b;
 }
 
-/* Modal Step 2: Input Polos Tanpa Garis Bawah */
+/* Modal Step 2: Input Polos Tanpa Garis Bawah (Persis Foto 1) */
 .target-profile-center {
   text-align: center;
   margin-bottom: 12px;
@@ -676,15 +684,8 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin: 18px 0 22px;
-}
-
-.robux-sym-huge {
-  font-size: 38px;
-  font-weight: 900;
-  line-height: 1;
-  color: #111827;
 }
 
 .hero-input-clean {
@@ -706,6 +707,7 @@ html, body {
   caret-color: #3b5bed;
 }
 
+/* Tombol Preset */
 .presets-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -721,6 +723,10 @@ html, body {
   font-weight: 700;
   font-size: 13.5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 .preset-pill.active {
@@ -783,7 +789,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .txt-amount-big {
@@ -798,7 +804,7 @@ html, body {
 }
 
 .btn-primary-blue {
-  background-color: #3056d3;
+  background-color: #2563eb; /* Biru terang khas tombol OK Foto 2 */
   color: white;
   border: none;
   padding: 12px;
@@ -823,7 +829,7 @@ html, body {
   cursor: pointer;
 }
 
-/* Spinner Loading */
+/* Spinner Loading 5 Detik */
 .spinner-wheel {
   width: 20px;
   height: 20px;
@@ -837,29 +843,36 @@ html, body {
   to { transform: rotate(360deg); }
 }
 
-/* Modal Step 4 Success */
+/* ========================================================= */
+/* 5. TAMPILAN SUKSES CENTANG HITAM (PERSIS FOTO 2)          */
+/* ========================================================= */
 .success-wrap {
   text-align: center;
-  padding: 30px 10px 10px;
+  padding: 24px 10px 10px;
 }
 
+/* Lingkaran Hitam Tebal & Centang Hitam */
 .check-circle-black {
   width: 72px;
   height: 72px;
   border: 4px solid #111827;
   border-radius: 50%;
-  margin: 0 auto 20px;
+  margin: 0 auto 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  font-weight: 800;
+}
+
+.check-svg {
+  width: 38px;
+  height: 38px;
 }
 
 .success-heading {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 30px;
+  color: #111827;
+  margin-bottom: 34px;
 }
 
 /* Utilitas Global */
