@@ -10,6 +10,9 @@ let appState = {
   }
 };
 
+// URL Default Icon Koin Robux Resmi
+const DEFAULT_ROBUX_ICON = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png";
+
 // Elemen DOM
 const dynBalanceSpans = document.querySelectorAll(".dyn-balance");
 const btnOnlyKirimText = document.getElementById("btnOnlyKirimText");
@@ -28,6 +31,8 @@ const btnSaveBalance = document.getElementById("btnSaveBalance");
 const btnAddPills = document.querySelectorAll(".btn-add-pill");
 
 // File Upload
+const btnTriggerRobuxUpload = document.getElementById("btnTriggerRobuxUpload");
+const robuxFileInput = document.getElementById("robuxFileInput");
 const btnTriggerAvatarUpload = document.getElementById("btnTriggerAvatarUpload");
 const avatarFileInput = document.getElementById("avatarFileInput");
 const btnTriggerBannerUpload = document.getElementById("btnTriggerBannerUpload");
@@ -114,6 +119,13 @@ function applyAvatarImage(imgData) {
   sideAvatarPlaceholder.classList.add("hidden");
 }
 
+// Pasang Icon Robux Khusus ke Seluruh Elemen
+function applyCustomRobuxIcon(imgData) {
+  document.querySelectorAll(".rbx-official-coin").forEach(img => {
+    img.src = imgData;
+  });
+}
+
 // ==============================================================
 // 1. PENGATURAN (IKON ⚙): UPLOAD FOTO & UBAH SALDO
 // ==============================================================
@@ -124,6 +136,22 @@ btnOpenSettings.addEventListener("click", () => {
 
 btnCloseSettings.addEventListener("click", () => {
   settingsModalOverlay.classList.add("hidden");
+});
+
+// Upload Icon Robux Sendiri dari Galeri
+btnTriggerRobuxUpload.addEventListener("click", () => robuxFileInput.click());
+robuxFileInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const imgData = event.target.result;
+      applyCustomRobuxIcon(imgData);
+      localStorage.setItem("savedRobuxIcon", imgData);
+      alert("Icon Robux berhasil diperbarui!");
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
 // Upload Foto Profil Jirun dari Galeri
@@ -158,8 +186,15 @@ bannerFileInput.addEventListener("change", (e) => {
   }
 });
 
-// Cek Apakah Pernah Upload Foto Sebelumnya
+// Load Simpanan Foto & Icon saat Pertama Buka
 window.addEventListener("DOMContentLoaded", () => {
+  const savedRobuxIcon = localStorage.getItem("savedRobuxIcon");
+  if (savedRobuxIcon) {
+    applyCustomRobuxIcon(savedRobuxIcon);
+  } else {
+    applyCustomRobuxIcon(DEFAULT_ROBUX_ICON);
+  }
+
   const savedAvatar = localStorage.getItem("savedCustomAvatar");
   if (savedAvatar) {
     applyAvatarImage(savedAvatar);
