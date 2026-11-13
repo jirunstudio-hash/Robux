@@ -72,7 +72,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 1. NAVBAR ATAS (PERSIS SESUAI SCREENSHOT)                 */
+/* 1. NAVBAR ATAS (PERSIS SESUAI SCREENSHOT TERBARU)         */
 /* ========================================================= */
 .rbx-navbar {
   height: 44px;
@@ -107,6 +107,7 @@ html, body {
   pointer-events: none;
 }
 
+/* Menu Navigasi Baru */
 .nav-menu {
   display: flex;
   gap: 18px;
@@ -661,7 +662,7 @@ html, body {
   color: #64748b;
 }
 
-/* Modal Step 2: Input Polos Tanpa Garis Bawah (Persis Foto 1) */
+/* Modal Step 2: Input Polos Tanpa Garis Bawah */
 .target-profile-center {
   text-align: center;
   margin-bottom: 12px;
@@ -844,7 +845,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 5. TAMPILAN SUKSES CENTANG HITAM (PERSIS FOTO)            */
+/* 5. TAMPILAN SUKSES CENTANG HITAM                          */
 /* ========================================================= */
 .success-wrap {
   text-align: center;
