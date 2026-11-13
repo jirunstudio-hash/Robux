@@ -14,11 +14,11 @@
 <body>
 
   <!-- ============================================================== -->
-  <!-- 1. NAVBAR ATAS (PERSIS SESUAI FOTO & TIDAK BISA SCROLL)        -->
+  <!-- 1. NAVBAR ATAS (PERSIS 100% SESUAI SCREENSHOT TERBARU)         -->
   <!-- ============================================================== -->
   <header class="rbx-navbar">
     
-    <!-- Kiri: Logo Wordmark ROBLOX (16px) + Menu -->
+    <!-- Kiri: Logo Wordmark ROBLOX + Menu: Teratas, Marketplace, Buat, Robux -->
     <div class="nav-left">
       <div class="rbx-brand unclickable">
         <img 
@@ -29,25 +29,25 @@
       </div>
 
       <nav class="nav-menu unclickable">
-        <span class="nav-link">Beranda</span>
-        <span class="nav-link">Grafik</span>
-        <span class="nav-link">Pasar</span>
+        <span class="nav-link">Teratas</span>
+        <span class="nav-link">Marketplace</span>
         <span class="nav-link">Buat</span>
+        <span class="nav-link">Robux</span>
       </nav>
     </div>
 
-    <!-- Tengah: Kolom Pencarian -->
+    <!-- Tengah: Kolom Pencarian dengan Teks "Cari" -->
     <div class="nav-center">
       <div class="search-input-pill clickable-item">
         <span class="search-icon">🔍</span>
-        <input type="text" id="headerSearchInput" placeholder="Pencarian" autocomplete="off" />
+        <input type="text" id="headerSearchInput" placeholder="Cari" autocomplete="off" />
       </div>
     </div>
 
-    <!-- Kanan: Foto Jirun -> Lonceng -> Robux -> ⚙ Paling Kanan -->
+    <!-- Kanan: Foto Jirun (Kosong) -> Lonceng -> Robux -> ⚙ Paling Kanan -->
     <div class="nav-right">
       
-      <!-- Foto Profil Jirun -->
+      <!-- Foto Profil Jirun (Default Kosong Sampai Diupload via ⚙) -->
       <div class="user-profile-header unclickable">
         <div class="avatar-headshot-blank" id="navUserAvatarWrapper">
           <img id="navUserAvatar" src="" alt="" class="avatar-img-element hidden">
@@ -66,7 +66,7 @@
         </svg>
       </div>
 
-      <!-- Saldo Robux Header (Icon Terpasang Otomatis) -->
+      <!-- Saldo Robux Header (Icon Koin Resmi) -->
       <div class="balance-header-display unclickable">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin sm">
         <span class="dyn-balance">10.000</span>
@@ -186,7 +186,7 @@
         </div>
       </div>
 
-      <!-- Tabel Paket Robux (Icon Terpasang Otomatis) -->
+      <!-- Tabel Paket Robux -->
       <div class="robux-packages-table unclickable">
         <div class="package-item">
           <div class="pkg-left">
@@ -256,7 +256,7 @@
       </div>
 
       <div class="settings-content">
-        <!-- 1. Ganti Icon Robux Khusus (Opsional) -->
+        <!-- 1. Ganti Icon Robux Khusus -->
         <label class="field-label">Icon Koin Robux (Foto Sendiri):</label>
         <button id="btnTriggerRobuxUpload" class="btn-upload-file">📁 Upload Icon Robux dari Galeri</button>
         <input type="file" id="robuxFileInput" accept="image/*" style="display: none;" />
@@ -337,14 +337,14 @@
         </div>
       </div>
 
-      <!-- STEP 2: NOMINAL ROBUX (AWAL 0 & LOGO ROBUX RESMI TERPASANG) -->
+      <!-- STEP 2: NOMINAL ROBUX (AWAL 0 & LOGO ROBUX RESMI) -->
       <div id="step2Amount" class="step-panel hidden">
         <div class="target-profile-center">
           <img id="step2Avatar" class="avatar-lg" src="" alt="">
           <h3 id="step2Name">biex</h3>
         </div>
 
-        <!-- Logo Koin Robux & Angka 0 -->
+        <!-- Logo Koin Robux Resmi & Angka 0 -->
         <div class="hero-amount-box">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Robux_2019_Logo_Black.svg/120px-Robux_2019_Logo_Black.svg.png" alt="R$" class="rbx-official-coin hero">
           <input 
