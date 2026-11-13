@@ -661,7 +661,7 @@ html, body {
   color: #64748b;
 }
 
-/* Modal Step 2: Input Polos Tanpa Garis Bawah */
+/* Modal Step 2: Input Polos Tanpa Garis Bawah (Persis Foto 1) */
 .target-profile-center {
   text-align: center;
   margin-bottom: 12px;
@@ -707,6 +707,7 @@ html, body {
   caret-color: #3b5bed;
 }
 
+/* Tombol Preset */
 .presets-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -843,7 +844,7 @@ html, body {
 }
 
 /* ========================================================= */
-/* 5. TAMPILAN SUKSES CENTANG HITAM (PERSIS FOTO 3)          */
+/* 5. TAMPILAN SUKSES CENTANG HITAM (PERSIS FOTO)            */
 /* ========================================================= */
 .success-wrap {
   text-align: center;
